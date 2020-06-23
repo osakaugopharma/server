@@ -1,0 +1,31 @@
+<form>
+  <script src="https://api.flutterwave.com/checkout.js"></script>
+  <button type="button" onClick="makePayment()">Pay Now</button>
+</form>
+
+<script>
+  var uid = Math.random().toString(36).substr(2, 9); 
+  function makePayment() {
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK_TEST-b558592d89819939a19def517273deec-X",
+      tx_ref: `oup-${uid}`,
+      amount: {{total}},
+      currency: "NGN",
+      payment_options: "card,mobilemoney,ussd",
+      redirect_url: // specified redirect URL
+       "/success" ,
+      customer: {
+        email: "{{email}}",
+        phone_number: "08102909304",
+        name: "yemi desola",
+      },
+      callback: function (data) {
+        console.log(data);
+      },
+      customizations: {
+        title: "Payment for item",
+        description: "Payment for items in cart",
+      },
+    });
+  }
+</script>

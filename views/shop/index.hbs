@@ -1,0 +1,552 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* Carousel */
+    #carousel {
+      z-index: -1;
+      position: relative;
+    }
+
+
+    .carousel-caption {
+      margin-left: -2em;
+    }
+
+    .carousel-caption h1 {
+      font-weight: bold;
+      font-size: 2em;
+      font-family: Roboto;
+      font-stretch: 125%;
+    }
+
+    .carousel-caption p {
+      font-size: 16px;
+
+    }
+
+    .carousel-item.one {
+      background: url("/images/carousel.jpg");
+      background-size: cover;
+    }
+
+    .carousel-item.two {
+      background: url("/images/pills.jpg");
+      background-size: cover;
+    }
+
+    .carousel-item.three {
+      background: url("/images/payment.jpg");
+      background-size: cover;
+    }
+
+    .shop-now {
+      border: none;
+      background-color: #5cdb95;
+      border-radius: 3px;
+      padding: 0.5rem 1.5rem;
+      color: rgb(255, 255, 255);
+      margin-top: 1rem;
+      font-size: 18px;
+
+    }
+
+    .bottom-gap {
+      margin-bottom: 5em;
+    }
+
+    .view-more {
+      border: 1px solid #5cdb95;
+      background-color: #fff;
+      border-radius: 3px;
+      padding: 0.5rem 1.5rem;
+      color: #000;
+      outline: none;
+      font-size: 18px;
+    }
+
+    .white-text {
+      color: #fff;
+    }
+
+    @media (max-width: 575.98px) {
+      .carousel-caption h1 {
+        letter-spacing: 0.02rem;
+      }
+
+      .carousel-caption p {
+        font-size: 13px;
+      }
+
+      .carousel-item {
+        height: 24em;
+      }
+
+      .carousel-caption {
+        width: 28em;
+      }
+
+      .carousel-caption p {
+        width: 20em;
+      }
+    }
+
+    @media (min-width: 576px) {
+      .carousel-caption h1 {
+        letter-spacing: 0.02rem;
+        font-size: 1.96em;
+      }
+
+      .carousel-item {
+        height: 24em;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .carousel-caption h1 {
+
+        letter-spacing: 0.02rem;
+        font-size: 2em;
+      }
+
+      .carousel-item {
+        height: 30em;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .carousel-caption h1 {
+
+        letter-spacing: 0.02rem;
+        font-size: 3em;
+      }
+
+      .carousel-item {
+        height: 36em;
+      }
+    }
+
+
+
+
+    /* About */
+    h2 {
+      font-size: 1.5em;
+      font-family: Roboto;
+      font-weight: bold;
+      margin-bottom: 0.8em;
+      color: #000;
+    }
+
+    p {
+      line-height: 36px;
+      font-size: 17px;
+    }
+
+
+
+    .background {
+      background-color: #e5faf1;
+      padding-top: 5em;
+      text-align: center;
+
+    }
+
+    .background {
+      padding-top: 5em;
+
+    }
+
+
+
+    /* Categories */
+    .category-background {
+      padding-top: 5em;
+    }
+
+    .background h2 {
+      font-weight: 600;
+      font-size: 1.5em;
+      color: #000;
+    }
+
+    .category-paragraph-categories {
+      margin-top: 3.5em;
+      font-size: 13px;
+      color: #000;
+      font-family: Roboto;
+
+    }
+
+    .row-gap {
+      margin-top: 4em;
+    }
+
+    div.row div {
+      text-align: center;
+      margin-bottom: 3em;
+    }
+
+
+    /* Featured products: Antimalaria */
+    .container {
+      padding-top: 5em;
+    }
+
+    h2 {
+      margin-bottom: 1.5em;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .category-paragraph {
+      margin-top: 0.5em;
+      font-size: 15px;
+
+
+    }
+
+
+
+    .price {
+      font-size: 14px;
+    }
+
+    .margin {
+      margin-bottom: 3em;
+    }
+
+
+
+
+
+    .drug-backdrop {
+      height: 150px;
+      width: 150px;
+      margin: 0 auto;
+      margin-bottom: 0 !important;
+      opacity: 1;
+      transition: 0.5s ease;
+      backface-visibility: hidden;
+    }
+
+    .img-one {
+      background: url("/images/amartem-forte-softgel.jpg");
+
+      background-repeat: no-repeat;
+    }
+
+    .img-two {
+      background: url("/images/coartem-80-480.jpg");
+    }
+
+    .img-three {
+      background: url("/images/p-alaxin.jpg");
+    }
+
+    .img-four {
+      background: url("/images/lonart-ds.jpg");
+    }
+
+    .img-five {
+      background: url("/images/lonart-dispersible.jpg");
+    }
+
+    .img-six {
+      background: url("/images/coartem-d-12.jpg");
+    }
+
+    .button-container{
+      transition: 0.5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .product-container:hover .drug-backdrop{
+      opacity: 0.3;
+    }
+
+    .product-container:hover .button-container{
+      opacity: 1;
+    }
+
+    .cart-button{
+      background: none;
+      border: 2px solid #000;
+     cursor: pointer;
+     padding: 0.5em 1em;
+      width: 7em;
+      
+    }
+  
+  </style>
+
+
+</head>
+
+<body>
+  <div id="carousel" class="mt-2 p-0 container-fluid">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active container-fluid p-0 one" data-interval="10000">
+
+
+          <div class="carousel-caption text-left mb-xs-3 mb-sm-3 mb-md-5 mb-lg-5 pb-5">
+            <h1>
+              Pharmaceuticals
+              <br />made
+              easy
+            </h1>
+
+
+            <p>
+              Osaka Ugo Pharmaceuticals delivers quality products
+              <br />and services to your doorstep.
+            </p>
+
+            <button class="shop-now">Shop now</button>
+          </div>
+        </div>
+        <div class="carousel-item two" data-interval="10000">
+
+
+          <div class="carousel-caption text-left mb-xs-3 mb-sm-3 mb-md-5 mb-lg-5 mb-xs-5 pb-5">
+            <h1 class="white-text">
+              A new system for buying
+              <br />medication online
+            </h1>
+
+            <p class="white-text">
+              We use the latest technological tools to make medication
+              easier and safer
+            </p>
+
+            <button class="shop-now">Shop now</button>
+          </div>
+        </div>
+
+        <div class="carousel-item three" data-interval="10000">
+
+
+          <div class="carousel-caption text-left mb-xs-3 mb-sm-3 mb-md-5 mb-lg-5 mb-xs-5 pb-5">
+            <h1 class="white-text">
+              Pay online easily and
+              <br />efficiently
+            </h1>
+
+            <p class="white-text">Pay for your purchase securely online.</p>
+
+            <button class="shop-now">Shop now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid background">
+    <h2>
+      A little bit about us
+    </h2>
+
+    <p>
+      We at Osaka Ugo Pharmaceuticals believe that health is wealth and good health is
+      essential for human wellbeing. We are comitted to making sure that our products get
+      to our customers
+    </p>
+    <button class="shop-now bottom-gap">Read more</button>
+  </div>
+
+
+  <div class="container-fluid category-background">
+    <div class="container-fluid">
+      <h2>Product categories</h2>
+      <div class="row row-gap text-center">
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-syringe" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/AntiMalaria">
+            <p class="category-paragraph-categories">Anti-malaria</p>
+          </router-link>
+        </div>
+        <div class="col-sm-4 col-4 ">
+          <i class="fas fa-pills" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/Multivitamins">
+            <p class="category-paragraph-categories">Multivitamins</p>
+          </router-link>
+        </div>
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-stethoscope" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/Equipments">
+            <p class="category-paragraph-categories">Equipments</p>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="row row-gap">
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-venus-mars" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/Contraceptives">
+            <p class="category-paragraph-categories">Contraceptives</p>
+          </router-link>
+        </div>
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-diagnoses" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/Antibiotics">
+            <p class="category-paragraph-categories">Antibiotics</p>
+          </router-link>
+        </div>
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-eye" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/VisionDrugs">
+            <p class="category-paragraph-categories">Vision drugs</p>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="row row-gap">
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-tablets" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/UlcerAndGastro">
+            <p class="category-paragraph-categories">Ulcer and gastro drugs</p>
+          </router-link>
+        </div>
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-bolt" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/Analgesics">
+            <p class="category-paragraph-categories">Analgesics</p>
+          </router-link>
+        </div>
+        <div class="col-sm-4 col-4">
+          <i class="fas fa-heartbeat" style="color: #000000; font-size: 24px"></i>
+          <router-link to="../products/AntiHypertensives">
+            <p class="category-paragraph-categories">Anti-hypertensives</p>
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="container">
+    <h2>Featured Products</h2>
+    <nav aria-label="breadcrumb" class="margin">
+      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff">
+        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff; font-size: 17px;">Anti-Malaria
+        </li>
+      </ol>
+    </nav>
+  {{# each products }}
+      <div class="row justify-content-center">
+      {{# each this }}
+        <div class="col-6 col-sm-6 col-lg-4 product-container">
+      <img src="{{ this.imagepath }}" class="drug-backdrop">
+      <div class="button-container">
+        <a href="/add-to-cart/{{this._id}}" class="cart-button">Add to cart</a>
+      </div>
+      
+        <p class="category-paragraph">{{ this.name }}</p>
+        <p class="price">N{{ this.price }}</p>
+        </div>
+      {{/each}}
+      </div>
+  {{/each}}
+    
+
+      {{!-- <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-one"></div>
+        <p class="category-paragraph">Amatem Forte Softgel</p>
+        <p class="price">₦0.00</p>
+        <font-awesome-icon class="add-to-cart-plus" icon="plus-circle" />
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-two"></div>
+        <p class="category-paragraph">Coartem 80/400</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-three"></div>
+        <p class="category-paragraph">P-Alaxin</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-four"></div>
+        <p class="category-paragraph">Lonart-Ds</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-five"></div>
+        <p class="category-paragraph">Lonart-Ds</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-six"></div>
+        <p class="category-paragraph">Lonart-D-12</p>
+        <p class="price">₦0.00</p> --}}
+      {{!-- </div> --}}
+   
+    {{!-- <router-link to="/products/AntiMalaria"> --}}
+      <button class="view-more">View more</button>
+    {{!-- </router-link> --}}
+  </div>
+
+
+
+  <div class="container">
+    <nav aria-label="breadcrumb" class="margin">
+      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff">
+        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff;font-size: 17px;">Multivitamins
+        </li>
+      </ol>
+    </nav>
+
+    <div class="row row-gap">
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-one"></div>
+        <p class="category-paragraph">Nature's Benefit Men Mega Multi Dietary Supplement</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-two"></div>
+        <p class="category-paragraph">Immunocal</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-three"></div>
+        <p class="category-paragraph">Lycoset Capsule</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-four"></div>
+        <p class="category-paragraph">Mason Biotin 800 MCG</p>
+        <p class="price">₦0.00</p>
+      </div>
+
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="drug-backdrop img-five"></div>
+        <p class="category-paragraph">Alphabetic Plus</p>
+        <p class="price">₦0.00</p>
+      </div>
+    </div>
+    <button class="view-more bottom-gap">View more</button>
+  </div>
+</body>
+
+</html>

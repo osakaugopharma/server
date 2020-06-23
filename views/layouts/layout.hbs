@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/all.css">
+  <link rel="stylesheet" href="/assets/animate.css">
+  <script src="/assets/all.js"></script>
+  <style>
+    body {
+      font-family: Roboto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      letter-spacing: 0.01rem;
+      font-size: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  {{> header }}
+  {{> overlay-nav }}
+  <script src="/javascripts/jquery-3.5.0.js"></script>
+  {{{body}}}
+  {{> footer }}
+</body>
+
+
+<script src="/javascripts/popper.min.js"></script>
+
+<script src="/javascripts/bootstrap.min.js"></script>
+
+
+</html>

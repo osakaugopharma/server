@@ -1,0 +1,80 @@
+<style>
+    .add-one{
+        border: 2px solid #aaa;
+        width: 30%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        border-radius: 20px;
+    }
+
+    .add-one button{
+        border-radius: 20px;
+        background: none;
+        border: 0;
+    }
+
+    .total{
+        width: 90%;
+        margin: 0 auto;
+    }
+</style>
+
+{{# if products }}
+    <div class="container-fluid">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Subtotal</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      {{# each products }}
+    <tr>
+        
+            <th scope="row">
+          <img src="/images/p-alaxin.jpg" alt="..." width="100" height="100">
+      </th>
+      <td class="pt-5">
+          {{this.item.price}}
+      </td>
+      <td class="pt-5">
+          <div class="add-one">
+              <a href="/reduce/{{this.item._id}}">-</a>
+              <span>{{ this.qty }}</span>
+              <button>+</button>
+          </div>
+      </td>
+      <td class="pt-5">{{this.price}}</td>
+        
+      <td class="pt-5"><a href="/remove/{{this.item._id}}">Remove item</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div class="total">
+    <nav aria-label="breadcrumb" class="margin">
+      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff; display: grid; grid-template-columns: 1fr 1fr;">
+        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff; font-size: 17px; justify-self: start">Total:
+        </li>
+        <span style="justify-self: end;"> N{{totalPrice}}</span>
+      </ol>
+</nav>
+
+<a href="/checkout" type="button" class="btn btn-lg btn-block" style="background-color: #5cdb95; color: #fff;">Checkout</a>
+
+<button type="button" class="btn btn-lg btn-block" style="color: #5cdb95;">Back to shop</button>
+</div>
+
+</div>
+{{ else }}
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+        <h2>No items in your cart</h2>
+    </div>
+{{/if}}
+
+

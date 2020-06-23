@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    nav {
+      font-family: Roboto;
+      font-size: 16px;
+    }
+
+    .ham {
+      background: rgb(68, 66, 66);
+      width: 20px;
+      height: 3px;
+      margin-bottom: 0.2rem;
+    }
+
+    @media (min-width: 992px) {
+      .toggler {
+        display: none;
+      }
+    }
+
+    .toggler {
+      background: none;
+      border: none;
+      outline: none;
+    }
+
+    button.navbar-toggler {
+      border: none;
+      outline: none;
+    }
+
+    li a {
+      letter-spacing: -0.05em;
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1;
+      /* -webkit-font-smoothing: antialiased; */
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="header" class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="/">
+        <img src="/images/logo.png" alt="logo" width="150" height="50" class="mt-2" />
+        
+      </a>
+
+      <button class="toggler" id="hamburger-menu">
+        <div class="ham"></div>
+        <div class="ham"></div>
+        <div class="ham"></div>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown mr-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Products</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/antimalaria">Anti-Malaria</a>
+              <a class="dropdown-item" href="/multivitamins">Multivitamins</a>
+              <a class="dropdown-item" href="/equipments">Equipments</a>
+              <a class="dropdown-item" href="/contraceptives">Contraceptives</a>
+              <a class="dropdown-item" href="/antibiotics">Antibiotics</a>
+              <a class="dropdown-item" href="/eyedrugs">Eye Drugs</a>
+              <a class="dropdown-item" href="/ulcerandgastro">Ulcer and Gastro Drugs</a>
+              <a class="dropdown-item" href="/analgesics">Analgesics</a>
+              <a class="dropdown-item" href="/antihypertensives">Anti-Hypertensives</a>
+            </div>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link">Contact Us</a>
+          </li>
+
+          <li class="nav-item mr-2">
+            <a class="nav-link">About</a>
+          </li>
+
+          <li class="nav-item dropdown mr-4">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Login</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {{# if login }}
+                <a href="/user/profile" class="dropdown-item">User account</a>
+              <a href="/user/logout" class="dropdown-item">Logout</a>
+              {{ else }}
+               <a href="/user/signup" class="dropdown-item">Sign up</a>
+              <a href="/user/signin" class="dropdown-item">Sign in</a>
+              {{/if}}
+              
+            </div>
+          </li>
+          <li class="nav-item mr-3">
+            <a class="nav-link" href="#">
+              <i class="fas fa-search" style="color: #5cdb95" ></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/shopping-cart/">
+              <i class="fas fa-shopping-cart" style="color: #5cdb95" ></i>
+              <span class="badge" style="background-color: rgb(202, 197, 197); color: #fff; border-radius: 15px;" >{{session.cart.totalQty}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+     function openNav() {
+      document.getElementById("myNav").style.height = "100%";
+    }
+    document.getElementById('hamburger-menu').addEventListener('click', openNav, false);
+  </script>
+</body>
+
+</html>
