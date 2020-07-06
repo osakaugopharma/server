@@ -1,124 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .header {
-  margin-top: 1em;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .header {
+      margin-top: 1em;
+    }
 
-.category-paragraph {
-  margin-top: 3.5em;
-}
+    .category-paragraph {
+      margin-top: 3.5em;
+    }
 
-h2 {
-  margin-bottom: 1.5em;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #000;
-}
+    .button-container {
+      width: 30%;
+      margin: 0 auto;
+    }
 
-header p {
-  text-align: center;
-  margin-top: 1.5em;
-  line-height: 1.5em;
-}
+    .button-container button {
+      margin-left: 2em;
+    }
 
-form {
-  width: 40%;
-  text-align: left;
-  margin: 1.5em auto 0 auto;
-}
+    h2 {
+      font-weight: bold;
+      color: #000;
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
 
-label {
-  margin-top: 2em;
-}
+    header p {
+      text-align: center;
+      margin-top: 1.5em;
+      line-height: 1.5em;
+    }
 
-form input {
-  width: 100%;
-  border-width: 0 0 1px 0;
-  border-color: rgb(116, 111, 111);
-  outline: none;
-}
+    form {
+      width: 40%;
+      text-align: left;
+      margin: 1.5em auto 0 auto;
+    }
 
-.shop-now {
-  border: none;
-  background-color: #5cdb95;
-  border-radius: 3px;
-  padding: 0.5rem 2rem;
-  color: #fff;
-  outline: none;
-  margin-top: 3em;
-}
+    label {
+      margin-top: 2em;
+    }
 
-section {
-  margin-bottom: 5em;
-}
+    form input {
+      width: 100%;
+      border-width: 0 0 1px 0;
+      border-color: rgb(116, 111, 111);
+      outline: none;
+    }
 
-.container {
-  margin-bottom: 5em;
-  font-size: 13px;
-}
+    .shop-now {
+      border: none;
+      background-color: #5cdb95;
+      border-radius: 3px;
+      padding: 0.5rem 2rem;
+      color: #fff;
+      outline: none;
+      margin-top: 3em;
+    }
 
-@media (max-width: 575.98px) {
-  form {
-    width: 70%;
-    text-align: left;
-    margin: 1.5em auto 0 auto;
-  }
+    section {
+      margin-bottom: 5em;
+    }
 
-  .category-paragraph {
-    font-size: 13px;
-    margin-top: 2em;
-  }
-}
-    </style>
+    .container {
+      margin-bottom: 5em;
+      font-size: 13px;
+    }
+
+    @media (max-width: 575.98px) {
+      form {
+        width: 70%;
+        text-align: left;
+        margin: 1.5em auto 0 auto;
+      }
+
+      .category-paragraph {
+        font-size: 13px;
+        margin-top: 2em;
+      }
+    }
+
+    @media (max-width: 1216px) {
+      .button-container button {
+        width: 100%;
+        margin-left: 0 !important;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .button-container button {
+        width: 100%;
+        margin-left: 0 !important;
+      }
+
+      .button-container {
+        width: 50%;
+      }
+
+      form {
+        width: 60%;
+        text-align: left;
+        margin: 1.5em auto 0 auto;
+      }
+
+    }
+  </style>
 </head>
+
 <body>
-    
+  <div class="container-fluid p-0" style="margin-top: 10em;">
+    <header style="box-shadow: none;">
+      <h2 class="header">Sign In</h2>
+      <p>Welcome back!</p>
+      {{#if hasErrors}}
+      <div class="alert alert-danger val-errors">
+        {{# each messages }}
+        <p>{{this}}</p>
+        {{/each}}
+      </div>
+      {{/if}}
+    </header>
+
+    <section>
+      <form action="/user/signin" method="post">
+
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email">
+
+        <br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+
+        <div class="button-container">
+          <button type="submit" class="shop-now">Sign in</button>
+        </div>
+      </form>
+      <p style="margin-top: 2em;">Don't have an account? <a href="/user/signup">Sign up</a></p>
+    </section>
+  </div>
 </body>
 </html>
-
- <div class="container-fluid p-0">
-        <header>
-            <h2 class="header">Sign In</h2>
-            <p>Welcome back!</p>
-            {{#if hasErrors}}
-                <div class="alert alert-danger val-errors">
-                    {{# each messages }}
-                        <p>{{this}}</p>
-                    {{/each}}
-                </div>
-            {{/if}}
-        </header>
-
-        <section>
-            <form action="/user/signin" method="post">
-                {{!-- <label>Name</label><br>
-                <input type="text">
-
-                <br> --}}
-
-                <label for="email">Email</label><br>
-                <input type="email" id="email" name="email">
-
-                <br>
-                <label for="password">Password</label><br>
-                <input type="password" id="password" name="password">
-                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-
-                <div class="button-container">
-                    <button type="submit" class="shop-now">Sign in</button>
-                </div>
-                
-            </form>
-            <p>Don't have an account? <a href="/user/signup">Sign up</a></p>
-        </section>
-
-
-
-        
-
-    </div>

@@ -93,12 +93,14 @@
         .show {
             display: block;
         }
+
+       
     </style>
 </head>
 
 <body>
     <div id="myNav" class="overlay">
-        <div class="row">
+        <div class="row" style="height: 10%;">
             <div class="col-2">
                 <a href="javascript:void(0)" class="closebtn" id="closeBtn">&times;</a>
             </div>
@@ -115,19 +117,19 @@
 
             <a id="products-link" class="dropbtn text-left">
                 Products
-                <i class="fas fa-caret-down" style="color: #000;"></i>
+                <i class="fas fa-caret-down" id="p-dropdown-icon" style="color: #000;"></i>
             </a>
-            <a class="text-left">Contact us</a>
+            <a href="/contact" class="text-left">Contact us</a>
 
-            <a class="text-left">About</a>
+            <a href="/about" class="text-left">About</a>
 
             <a href="#" id="login-link" class="text-left">
                 Login
-                <i class="fas fa-caret-down" style="color: #000"></i>
+                <i class="fas fa-caret-down" id="l-dropdown-icon" style="color: #000"></i>
             </a>
             <div class="dropdown-content text-left" id="login">
-                <a>Create account</a>
-                <a>Sign in</a>
+                <a href="/user/signup">Create account</a>
+                <a href="/user/signin">Sign in</a>
             </div>
             <div class="dropdown"></div>
 
@@ -136,11 +138,12 @@
     </div>
 
     <div id="productNav" class="overlay">
-        <div class="row">
+        <div class="row" style="height
+            : 10%;">
             <div class="col-2">
                 <a href="javascript:void(0)" class="closebtn" id="product-menu-close" >&times;</a>
             </div>
-            <div class="col-8">
+            <div class="col-8" style="margin-bottom: -1em !important; ">
                 <img src="/images/OU6.png" alt="logo" width="120" height="40" class="mt-4 mr-2" />
             </div>
         </div>
@@ -162,6 +165,7 @@
 <script>
    function closeNav(event) {
         document.getElementById("myNav").style.height = "0%";
+        document.getElementById("header").style.visibility = "visible";
     }
     var closeBtn = document.getElementById('closeBtn');
     closeBtn.addEventListener('click', closeNav, false);
@@ -181,11 +185,11 @@
 
     function openDropdown(event) {
  
-      if (event.target.id === "products-link") {
+      if (event.target.id === "products-link" || event.target.id === "p-dropdown-icon") {
         document.getElementById("products").classList.toggle("show");
       }
 
-      if (event.target.id === "login-link") {
+      if (event.target.id === "login-link" || event.target.id === "l-dropdown-icon") {
         document.getElementById("login").classList.toggle("show");
       }
     }

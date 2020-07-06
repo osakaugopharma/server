@@ -21,12 +21,14 @@
             font-size: 15px;
         }
 
-        h2 {
-            margin-bottom: 1.5em;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #000;
-        }
+        h2{
+  font-weight: bold;
+  color: #000;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+    
 
         form {
             width: 40%;
@@ -49,24 +51,22 @@
             border: none;
             background-color: #5cdb95;
             border-radius: 3px;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 2rem;
             color: rgb(255, 255, 255);
             margin-top: 3rem;
-            font-size: 18px;
-
         }
 
         section {
             margin-bottom: 4em;
         }
 
-        .val-errors{
+        .val-errors {
             width: 40%;
             margin: 1em auto;
             padding: 0;
         }
 
-        .val-errors p{
+        .val-errors p {
             margin: 8px auto;
         }
 
@@ -75,12 +75,14 @@
             font-size: 13px;
         }
 
-        .button-container{
-            width: 40%;
-            margin: 0 auto;
-            padding-left: 3em;
-            padding-right: 3em;
-        }
+         .button-container{
+      width: 30%;
+      margin: 0 auto;
+    }
+
+    .button-container button{
+      margin-left: 2em;
+    }
 
         @media (max-width: 575.98px) {
             form {
@@ -94,20 +96,46 @@
                 margin-top: 2em;
             }
         }
+
+        
+    @media (max-width: 950px){
+      .button-container button{
+        width: 100%;
+        margin-left: 0 !important;
+      }
+
+      .button-container{
+        width: 50%;
+      }
+
+      form {
+        width: 60%;
+        text-align: left;
+        margin: 1.5em auto 0 auto;
+      }
+
+    }
+
+      @media (max-width: 1216px){
+      .button-container button{
+        width: 100%;
+        margin-left: 0 !important;
+      }
+    }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid p-0">
-        <header>
+    <div class="container-fluid p-0" style="margin-top: 10em;">
+        <header style="box-shadow: none;">
             <h2 class="header">Sign Up</h2>
             <p>Sign up to be able to purchase from us</p>
             {{#if hasErrors}}
-                <div class="alert alert-danger val-errors">
-                    {{# each messages }}
-                        <p>{{this}}</p>
-                    {{/each}}
-                </div>
+            <div class="alert alert-danger val-errors">
+                {{# each messages }}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
             {{/if}}
         </header>
 
@@ -127,21 +155,19 @@
                 <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 
                 <div class="button-container">
-                    <button type="submit" class="shop-now">Sign Up</button>
+                    <button type="submit" class="shop-now">Sign up</button>
                 </div>
-                
+
             </form>
-            
+            <p style="margin-top: 2em;">Already registered? <a href="/user/signin">Sign in</a></p>
         </section>
 
 
 
-        <div class="container">
-            <p>Already have an account? <router-link to="/SignIn">Sign in</router-link>
-            </p>
-        </div>
+
 
     </div>
+
 </body>
 
 </html>

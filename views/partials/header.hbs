@@ -7,6 +7,12 @@
   <title>Document</title>
 
   <style>
+    header{
+      background-color: #fff;
+      margin-top: -8px;
+      z-index: 3;
+      box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
+    }
     nav {
       font-family: Roboto;
       font-size: 16px;
@@ -43,16 +49,30 @@
       line-height: 1;
       /* -webkit-font-smoothing: antialiased; */
     }
+
+    .make-fixed{
+      position: fixed;
+      top: 0;
+    }
+
+    .dropdown-menu a{
+      padding-bottom: 1rem;
+    }
+
+    .dropdown-menu a:active{
+      background-color:rgb(236, 233, 233);
+    }
+
   </style>
 </head>
 
 <body>
 
-  <header id="header" class="container-fluid">
+  <header id="header" class="container-fluid make-fixed">
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="/">
         <img src="/images/logo.png" alt="logo" width="150" height="50" class="mt-2" />
-        
+
       </a>
 
       <button class="toggler" id="hamburger-menu">
@@ -65,50 +85,51 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown mr-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Products</a>
+              aria-haspopup="true" aria-expanded="false" style="color: #000">Products</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/antimalaria">Anti-Malaria</a>
-              <a class="dropdown-item" href="/multivitamins">Multivitamins</a>
-              <a class="dropdown-item" href="/equipments">Equipments</a>
-              <a class="dropdown-item" href="/contraceptives">Contraceptives</a>
-              <a class="dropdown-item" href="/antibiotics">Antibiotics</a>
-              <a class="dropdown-item" href="/eyedrugs">Eye Drugs</a>
-              <a class="dropdown-item" href="/ulcerandgastro">Ulcer and Gastro Drugs</a>
-              <a class="dropdown-item" href="/analgesics">Analgesics</a>
-              <a class="dropdown-item" href="/antihypertensives">Anti-Hypertensives</a>
+              <a class="dropdown-item" style="color: #000" href="/antimalaria">Anti-Malaria</a>
+              <a class="dropdown-item" style="color: #000" href="/multivitamins">Multivitamins</a>
+              <a class="dropdown-item" style="color: #000" href="/equipments">Equipments</a>
+              <a class="dropdown-item" style="color: #000" href="/contraceptives">Contraceptives</a>
+              <a class="dropdown-item" style="color: #000" href="/antibiotics">Antibiotics</a>
+              <a class="dropdown-item" style="color: #000" href="/eyedrugs">Eye Drugs</a>
+              <a class="dropdown-item" style="color: #000" href="/ulcerandgastro">Ulcer and Gastro Drugs</a>
+              <a class="dropdown-item" style="color: #000" href="/analgesics">Analgesics</a>
+              <a class="dropdown-item" style="color: #000" href="/antihypertensives">Anti-Hypertensives</a>
             </div>
           </li>
           <li class="nav-item mr-2">
-            <a class="nav-link">Contact Us</a>
+            <a href="/contact" class="nav-link" style="color: #000">Contact Us</a>
           </li>
 
           <li class="nav-item mr-2">
-            <a class="nav-link">About</a>
+            <a href="/about" class="nav-link" style="color: #000">About</a>
           </li>
 
           <li class="nav-item dropdown mr-4">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Login</a>
+              aria-haspopup="true" aria-expanded="false" style="color: #000">Login</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               {{# if login }}
-                <a href="/user/profile" class="dropdown-item">User account</a>
-              <a href="/user/logout" class="dropdown-item">Logout</a>
+              <a href="/user/profile" class="dropdown-item" style="color: #000">User account</a>
+              <a href="/user/logout" class="dropdown-item" style="color: #000">Logout</a>
               {{ else }}
-               <a href="/user/signup" class="dropdown-item">Sign up</a>
-              <a href="/user/signin" class="dropdown-item">Sign in</a>
+              <a href="/user/signup" class="dropdown-item" style="color: #000">Sign up</a>
+              <a href="/user/signin" class="dropdown-item" style="color: #000">Sign in</a>
               {{/if}}
-              
+
             </div>
           </li>
           <li class="nav-item mr-3">
             <a class="nav-link" href="#">
-              <i class="fas fa-search" style="color: #5cdb95" ></i>
+              <i class="fas fa-search" style="color: #5cdb95"></i>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/shopping-cart/">
-              <i class="fas fa-shopping-cart" style="color: #5cdb95" ></i>
-              <span class="badge" style="background-color: rgb(202, 197, 197); color: #fff; border-radius: 15px;" >{{session.cart.totalQty}}</span>
+              <i class="fas fa-shopping-cart" style="color: #5cdb95"></i>
+              <span class="badge"
+                style="background-color: rgb(202, 197, 197); color: #fff; border-radius: 15px;">{{session.cart.totalQty}}</span>
             </a>
           </li>
         </ul>
@@ -117,8 +138,9 @@
   </header>
 
   <script>
-     function openNav() {
+    function openNav() {
       document.getElementById("myNav").style.height = "100%";
+      document.getElementById("header").style.visibility = "hidden";
     }
     document.getElementById('hamburger-menu').addEventListener('click', openNav, false);
   </script>

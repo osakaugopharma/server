@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +59,7 @@
     }
 
     .view-more {
-      border: 1px solid #5cdb95;
+      border: 2px solid #5cdb95;
       background-color: #fff;
       border-radius: 3px;
       padding: 0.5rem 1.5rem;
@@ -69,63 +70,6 @@
 
     .white-text {
       color: #fff;
-    }
-
-    @media (max-width: 575.98px) {
-      .carousel-caption h1 {
-        letter-spacing: 0.02rem;
-      }
-
-      .carousel-caption p {
-        font-size: 13px;
-      }
-
-      .carousel-item {
-        height: 24em;
-      }
-
-      .carousel-caption {
-        width: 28em;
-      }
-
-      .carousel-caption p {
-        width: 20em;
-      }
-    }
-
-    @media (min-width: 576px) {
-      .carousel-caption h1 {
-        letter-spacing: 0.02rem;
-        font-size: 1.96em;
-      }
-
-      .carousel-item {
-        height: 24em;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .carousel-caption h1 {
-
-        letter-spacing: 0.02rem;
-        font-size: 2em;
-      }
-
-      .carousel-item {
-        height: 30em;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .carousel-caption h1 {
-
-        letter-spacing: 0.02rem;
-        font-size: 3em;
-      }
-
-      .carousel-item {
-        height: 36em;
-      }
     }
 
 
@@ -154,13 +98,6 @@
 
     }
 
-    .background {
-      padding-top: 5em;
-
-    }
-
-
-
     /* Categories */
     .category-background {
       padding-top: 5em;
@@ -174,10 +111,10 @@
 
     .category-paragraph-categories {
       margin-top: 3.5em;
-      font-size: 13px;
+      font-size: 12px;
       color: #000;
       font-family: Roboto;
-
+      font-weight: 500;
     }
 
     .row-gap {
@@ -195,33 +132,28 @@
       padding-top: 5em;
     }
 
-    h2 {
-      margin-bottom: 1.5em;
+     h2 {
       font-size: 1.5em;
+      font-family: Roboto;
       font-weight: bold;
+      margin-bottom: 0.8em;
       color: #000;
     }
 
     .category-paragraph {
       margin-top: 0.5em;
+      margin-bottom: 0;
       font-size: 15px;
-
-
+      font-weight: 500;
     }
 
-
-
     .price {
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .margin {
       margin-bottom: 3em;
     }
-
-
-
-
 
     .drug-backdrop {
       height: 150px;
@@ -259,7 +191,7 @@
       background: url("/images/coartem-d-12.jpg");
     }
 
-    .button-container{
+    .button-container {
       transition: 0.5s ease;
       opacity: 0;
       position: absolute;
@@ -270,21 +202,138 @@
       text-align: center;
     }
 
-    .product-container:hover .drug-backdrop{
+    .product-container:hover .drug-backdrop {
       opacity: 0.3;
     }
 
-    .product-container:hover .button-container{
+    .product-container:hover .button-container {
       opacity: 1;
     }
 
-    .cart-button{
+    .cart-button {
       background: none;
       border: 2px solid #000;
-     cursor: pointer;
-     padding: 0.5em 1em;
+      cursor: pointer;
+      padding: 0.5em 1em;
       width: 7em;
-      
+
+    }
+
+    .category-paragraph-categories a {
+      text-decoration: none;
+      color: #000;
+    }
+
+     
+
+    @media (max-width: 575.98px) {
+
+      .carousel-caption h1 {
+        letter-spacing: 0.02rem;
+      }
+
+      .carousel-caption p {
+        font-size: 13px;
+      }
+
+      .carousel-item {
+        height: 24em;
+      }
+
+      .carousel-caption {
+        width: 28em;
+      }
+
+      .carousel-caption p {
+        width: 17em;
+        line-height: 1.5rem;
+      }
+
+      .carousel-caption h1{
+        width: 70%;
+      }
+
+      .copyright-text{
+        font-size: 12px;
+      }
+
+      .cart-button {
+      background: none;
+      border: 2px solid #000;
+      cursor: pointer;
+      padding: 0.5em 1em;
+      width: 7em;
+      font-size: 14px;
+    }
+/* width: 22em;
+        line-height: 2.5em;
+        */
+      .about-paragraph{
+        text-align: center;
+        line-height: 2.5em;
+        font-size: 15px;
+        width: 100%;
+        margin: 0 auto;
+      }
+/*
+      .about-paragraph-container{
+        width: 80%;
+      }
+  */
+    }
+
+    @media (min-width: 576px) {
+      .carousel-caption h1 {
+        letter-spacing: 0.02rem;
+        font-size: 1.96em;
+      }
+
+      .carousel-item {
+        height: 24em;
+      }
+
+       .about-paragraph{
+        text-align: center;
+        line-height: 2.5em;
+        width: 25em;
+        margin: 0 auto;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .carousel-caption h1 {
+
+        letter-spacing: 0.02rem;
+        font-size: 2em;
+      }
+
+      .carousel-item {
+        height: 30em;
+      }
+
+       .about-paragraph{
+        text-align: center;
+        line-height: 2.5em;
+        width: 30em;
+        margin: 0 auto;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .carousel-caption h1 {
+
+        letter-spacing: 0.02rem;
+        font-size: 3em;
+      }
+
+      .carousel-item {
+        height: 36em;
+      }
+
+       .about-paragraph{
+        text-align: center;
+        line-height: 2.5em;
+      }
     }
   
   </style>
@@ -293,7 +342,7 @@
 </head>
 
 <body>
-  <div id="carousel" class="mt-2 p-0 container-fluid">
+  <div id="carousel" class="p-0 container-fluid" style="margin-top: 4.5em;">
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active container-fluid p-0 one" data-interval="10000">
@@ -312,7 +361,7 @@
               <br />and services to your doorstep.
             </p>
 
-            <button class="shop-now">Shop now</button>
+            <button class="shop-now shop-now-button">Shop now</button>
           </div>
         </div>
         <div class="carousel-item two" data-interval="10000">
@@ -329,7 +378,7 @@
               easier and safer
             </p>
 
-            <button class="shop-now">Shop now</button>
+            <button class="shop-now shop-now-button">Shop now</button>
           </div>
         </div>
 
@@ -344,7 +393,7 @@
 
             <p class="white-text">Pay for your purchase securely online.</p>
 
-            <button class="shop-now">Shop now</button>
+            <button class="shop-now shop-now-button">Shop now</button>
           </div>
         </div>
       </div>
@@ -354,81 +403,94 @@
 
   <div class="container-fluid background">
     <h2>
-      A little bit about us
+      Get to know us
     </h2>
+    <!-- style="width: 80%; margin: 0 auto;" -->
+    <div class="container pt-0">
+      <p class="about-paragraph">
+        We at Osaka Ugo Pharmaceuticals believe that health is wealth and good health is
+        essential for human wellbeing. We are comitted to making sure that our products get
+        to our customers
+      </p>
+    </div>
 
-    <p>
-      We at Osaka Ugo Pharmaceuticals believe that health is wealth and good health is
-      essential for human wellbeing. We are comitted to making sure that our products get
-      to our customers
-    </p>
-    <button class="shop-now bottom-gap">Read more</button>
+    <button class="shop-now bottom-gap" style="margin-top: 2rem;"><a href="/about" style="text-decoration: none; color: #fff;">Read more</a></button>
   </div>
 
 
   <div class="container-fluid category-background">
     <div class="container-fluid">
-      <h2>Product categories</h2>
+      <h2 style="margin-bottom: 3em;">Product categories</h2>
       <div class="row row-gap text-center">
         <div class="col-sm-4 col-4">
           <i class="fas fa-syringe" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/AntiMalaria">
-            <p class="category-paragraph-categories">Anti-malaria</p>
-          </router-link>
+
+          <p class="category-paragraph-categories">
+            <a href="/antimalaria">Anti-malaria</a>
+          </p>
+
         </div>
-        <div class="col-sm-4 col-4 ">
+        <div class="col-sm-4 col-4">
           <i class="fas fa-pills" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/Multivitamins">
-            <p class="category-paragraph-categories">Multivitamins</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/multivitamins">Multivitamins</a>
+          </p>
+
         </div>
         <div class="col-sm-4 col-4">
           <i class="fas fa-stethoscope" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/Equipments">
-            <p class="category-paragraph-categories">Equipments</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/equipments">Equipments</a>
+          </p>
+
         </div>
       </div>
 
       <div class="row row-gap">
         <div class="col-sm-4 col-4">
           <i class="fas fa-venus-mars" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/Contraceptives">
-            <p class="category-paragraph-categories">Contraceptives</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/contraceptives">Contraceptives</a>
+          </p>
+
         </div>
         <div class="col-sm-4 col-4">
           <i class="fas fa-diagnoses" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/Antibiotics">
-            <p class="category-paragraph-categories">Antibiotics</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/antibiotics">Antibiotics</a>
+          </p>
+
         </div>
         <div class="col-sm-4 col-4">
           <i class="fas fa-eye" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/VisionDrugs">
-            <p class="category-paragraph-categories">Vision drugs</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/eyedrugs">Eye drugs</a>
+          </p>
+
         </div>
       </div>
 
       <div class="row row-gap">
         <div class="col-sm-4 col-4">
           <i class="fas fa-tablets" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/UlcerAndGastro">
-            <p class="category-paragraph-categories">Ulcer and gastro drugs</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/ulcerandgastro">Ulcer and Gastro drugs</a>
+          </p>
+
         </div>
         <div class="col-sm-4 col-4">
           <i class="fas fa-bolt" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/Analgesics">
-            <p class="category-paragraph-categories">Analgesics</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/analgesics">Analgesics</a>
+          </p>
+
         </div>
         <div class="col-sm-4 col-4">
           <i class="fas fa-heartbeat" style="color: #000000; font-size: 24px"></i>
-          <router-link to="../products/AntiHypertensives">
-            <p class="category-paragraph-categories">Anti-hypertensives</p>
-          </router-link>
+          <p class="category-paragraph-categories">
+            <a href="/antihypertensives">Anti-hypertensives</a>
+          </p>
+
         </div>
       </div>
     </div>
@@ -437,116 +499,68 @@
   </div>
 
 
-  <div class="container">
+  <div class="container" style="padding-top: 0;">
     <h2>Featured Products</h2>
-    <nav aria-label="breadcrumb" class="margin">
-      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff">
+    <nav aria-label="breadcrumb" class="margin" style="margin-bottom: 1em;">
+      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff; margin-top: 4em;">
         <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff; font-size: 17px;">Anti-Malaria
         </li>
       </ol>
     </nav>
-  {{# each products }}
-      <div class="row justify-content-center">
+    <!--col-sm-6 col-lg-4-->
+    {{# each products }}
+    <div class="row justify-content-center">
       {{# each this }}
-        <div class="col-6 col-sm-6 col-lg-4 product-container">
-      <img src="{{ this.imagepath }}" class="drug-backdrop">
-      <div class="button-container">
-        <a href="/add-to-cart/{{this._id}}" class="cart-button">Add to cart</a>
-      </div>
-      
+      <div class="col-6 col-sm-6 col-lg-4 product-container">
+        <img src="{{ this.imagepath }}" class="drug-backdrop">
+        <div class="button-container">
+          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to cart</a>
+        </div>
+
         <p class="category-paragraph">{{ this.name }}</p>
         <p class="price">N{{ this.price }}</p>
-        </div>
+      </div>
       {{/each}}
-      </div>
-  {{/each}}
-    
-
-      {{!-- <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-one"></div>
-        <p class="category-paragraph">Amatem Forte Softgel</p>
-        <p class="price">₦0.00</p>
-        <font-awesome-icon class="add-to-cart-plus" icon="plus-circle" />
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-two"></div>
-        <p class="category-paragraph">Coartem 80/400</p>
-        <p class="price">₦0.00</p>
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-three"></div>
-        <p class="category-paragraph">P-Alaxin</p>
-        <p class="price">₦0.00</p>
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-four"></div>
-        <p class="category-paragraph">Lonart-Ds</p>
-        <p class="price">₦0.00</p>
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-five"></div>
-        <p class="category-paragraph">Lonart-Ds</p>
-        <p class="price">₦0.00</p>
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-six"></div>
-        <p class="category-paragraph">Lonart-D-12</p>
-        <p class="price">₦0.00</p> --}}
-      {{!-- </div> --}}
-   
-    {{!-- <router-link to="/products/AntiMalaria"> --}}
-      <button class="view-more">View more</button>
-    {{!-- </router-link> --}}
+    </div>
+    {{/each}}
+    <button class="view-more"><a href="/antimalaria" style="text-decoration: none; color: #000;">View more</a></button>
   </div>
 
+  <div class="container" style="padding-top: 0; margin-bottom: 5em;">
 
-
-  <div class="container">
-    <nav aria-label="breadcrumb" class="margin">
-      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff">
-        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff;font-size: 17px;">Multivitamins
+    <nav aria-label="breadcrumb" class="margin" style="margin-bottom: 1em;">
+      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff; margin-top: 4em;">
+        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff; font-size: 17px;">Multivitamins
         </li>
       </ol>
     </nav>
+    {{# each products }}
+    <div class="row justify-content-center">
+      {{# each this }}
+      <div class="col-6 col-sm-6 col-lg-4 product-container">
+        <img src="{{ this.imagepath }}" class="drug-backdrop">
+        <div class="button-container">
+          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to cart</a>
+        </div>
 
-    <div class="row row-gap">
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-one"></div>
-        <p class="category-paragraph">Nature's Benefit Men Mega Multi Dietary Supplement</p>
-        <p class="price">₦0.00</p>
+        <p class="category-paragraph">{{ this.name }}</p>
+        <p class="price">N{{ this.price }}</p>
       </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-two"></div>
-        <p class="category-paragraph">Immunocal</p>
-        <p class="price">₦0.00</p>
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-three"></div>
-        <p class="category-paragraph">Lycoset Capsule</p>
-        <p class="price">₦0.00</p>
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-four"></div>
-        <p class="category-paragraph">Mason Biotin 800 MCG</p>
-        <p class="price">₦0.00</p>
-      </div>
-
-      <div class="col-6 col-sm-6 col-lg-4">
-        <div class="drug-backdrop img-five"></div>
-        <p class="category-paragraph">Alphabetic Plus</p>
-        <p class="price">₦0.00</p>
-      </div>
+      {{/each}}
     </div>
-    <button class="view-more bottom-gap">View more</button>
+    {{/each}}
+    <button class="view-more"><a href="/multivitamins" style="text-decoration: none; color: #000;">View more</a></button>
+
   </div>
+  <script>
+    function scrollToCategory(){
+      window.scrollTo(0, 3000);
+    }
+    var shopButton = document.getElementsByClassName('shop-now-button');
+    shopButton.forEach(function(collection){
+      collection.addEventListener('click', scrollToCategory, false);
+    });
+  </script>
 </body>
 
 </html>
