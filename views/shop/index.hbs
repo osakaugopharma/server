@@ -360,8 +360,7 @@
               Osaka Ugo Pharmaceuticals delivers quality products
               <br />and services to your doorstep.
             </p>
-
-            <button class="shop-now shop-now-button">Shop now</button>
+            <a href="/" class="shop-now">Shop now</a>
           </div>
         </div>
         <div class="carousel-item two" data-interval="10000">
@@ -378,7 +377,7 @@
               easier and safer
             </p>
 
-            <button class="shop-now shop-now-button">Shop now</button>
+           <a class="shop-now" href="/">Shop now</a>
           </div>
         </div>
 
@@ -393,7 +392,7 @@
 
             <p class="white-text">Pay for your purchase securely online.</p>
 
-            <button class="shop-now shop-now-button">Shop now</button>
+            <a class="shop-now" href="/">Shop now</a>
           </div>
         </div>
       </div>
@@ -419,7 +418,8 @@
 
 
   <div class="container-fluid category-background">
-    <div class="container-fluid">
+    <div class="container-fluid" id="prodcat">
+     
       <h2 style="margin-bottom: 3em;">Product categories</h2>
       <div class="row row-gap text-center">
         <div class="col-sm-4 col-4">
@@ -552,15 +552,7 @@
     <button class="view-more"><a href="/multivitamins" style="text-decoration: none; color: #000;">View more</a></button>
 
   </div>
-  <script>
-    function scrollToCategory(){
-      window.scrollTo(0, 3000);
-    }
-    var shopButton = document.getElementsByClassName('shop-now-button');
-    shopButton.forEach(function(collection){
-      collection.addEventListener('click', scrollToCategory, false);
-    });
-  </script>
+ 
 </body>
 
 </html>

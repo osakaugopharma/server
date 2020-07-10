@@ -47,6 +47,22 @@ router.get('/reduce/:id', function (req, res) {
   res.redirect('/shopping-cart');
 });
 
+router.get('/increment/:id', function (req, res) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.increment(productId);
+  req.session.cart = cart;
+  res.redirect('/shopping-cart');
+});
+
+router.get('/add/:id', function (req, res) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.add(productId);
+  req.session.cart = cart;
+  res.redirect('/shopping-cart');
+});
+
 router.get('/remove/:id', function (req, res) {
   var productId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -54,6 +70,8 @@ router.get('/remove/:id', function (req, res) {
   req.session.cart = cart;
   res.redirect('/shopping-cart');
 });
+
+
 
 router.get('/antimalaria', function (req, res) {
   Product.find(function (err, docs) {
@@ -139,11 +157,20 @@ router.get('/failure', function (req, res) {
 
 
 router.get('/shopping-cart', function (req, res) {
+ /* Product.find(function (err, docs) {
+    var productChunks = [];
+    var chunkSize = 6;
+    for (var i = 0; i < docs.length; i += chunkSize) {
+      productChunks.push(docs.slice(i, i + chunkSize));
+    }
+    res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks });
+  });*/
   if (!req.session.cart) {
     return res.render('shop/shopping-cart', { products: null });
   }
   var cart = new Cart(req.session.cart);
   res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice });
+
 });
 
 router.get('/checkout', isLoggedIn, function (req, res) {

@@ -1,6 +1,20 @@
-<form>
+<style>
+    .shop-now {
+      border: none;
+      background-color: #5cdb95;
+      border-radius: 3px;
+      padding: 0.5rem 1.5rem;
+      color: rgb(255, 255, 255);
+      margin-top: 1rem;
+      font-size: 18px;
+
+    }
+</style>
+
+
+<form style="margin-top: 7em;">
   <script src="https://api.flutterwave.com/checkout.js"></script>
-  <button type="button" onClick="makePayment()">Pay Now</button>
+  <button type="button" class="shop-now" onClick="makePayment()">Pay Now</button>
 </form>
 
 <script>

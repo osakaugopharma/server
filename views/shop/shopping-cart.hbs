@@ -1,82 +1,82 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-  .add-one {
-    border: 2px solid #aaa;
-    width: 30%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    border-radius: 20px;
-  }
-
-  .add-one button {
-    border-radius: 20px;
-    background: none;
-    border: 0;
-  }
-
-  .total {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .footer-paragraph p{
-    margin-bottom: 1.5em !important;
-  }
-
-  .copyright-text{
-    margin-top: 3.5em;
-  }
-
-  @media(max-width: 767.98px){
-    .header{
-      font-size: 15px;
-    }
-
     .add-one{
-      width: 80%;
+      margin: 0 auto;
+    }
+  /*  .add-one {
+      border: 2px solid rgb(119, 116, 116);
+      width: 30px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      border-radius: 20px;
+    }*/
+
+    div.add-one a {
+      display: inline;
+      width: 24px;
+      background-color: #5cdb95;
+      border-radius: 12px;
     }
 
-    .t-d{
-      font-size: 15px;
+    .total {
+      width: 90%;
+      margin: 0 auto;
     }
 
-    nav{
-      font-size: 15px;
+    .footer-paragraph p {
+      margin-bottom: 1.5em !important;
     }
 
-    .checkout, .bt-shop{
-      font-size: 15px;
+    .copyright-text {
+      margin-top: 3.5em;
     }
 
-  }
+    @media(max-width: 767.98px) {
+      .header {
+        font-size: 15px;
+      }
 
-  @media(max-width: 575.98px){
-    .add-one{
-      width: 100%;
+      .add-one {
+        width: 30px;
+      }
+
+      .t-d {
+        font-size: 15px;
+      }
+
+      nav {
+        font-size: 15px;
+      }
+
+      .checkout,
+      .bt-shop {
+        font-size: 15px;
+      }
+
     }
 
-    .t-d{
-      font-size: 12px;
+    @media(max-width: 575.98px) {
+  
+      .product-name{
+        font-size: 13px;
+      }
+
+
+      .remove {
+        padding: 0.5em 0.2em;
+      }
+
+      .no-items{
+        font-size: 24px;
+      }
+
     }
-
-    .remove{
-      padding: 0.5em 0.2em;
-    }
-
-   
-  }
-
-  @media(min-width: 768px) {
-    .add-one{
-       width: 70%;
-    }
-  }
-
-</style>
+  </style>
 </head>
 
 <body>
@@ -88,17 +88,22 @@
           <th class="header" scope="col">Product</th>
           <th class="header" scope="col">Price</th>
           <th class="header" scope="col">Quantity</th>
-          <th class="header" scope="col">Subtotal</th>
+        <!--  <th class="header" scope="col">Subtotal</th>-->
           <th class="header" scope="col"></th>
         </tr>
       </thead>
       <tbody>
         {{# each products }}
         <tr>
-
+         
           <th scope="row">
-            <img src="/images/p-alaxin.jpg" alt="..." width="100" height="100">
+            <img src="{{this.item.imagepath}}" alt="..." width="100" height="100">
+            <p class="product-name">{{this.item.name}}</p>
+         
           </th>
+          
+
+
           <td class="pt-5 t-d">
             {{this.item.price}}
           </td>
@@ -106,13 +111,13 @@
             <div class="add-one">
               <a href="/reduce/{{this.item._id}}">-</a>
               <span>{{ this.qty }}</span>
-              <button>+</button>
+              <a href="/increment/{{this.item._id}}">+</a>
             </div>
           </td>
-          <td class="pt-5 t-d">{{this.price}}</td>
+          <!--<td class="pt-5 t-d">{{this.price}}</td>-->
 
-          <td class="pt-5 t-d"><a href="/remove/{{this.item._id}}" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
-      padding: 0.5rem 1rem; border: none;" class="remove">Remove item</a></td>
+          <td class="pt-5 t-d"><a href="/remove/{{this.item._id}}"><i class="fas fa-times" style="font-size: 18px; color: #5cdb95;"></i></a></td>
+
         </tr>
         {{/each}}
       </tbody>
@@ -129,15 +134,20 @@
       </nav>
 
       <a href="/checkout" type="button" class="btn btn-lg btn-block checkout"
-        style="background-color: #5cdb95; color: #fff;">Checkout</a>
+        style="background-color: #5cdb95; color: #fff; padding: 0.7rem 0;">Checkout</a>
 
       <button type="button" class="btn btn-lg btn-block bt-shop" style="color: #5cdb95;">Back to shop</button>
     </div>
 
   </div>
   {{ else }}
-  <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" style="margin-top: 10em; margin-bottom: 10em;">
-    <h2>No items in your cart</h2>
+  <div style="margin-top: 10em; margin-bottom: 10em;">
+    <h1 class="no-items">No items in your cart</h1>
+    <div style="margin-top: 4em !important;">
+       <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
+      padding: 0.5rem 1rem; border: none;" class="remove">Go to shop</a>
+    </div>
+  
   </div>
   {{/if}}
 </body>

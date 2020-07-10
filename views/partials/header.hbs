@@ -7,12 +7,13 @@
   <title>Document</title>
 
   <style>
-    header{
+    header {
       background-color: #fff;
       margin-top: -8px;
       z-index: 3;
-      box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.12);
     }
+
     nav {
       font-family: Roboto;
       font-size: 16px;
@@ -25,21 +26,16 @@
       margin-bottom: 0.2rem;
     }
 
-    @media (min-width: 992px) {
-      .toggler {
-        display: none;
-      }
-    }
+   @media(min-width: 992px){
+     div.toggler{
+       display: none !important;
+     }
+   }
 
-    .toggler {
+    button{
+      border: none;
+      outline: none;
       background: none;
-      border: none;
-      outline: none;
-    }
-
-    button.navbar-toggler {
-      border: none;
-      outline: none;
     }
 
     li a {
@@ -50,19 +46,18 @@
       /* -webkit-font-smoothing: antialiased; */
     }
 
-    .make-fixed{
+    .make-fixed {
       position: fixed;
       top: 0;
     }
 
-    .dropdown-menu a{
+    .dropdown-menu a {
       padding-bottom: 1rem;
     }
 
-    .dropdown-menu a:active{
-      background-color:rgb(236, 233, 233);
+    .dropdown-menu a:active {
+      background-color: rgb(236, 233, 233);
     }
-
   </style>
 </head>
 
@@ -70,19 +65,39 @@
 
   <header id="header" class="container-fluid make-fixed">
     <nav class="navbar navbar-expand-lg navbar-light">
+
+
+
+
       <a class="navbar-brand" href="/">
         <img src="/images/logo.png" alt="logo" width="150" height="50" class="mt-2" />
 
       </a>
+      <div class="toggler" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+        <div>
+          <a class="nav-link" href="/shopping-cart/" style="padding: 0 !important; width: 3em;">
+            <i class="fas fa-shopping-cart" style="color: #5cdb95; font-size: 18px;"></i>
+            <span class="badge"
+              style="background-color: rgb(202, 197, 197); color: #fff; border-radius: 15px;">{{session.cart.totalQty}}</span>
+          </a>
+        </div>
 
-      <button class="toggler" id="hamburger-menu">
-        <div class="ham"></div>
-        <div class="ham"></div>
-        <div class="ham"></div>
-      </button>
+        <div>
+          <button id="hamburger-menu" style="padding-top: 0.2rem;">
+            <div class="ham"></div>
+            <div class="ham"></div>
+            <div class="ham"></div>
+          </button>
+        </div>
+      </div>
+
+
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item mr-2">
+            <a href="/" class="nav-link" style="color: #000">Home</a>
+          </li>
           <li class="nav-item dropdown mr-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" style="color: #000">Products</a>
@@ -114,7 +129,7 @@
               <a href="/user/profile" class="dropdown-item" style="color: #000">User account</a>
               <a href="/user/logout" class="dropdown-item" style="color: #000">Logout</a>
               {{ else }}
-              <a href="/user/signup" class="dropdown-item" style="color: #000">Sign up</a>
+              <a href="/user/signup" class="dropdown-item" style="color: #000">Create account</a>
               <a href="/user/signin" class="dropdown-item" style="color: #000">Sign in</a>
               {{/if}}
 

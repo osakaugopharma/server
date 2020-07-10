@@ -114,10 +114,10 @@
         <!-- Overlay content -->
         <div class="overlay-content">
 
-
+            <a href="/" class="text-left">Home</a>
             <a id="products-link" class="dropbtn text-left">
                 Products
-                <i class="fas fa-caret-down" id="p-dropdown-icon" style="color: #000;"></i>
+                <i class="fas fa-caret-down" id="p-dropdown-icon" style="color: rgb(235, 221, 221);"></i>
             </a>
             <a href="/contact" class="text-left">Contact us</a>
 
@@ -128,8 +128,15 @@
                 <i class="fas fa-caret-down" id="l-dropdown-icon" style="color: #000"></i>
             </a>
             <div class="dropdown-content text-left" id="login">
+             <!--   <a href="/user/signup">Create account</a>
+                <a href="/user/signin">Sign in</a> -->
+              {{# if login }}
+                <a href="/user/profile">User account</a>
+                <a href="/user/logout">Logout</a>
+              {{ else }}
                 <a href="/user/signup">Create account</a>
                 <a href="/user/signin">Sign in</a>
+              {{/if}}
             </div>
             <div class="dropdown"></div>
 

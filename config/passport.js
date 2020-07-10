@@ -18,8 +18,12 @@ passport.use('local.signup', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, function(req, email, password, done){
+    let address = req.body.address;
+    let phone = req.body.phone;
     req.checkBody('email', 'Invalid email').notEmpty().isEmail();
     req.checkBody('password', 'Invalid password').notEmpty().isLength({min:4});
+    req.checkBody('address', 'Invalid address').notEmpty();
+    req.checkBody('phone', 'Invalid phone number').notEmpty();
     var errors = req.validationErrors();
     if (errors) {
         var messages = [];
@@ -36,8 +40,10 @@ passport.use('local.signup', new LocalStrategy({
                 return done(null, false, {message: 'Email is already in use.'});
             }
             var newUser = new User();
-        newUser.email = email;
-        newUser.password = newUser.encryptPassword(password);
+            newUser.email = email;
+            newUser.password = newUser.encryptPassword(password);
+            newUser.address = address;
+            newUser.phone = phone;
         newUser.save(function(err, result){
             if (err) {
                 return done(err);
