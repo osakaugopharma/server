@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
   <style>
+    :root {
+      --header-font-size: 32px;
+      --sub-heading-font-size: 24px;
+      --secondary-font-size: 18px;
+      --primary-font-size: 16px;
+    }
+
     /* Carousel */
     #carousel {
       z-index: -1;
@@ -18,7 +26,7 @@
 
     .carousel-caption h1 {
       font-weight: bold;
-      font-size: 2em;
+      font-size: var(--header-font-size);
       font-family: Roboto;
       font-stretch: 125%;
     }
@@ -132,7 +140,7 @@
       padding-top: 5em;
     }
 
-     h2 {
+    h2 {
       font-size: 1.5em;
       font-family: Roboto;
       font-weight: bold;
@@ -224,16 +232,12 @@
       color: #000;
     }
 
-     
+
 
     @media (max-width: 575.98px) {
 
       .carousel-caption h1 {
         letter-spacing: 0.02rem;
-      }
-
-      .carousel-caption p {
-        font-size: 13px;
       }
 
       .carousel-item {
@@ -249,33 +253,35 @@
         line-height: 1.5rem;
       }
 
-      .carousel-caption h1{
+      .carousel-caption h1 {
         width: 70%;
       }
 
-      .copyright-text{
+      .copyright-text {
         font-size: 12px;
       }
 
       .cart-button {
-      background: none;
-      border: 2px solid #000;
-      cursor: pointer;
-      padding: 0.5em 1em;
-      width: 7em;
-      font-size: 14px;
-    }
-/* width: 22em;
+        background: none;
+        border: 2px solid #000;
+        cursor: pointer;
+        padding: 0.5em 1em;
+        width: 7em;
+        font-size: 14px;
+      }
+
+      /* width: 22em;
         line-height: 2.5em;
         */
-      .about-paragraph{
+      .about-paragraph {
         text-align: center;
         line-height: 2.5em;
         font-size: 15px;
         width: 100%;
         margin: 0 auto;
       }
-/*
+
+      /*
       .about-paragraph-container{
         width: 80%;
       }
@@ -292,7 +298,7 @@
         height: 24em;
       }
 
-       .about-paragraph{
+      .about-paragraph {
         text-align: center;
         line-height: 2.5em;
         width: 25em;
@@ -311,7 +317,7 @@
         height: 30em;
       }
 
-       .about-paragraph{
+      .about-paragraph {
         text-align: center;
         line-height: 2.5em;
         width: 30em;
@@ -330,12 +336,11 @@
         height: 36em;
       }
 
-       .about-paragraph{
+      .about-paragraph {
         text-align: center;
         line-height: 2.5em;
       }
     }
-  
   </style>
 
 
@@ -346,16 +351,12 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active container-fluid p-0 one" data-interval="10000">
-
-
           <div class="carousel-caption text-left mb-xs-3 mb-sm-3 mb-md-5 mb-lg-5 pb-5">
             <h1>
               Pharmaceuticals
               <br />made
               easy
             </h1>
-
-
             <p>
               Osaka Ugo Pharmaceuticals delivers quality products
               <br />and services to your doorstep.
@@ -363,40 +364,32 @@
             <a href="/" class="shop-now">Shop now</a>
           </div>
         </div>
+
         <div class="carousel-item two" data-interval="10000">
-
-
           <div class="carousel-caption text-left mb-xs-3 mb-sm-3 mb-md-5 mb-lg-5 mb-xs-5 pb-5">
             <h1 class="white-text">
               A new system for buying
               <br />medication online
             </h1>
-
             <p class="white-text">
               We use the latest technological tools to make medication
               easier and safer
             </p>
-
-           <a class="shop-now" href="/">Shop now</a>
+            <a class="shop-now" href="/">Shop now</a>
           </div>
         </div>
 
         <div class="carousel-item three" data-interval="10000">
-
-
           <div class="carousel-caption text-left mb-xs-3 mb-sm-3 mb-md-5 mb-lg-5 mb-xs-5 pb-5">
             <h1 class="white-text">
               Pay online easily and
               <br />efficiently
             </h1>
-
             <p class="white-text">Pay for your purchase securely online.</p>
-
             <a class="shop-now" href="/">Shop now</a>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -413,13 +406,14 @@
       </p>
     </div>
 
-    <button class="shop-now bottom-gap" style="margin-top: 2rem;"><a href="/about" style="text-decoration: none; color: #fff;">Read more</a></button>
+    <button class="shop-now bottom-gap" style="margin-top: 2rem;"><a href="/about"
+        style="text-decoration: none; color: #fff;">Read more</a></button>
   </div>
 
 
   <div class="container-fluid category-background">
     <div class="container-fluid" id="prodcat">
-     
+
       <h2 style="margin-bottom: 3em;">Product categories</h2>
       <div class="row row-gap text-center">
         <div class="col-sm-4 col-4">
@@ -514,7 +508,8 @@
       <div class="col-6 col-sm-6 col-lg-4 product-container">
         <img src="{{ this.imagepath }}" class="drug-backdrop">
         <div class="button-container">
-          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to cart</a>
+          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to
+            cart</a>
         </div>
 
         <p class="category-paragraph">{{ this.name }}</p>
@@ -540,7 +535,8 @@
       <div class="col-6 col-sm-6 col-lg-4 product-container">
         <img src="{{ this.imagepath }}" class="drug-backdrop">
         <div class="button-container">
-          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to cart</a>
+          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to
+            cart</a>
         </div>
 
         <p class="category-paragraph">{{ this.name }}</p>
@@ -549,10 +545,11 @@
       {{/each}}
     </div>
     {{/each}}
-    <button class="view-more"><a href="/multivitamins" style="text-decoration: none; color: #000;">View more</a></button>
+    <button class="view-more"><a href="/multivitamins" style="text-decoration: none; color: #000;">View
+        more</a></button>
 
   </div>
- 
+
 </body>
 
 </html>
