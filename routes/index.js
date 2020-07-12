@@ -13,13 +13,23 @@ var Order = require('../models/order');
 
 
 /* GET home page. */
-router.get('/', function (req, res) {
+
+/*router.get('/', function (req, res) {
   Product.find(function (err, docs) {
     var productChunks = [];
-    var chunkSize = 6;
+    var chunkSize = 3;
     for (var i = 0; i < docs.length; i += chunkSize) {
       productChunks.push(docs.slice(i, i + chunkSize));
     }
+    res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks });
+  });
+});*/
+
+router.get('/', function (req, res) {
+  Product.find(function (err, docs) {
+    var productChunks = [];
+    var chunkSize = 5;
+    productChunks.push(docs.slice(0, chunkSize));
     res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks });
   });
 });
