@@ -7,92 +7,96 @@
     <title>Document</title>
 
     <style>
-        .sm-icons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
+      .footer-copyright-text{
+        width: 90%;
+        margin: 0 auto;
+        color: #000;
+      }
 
-        .footer-content-container h5 {
-            margin-bottom: 1.5em;
-        }
+      .footer-custom-container{
+        width: 75%;
+        margin: 0 auto;
+      }
+       .footer-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding-top: 5em;
+      padding-bottom: 3em;
+      margin-top: 5em;
+      margin-bottom: 3em;
+    }
 
-        .footer-paragraph p {
-            margin-bottom: 2em !important;
-        }
+    .footer-container h3 {
+      font-size: var(--secondary-font-size);
+      font-weight: 500;
+      margin-bottom: 1.5em;
+      color: #000;
+    }
 
-        p.sub{
-            font-weight: 300;
-            font-size: 15px;
-        }
+    .footer-container div {
+      text-align: left;
+    }
 
-        @media(max-width: 575.98px){
-            .social-main{
-                margin-bottom: 0 !important;
-            }
+    .footer-text-content{
+      width: 13em;
+      margin: 0 auto;
+    }
 
-            .footer-content-container{
-                margin-bottom: 0 !important;
-            }
+    .footer-text-content p{
+      color: var(--text-color-two);
+    }
 
-            div.sm-icons{
-                margin-bottom: 0 !important;
-            }
+    .social-icons-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      color: var(--text-color-two);
+    }
 
-            .first-two{
-                margin-bottom: 0 !important;
-            }
-        }
+
     </style>
 </head>
 
 <body>
-    <div class="container-fluid" style="background-color: #5cdb95; color: #fff;">
-        <div class="row justify-content-center" style="padding-top: 6em;">
-            <div class="col-sm-12 col-lg-4 first-two">
-                <div class="footer-content-container">
-                    <h5>Get in touch</h5>
-                    <div class="footer-paragraph">
-                        <p class="sub">youremail@gmail.com</p>
-                        <p class="sub">0000-0000-0000</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-12 col-lg-4 first-two">
-                <div class="footer-content-container">
-                    <h5>About us</h5>
-                    <div class="footer-paragraph">
-                        <p class="sub">Our Mission</p>
-                        <p class="sub">Terms And Conditions</p>
-                        <p class="sub">Privacy Policy</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-lg-4 social-main">
-                <div class="footer-content-container">
-                    <h5 style="margin-bottom: 2em">Social media</h5>
-                    <div class="sm-icons">
-                        <div>
-                            <i class="fab fa-facebook-f" style="color: #fff; font-size: 20px"></i>
-                        </div>
-                        <div>
-                            <i class="fab fa-twitter" style="color: #fff; font-size: 20px"></i>
-                        </div>
-                        <div>
-                            <i class="fab fa-instagram" style="color: #fff; font-size: 20px"></i>
-                        </div>
-                        <div>
-                            <i class="fab fa-whatsapp" style="color: #fff; font-size: 20px"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="footer-custom-container">
+    <div class="footer-container">
+      <div>
+        <div class="footer-text-content">
+          <h3>Get in touch</h3>
+          <p>example@email.com</p>
+          <p>0000-0000-0000</p>
         </div>
-        <p class="copyright-text container pb-4 pt-0" style="margin-bottom: 0;">©2020 Osaka Ugo Pharmacy, Nigeria. All Rights
-            Reserved.</p>
+
+      </div>
+
+      <div>
+        <div class="footer-text-content">
+          <h3>About us</h3>
+          <p>Our Mission</p>
+          <p>Terms And Conditions</p>
+          <p>Privacy Policy</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-text-content">
+          <h3>Social media</h3>
+          <div class="social-icons-container">
+            <div><i class="fab fa-facebook-f" style="font-size: var(--secondary-font-size);"></i></div>
+            <div><i class="fab fa-twitter" style="font-size: var(--secondary-font-size);"></i></div>
+            <div><i class="fab fa-instagram" style="font-size: var(--secondary-font-size);"></i></div>
+            <div><i class="fab fa-whatsapp" style="font-size: var(--secondary-font-size);"></i></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  <div class="footer-copyright-text">
+    <p>&copy <span style="font-weight: 500;">2020 Osaka Ugo Pharmaceuticals. All Rights Reserved.</span></p>
+  </div>
+
 </body>
 
 </html>

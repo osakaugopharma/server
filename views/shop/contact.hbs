@@ -1,108 +1,62 @@
 <style>
-    .header {
-  margin-top: 1em;
-  margin-bottom: 0.7em;
-}
-
-h1 {
-  font-weight: bold;
-  color: #000;
-}
-
-.category-paragraph {
-  margin-top: 0.5em;
-  font-size: 15px;
-}
-
-header p {
-  text-align: center;
-  margin-top: 1.5em;
-  line-height: 1.5em;
-  font-size: 15px;
-}
-
-form {
-  width: 40%;
-  text-align: left;
-  margin: 1.5em auto 0 auto;
-}
-
-label {
-  margin-top: 2em;
-  font-size: 15px;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  border-width: 0 0 1px 0;
-  border-color: rgb(116, 111, 111);
-  outline: none;
-}
-
-.send {
-  border: none;
-  background-color: #5cdb95;
-  border-radius: 3px;
-  padding: 0.5rem 1.5rem;
-  color: rgb(255, 255, 255);
-  margin-top: 3rem;
-  font-size: 18px;
-  margin-bottom: 3em;
-}
-
-section {
-  margin-bottom: 0.5em;
-}
-
-.copyright-text{
-  margin-top: 3em !important;
-}
-
-
-@media (max-width: 1199.98px) {
-  form {
-    width: 50%;
-    text-align: left;
-    margin: 1.5em auto 0 auto;
+  :root {
+    --biggest-font-size: 64px;
+    --header-font-size: 32px;
+    --sub-heading-font-size: 24px;
+    --secondary-font-size: 18px;
+    --primary-font-size: 16px;
+    --primary-color: #5cdb95;
+    --secondary-color: #ffffff;
+    --text-color-one: #000000;
+    --text-color-two: rgba(0, 0, 0, 0.6);
+    --button-border-radius: 6px;
+    --button-padding: 0.5rem 1.5rem;
   }
-}
 
-@media (max-width: 767.98px){
-   form {
-    width: 70%;
-    text-align: left;
-    margin: 1.5em auto 0 auto;
+  .second-custom-container {
+    width: 85%;
+    margin: 0 auto;
   }
-}
+
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 6.5em;
+  }
+
+  .social-and-phone-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .social-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
 </style>
 
-<div class="container-fluid p-0" style="margin-top :8em;">
-    <section>
-      <h1 class="header">Contact Us</h1>
-      <p>
-        Get in touch with us through the form
-        <br />and we will get back to you as soon as we can
-      </p>
-    </section>
+<div class="second-custom-container">
+  <div class="contact-container">
+    <div class="info-section">
+      <div class="contact-header">
+        Talk to us
+      </div>
+      <div class="email">
+        example@email.com
+      </div>
+      <div class="social-and-phone-container">
+        <div class="social-container">
+          <div><i class="fab fa-facebook-f" style="font-size: var(--secondary-font-size);"></i></div>
+          <div><i class="fab fa-twitter" style="font-size: var(--secondary-font-size);"></i></div>
+          <div><i class="fab fa-instagram" style="font-size: var(--secondary-font-size);"></i></div>
+          <div><i class="fab fa-whatsapp" style="font-size: var(--secondary-font-size);"></i></div>
+        </div>
+        <div class="phone-container">0000-0000-0000</div>
+      </div>
+    </div>
+    <div class="form-section">
+      
+    </div>
 
-    <section>
-      <form>
-        <label>Name</label>
-        <br />
-        <input type="text" />
-
-        <br />
-
-        <label>Email</label>
-        <br />
-        <input type="email" />
-
-        <br />
-        <label>Message</label>
-        <br />
-        <textarea></textarea>
-      </form>
-      <button class="send">Send</button>
-    </section>
   </div>
+</div>

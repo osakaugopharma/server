@@ -63,17 +63,19 @@
       border-radius: var(--button-border-radius);
       font-size: var(--secondary-font-size);
     }
-
+/*
     .hero-section-illustration {
       background-image: url('/images/hero-section-illustration.svg');
       background-size: 300px 200px;
       background-repeat: no-repeat;
       background-position: top center;
     }
+  */
 
     .product-description h2 {
       font-size: var(--header-font-size);
       margin-bottom: 0.3em;
+      margin-top: 3em;
     }
 
     .product-description p {
@@ -90,11 +92,14 @@
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 4em;
       margin-top: 6.5em;
+      color: #000;
     }
 
     .product-description-text h3 {
       font-size: var(--sub-heading-font-size);
       font-weight: 700;
+      margin-bottom: 1em;
+      margin-top: 1.5em;
     }
 
     .product-description-text p {
@@ -159,25 +164,29 @@
       font-weight: 500;
     }
 
-    .featured-product-category-header{
+    .featured-product-category-header {
       display: grid;
       grid-template-columns: 1fr 1fr;
       background-color: var(--primary-color);
       text-align: left;
       padding: 0.01em 1.5em;
-     
+
       border-radius: 6px 6px 0 0;
     }
 
-     .featured-product-category-header
-     .view-more-button{
-       text-align: right;
-       
-     }
+    .featured-product-category-header .view-more-button {
+      text-align: right;
 
-    .featured-product-category-header p{
+    }
+
+    .featured-product-category-header .view-more-button p {
+      font-size: var(--primary-font-size);
+    }
+
+    .featured-product-category-header p {
       margin-top: 15px;
-       color: #fff;
+      color: #fff;
+      font-size: var(--secondary-font-size);
     }
 
     .featured-products {
@@ -186,13 +195,14 @@
       grid-gap: 1em;
     }
 
-    .featured-product-category{
-       box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-       border-radius: 6px;
-       margin-top: 6.5em;
+
+    .featured-product-category {
+      box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+      border-radius: 6px;
+      margin-bottom: 2em;
     }
 
-
+    
 
 
 
@@ -419,7 +429,7 @@
           to provide top-notch experiences to our customers.</p>
         <button>Shop now</button>
       </div>
-      <div class="hero-section-illustration"></div>
+      {{!-- <div class="hero-section-illustration"></div> --}}
     </div>
   </div>
 
@@ -434,7 +444,7 @@
     <div class="product-description-grid">
       <div class="product-description-block">
         <div class="product-description-image">
-          <i class="fas fa-eye" style="font-size: var(--biggest-font-size);"></i>
+          <i class="fas fa-dollar-sign" style="font-size: var(--biggest-font-size);"></i>
         </div>
         <div class="product-description-text">
           <h3>Efficient prices</h3>
@@ -445,7 +455,7 @@
 
       <div class="product-description-block">
         <div class="product-description-image">
-          <i class="fas fa-eye" style="font-size: var(--biggest-font-size);"></i>
+          <i class="fas fa-credit-card" style="font-size: var(--biggest-font-size);"></i>
         </div>
         <div class="product-description-text">
           <h3>Payment made easy</h3>
@@ -590,7 +600,7 @@
 
   <div class="custom-container">
     <div class="product-description">
-      <h2>Featured products</h2>
+      <h2 class="featured-product-heading" style="margin-bottom: 3.5em;">Featured products</h2>
     </div>
   </div>
 
@@ -601,9 +611,9 @@
           <p>Antimalaria | Get well soon</p>
         </div>
         <div class="view-more-button">
-          <p><a>VIEW MORE ></a></p>
+          <p><a>View more ></a></p>
         </div>
-        
+
       </div>
 
       {{# each products }}
@@ -621,65 +631,38 @@
     </div>
   </div>
 
-
-
-
-  <div class="container" style="padding-top: 0;">
-    <h2>Featured Products</h2>
-    <nav aria-label="breadcrumb" class="margin" style="margin-bottom: 1em;">
-      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff; margin-top: 4em;">
-        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff; font-size: 17px;">Anti-Malaria
-        </li>
-      </ol>
-    </nav>
-    <!--col-sm-6 col-lg-4-->
-    {{# each products }}
-    <div class="row justify-content-center">
-      {{# each this }}
-      <div class="col-6 col-sm-6 col-lg-4 product-container">
-        <img src="{{ this.imagepath }}" class="drug-backdrop">
-        <div class="button-container">
-          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to
-            cart</a>
+  <div class="custom-container">
+    <div class="featured-product-category">
+      <div class="featured-product-category-header">
+        <div>
+          <p>Antimalaria | Get well soon</p>
+        </div>
+        <div class="view-more-button">
+          <p><a>View more ></a></p>
         </div>
 
-        <p class="category-paragraph">{{ this.name }}</p>
-        <p class="price">N{{ this.price }}</p>
+      </div>
+
+      {{# each products }}
+      <div class="featured-products">
+        {{# each this }}
+        <div>
+          <img src="{{ this.imagepath }}" class="drug-backdrop">
+
+          <p class="category-paragraph">{{ this.name }}</p>
+          <p class="price">N{{ this.price }}</p>
+        </div>
+        {{/each}}
       </div>
       {{/each}}
     </div>
-    {{/each}}
-    <button class="view-more"><a href="/antimalaria" style="text-decoration: none; color: #000;">View more</a></button>
   </div>
 
-  <div class="container" style="padding-top: 0; margin-bottom: 5em;">
+ 
 
-    <nav aria-label="breadcrumb" class="margin" style="margin-bottom: 1em;">
-      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff; margin-top: 4em;">
-        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff; font-size: 17px;">Multivitamins
-        </li>
-      </ol>
-    </nav>
-    {{# each products }}
-    <div class="row justify-content-center">
-      {{# each this }}
-      <div class="col-6 col-sm-6 col-lg-4 product-container">
-        <img src="{{ this.imagepath }}" class="drug-backdrop">
-        <div class="button-container">
-          <a href="/add-to-cart/{{this._id}}" class="cart-button" style="text-decoration: none; color: #000;">Add to
-            cart</a>
-        </div>
 
-        <p class="category-paragraph">{{ this.name }}</p>
-        <p class="price">N{{ this.price }}</p>
-      </div>
-      {{/each}}
-    </div>
-    {{/each}}
-    <button class="view-more"><a href="/multivitamins" style="text-decoration: none; color: #000;">View
-        more</a></button>
 
-  </div>
+
 
 </body>
 
