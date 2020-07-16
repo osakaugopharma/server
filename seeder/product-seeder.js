@@ -46,6 +46,69 @@ var products = [
         tag: 'Antimalaria',
         noOfProductInStock: 12
     }),
+    new Product({
+        name: 'Lycoset Capsule',
+        imagepath: '/images/lycoset.jpg',
+        price: 2000,
+        tag: 'Multivitamin',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'Alphabetic Plus',
+        imagepath: '/images/alphabetic.jpg',
+        price: 2000,
+        tag: 'Multivitamin',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'Immunocal',
+        imagepath: '/images/immunocal.jpg',
+        price: 2000,
+        tag: 'Multivitamin',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'Mason Biotin 800 MCG',
+        imagepath: '/images/masons-biotin-800.jpg',
+        price: 2000,
+        tag: 'Multivitamin',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'Nature\'s Benefit Men Mega Multi Dietary Supplement',
+        imagepath: '/images/nature-benefit-mega.jpg',
+        price: 2000,
+        tag: 'Multivitamin',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'Fine Test Auto Coding Blood Glucose Machine For Self Testing',
+        imagepath: '/images/fine-test-auto-coding.jpg',
+        price: 2000,
+        tag: 'Equipment',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'On Call Plus II Blood Glucose Monitoring System',
+        imagepath: '/images/on-call-plus.jpg',
+        price: 2000,
+        tag: 'Equipment',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'First Aid Box',
+        imagepath: '/images/first-aid.jpg',
+        price: 2000,
+        tag: 'Equipment',
+        noOfProductInStock: 12
+    }),
+    new Product({
+        name: 'Omron 5 Series Blood Pressure Monitor Machine',
+        imagepath: '/images/fine-test-auto-coding.jpg',
+        price: 2000,
+        tag: 'Equipment',
+        noOfProductInStock: 12
+    }),
 ];
 var done = 0;
 for (var i = 0; i < products.length; i++) {

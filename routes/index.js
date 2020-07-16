@@ -87,11 +87,35 @@ router.get('/antimalaria', function (req, res) {
   Product.find(function (err, docs) {
     var product = docs.filter(antimalaria => antimalaria.tag == 'Antimalaria');
     var antiMalariaArr = [];
-    var chunkSize = 6;
+    var chunkSize = 4;
     for (var i = 0; i < product.length; i += chunkSize) {
       antiMalariaArr.push(product.slice(i, i + chunkSize));
     }
     res.render('shop/products/antimalaria', { products: antiMalariaArr });
+  });
+});
+
+router.get('/multivitamins', function (req, res) {
+  Product.find(function (err, docs) {
+    var product = docs.filter(multivitamin => multivitamin.tag == 'Multivitamin');
+    var multivitaminArr = [];
+    var chunkSize = 4;
+    for (var i = 0; i < product.length; i += chunkSize) {
+      multivitaminArr.push(product.slice(i, i + chunkSize));
+    }
+    res.render('shop/products/multivitamins', { products: multivitaminArr });
+  });
+});
+
+router.get('/equipments', function (req, res) {
+  Product.find(function (err, docs) {
+    var product = docs.filter(equipment => equipment.tag == 'Equipment');
+    var equipmentArr = [];
+    var chunkSize = 4;
+    for (var i = 0; i < product.length; i += chunkSize) {
+      equipmentArr.push(product.slice(i, i + chunkSize));
+    }
+    res.render('shop/products/equipments', { products: equipmentArr });
   });
 });
 
@@ -127,16 +151,8 @@ router.get('/contraceptives', function (req, res) {
   res.render('shop/products/contraceptives');
 });
 
-router.get('/equipments', function (req, res) {
-  res.render('shop/products/equipments');
-});
-
 router.get('/eyedrugs', function (req, res) {
   res.render('shop/products/eyedrugs');
-});
-
-router.get('/multivitamins', function (req, res) {
-  res.render('shop/products/multivitamins');
 });
 
 router.get('/ulcerandgastro', function (req, res) {

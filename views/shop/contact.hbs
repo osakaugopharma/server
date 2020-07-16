@@ -13,8 +13,8 @@
     --button-padding: 0.5rem 1.5rem;
   }
 
-  .second-custom-container {
-    width: 85%;
+  .third-custom-container {
+    width: 75%;
     margin: 0 auto;
   }
 
@@ -22,20 +22,84 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 6.5em;
+    grid-column-gap: 6em;
+  }
+
+  .info-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 50px 200px;
+    padding-top: 2em;
+    padding-left: 2em;
+  }
+
+  .contact-header {
+    font-size: var(--header-font-size);
+    font-weight: 500;
+    text-align: left;
+    color: var(--text-color-one);
+  }
+
+  div.email {
+    text-align: left;
+    font-size: var(--primary-font-size);
+    color: var(--text-color-two);
+  }
+
+  div.phone-container {
+    font-size: var(--primary-font-size);
+    color: var(--text-color-two);
   }
 
   .social-and-phone-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-items: end;
   }
 
   .social-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-items: start;
+    color: var(--text-color-one);
+  }
+
+  .form-section p {
+    color: var(--text-color-one);
+    font-size: var(--primary-font-size);
+    font-weight: 500;
+    margin-top: 1em;
+    text-align: left;
+  }
+
+  .form-section div {
+    text-align: left;
+    margin-top: 2em;
+  }
+
+  .form-section div input,
+  .form-section div textarea {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.7em 0.5em;
+    outline: none;
+    width: 29em;
+    font-size: 14px;
+     background-color: #f4f6f8;
+            border: 0;
+            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+  }
+
+  .form-section div button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
+    font-size: var(--secondary-font-size);
   }
 </style>
 
-<div class="second-custom-container">
+<div class="third-custom-container">
   <div class="contact-container">
     <div class="info-section">
       <div class="contact-header">
@@ -55,7 +119,34 @@
       </div>
     </div>
     <div class="form-section">
-      
+      <p>Write to us and we will get in touch with you as soon as possible.</p>
+      <form action="post">
+        <div>
+          <label>Name</label>
+          <br>
+          <input type="text" />
+        </div>
+
+        <div>
+          <label>Email</label>
+          <br>
+          <input type="email" placeholder="example@gmail.com" />
+
+        </div>
+
+        <div>
+          <label>Message</label>
+          <br>
+          <textarea></textarea>
+        </div>
+
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+
+
+      </form>
+
     </div>
 
   </div>

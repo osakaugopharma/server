@@ -6,127 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .header {
-            margin-top: 1em;
+        :root {
+            --biggest-font-size: 64px;
+            --header-font-size: 32px;
+            --sub-heading-font-size: 24px;
+            --secondary-font-size: 18px;
+            --primary-font-size: 16px;
+            --primary-color: #5cdb95;
+            --secondary-color: #ffffff;
+            --text-color-one: #000000;
+            --text-color-two: rgba(0, 0, 0, 0.6);
+            --button-border-radius: 6px;
+            --button-padding: 0.5rem 1.5rem;
         }
 
-        .category-paragraph {
-            margin-top: 3.5em;
-        }
-
-        header p {
-            text-align: center;
-            margin-top: 1.5em;
-            line-height: 1.5em;
-            font-size: 15px;
-        }
-
-        h2{
-  font-weight: bold;
-  color: #000;
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-
-    
-
-        form {
-            width: 40%;
-            text-align: left;
+        .third-custom-container {
+            width: 75%;
             margin: 0 auto;
         }
 
-        label {
+        .signup-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 6.5em;
+            grid-column-gap: 6em;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 100px 50px 200px;
+            padding-top: 2em;
+            padding-left: 2em;
+        }
+
+        .signup-header {
+            font-size: var(--header-font-size);
+            font-weight: 500;
+            text-align: left;
+            color: var(--text-color-one);
+        }
+
+        div.signup-info-paragraph {
+            text-align: left;
+            font-size: var(--primary-font-size);
+            color: var(--text-color-two);
+        }
+
+
+        .form-section p {
+            color: var(--text-color-one);
+            font-size: var(--primary-font-size);
+            font-weight: 500;
+            margin-top: 3em;
+            text-align: left;
+        }
+
+        .form-section div {
+            text-align: left;
             margin-top: 2em;
         }
 
-        form input {
-            width: 100%;
-            border-width: 0 0 1px 0;
-            border-color: rgb(116, 111, 111);
+        .form-section div input {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 0.7em 0.5em;
             outline: none;
+            width: 29em;
+            font-size: 14px;
+            background-color: #f4f6f8;
+            border: 0;
+            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
         }
 
-        .shop-now {
-            border: none;
-            background-color: #5cdb95;
-            border-radius: 3px;
-            padding: 0.5rem 2rem;
-            color: rgb(255, 255, 255);
-            margin-top: 3rem;
+        .form-section div button {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: var(--button-padding);
+            border-radius: var(--button-border-radius);
+            font-size: var(--secondary-font-size);
         }
 
-        section {
-            margin-bottom: 4em;
+        .already-a-member p{
+            margin-top: 0.2em;
+            font-weight: 400 !important;
+            font-size: 14px;
         }
-
-        .val-errors {
-            width: 40%;
-            margin: 1em auto;
-            padding: 0;
-        }
-
-        .val-errors p {
-            margin: 8px auto;
-        }
-
-        .container {
-            margin-bottom: 4em;
-            font-size: 13px;
-        }
-
-         .button-container{
-      width: 30%;
-      margin: 0 auto;
-    }
-
-    .button-container button{
-      margin-left: 2em;
-    }
-
-        @media (max-width: 575.98px) {
-            form {
-                width: 70%;
-                text-align: left;
-                margin: 1.5em auto 0 auto;
-            }
-
-            .category-paragraph {
-                font-size: 13px;
-                margin-top: 2em;
-            }
-        }
-
-        
-    @media (max-width: 950px){
-      .button-container button{
-        width: 100%;
-        margin-left: 0 !important;
-      }
-
-      .button-container{
-        width: 50%;
-      }
-
-      form {
-        width: 60%;
-        text-align: left;
-        margin: 1.5em auto 0 auto;
-      }
-
-    }
-
-      @media (max-width: 1216px){
-      .button-container button{
-        width: 100%;
-        margin-left: 0 !important;
-      }
-    }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid p-0" style="margin-top: 10em;">
+    <div class="third-custom-container">
+        <div class="signup-container">
+            <div class="info-section">
+                <div class="signup-header">
+                    Create an account.
+                </div>
+                <div class="signup-info-paragraph">
+                    <p>Get the best of our products and services by creating a user account on our platform.</p>
+                </div>
+
+            </div>
+            <div class="form-section">
+                 {{#if hasErrors}}
+            <div class="alert alert-danger val-errors" style="width: 26em;">
+                {{# each messages }}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+            {{/if}}
+                <p>Sign up to inorder to purchase from us.</p>
+                <form action="/user/signup" method="post">
+                    <div>
+                        <label>Full Name</label>
+                        <br>
+                        <input type="text"  />
+                    </div>
+
+                    <div>
+                        <label>Email Address</label>
+                        <br>
+                        <input type="email" placeholder="example@gmail.com" id="email" name="email" />
+
+                    </div>
+
+                    <div>
+                        <label>Password</label>
+                        <br>
+                        <input type="password" placeholder="6+ characters" id="password" name="password" />
+                         <input type="hidden" name="_csrf" value="{{ csrfToken }}"
+                    </div>
+
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+
+                    <div class="already-a-member">
+                        <p>Already a member? <a href="/user/signin"><span style="color: var(--primary-color); font-weight: 500">Sign in</span></a></p>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- <div class="container-fluid p-0" style="margin-top: 10em;">
         <header style="box-shadow: none;">
             <h2 class="header">Sign Up</h2>
             <p>Sign up to be able to purchase from us</p>
@@ -172,7 +198,7 @@
 
 
 
-    </div>
+    </div>-->
 
 </body>
 

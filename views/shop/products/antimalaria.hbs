@@ -1,4 +1,98 @@
 <style>
+  :root {
+    --biggest-font-size: 64px;
+    --header-font-size: 32px;
+    --sub-heading-font-size: 24px;
+    --secondary-font-size: 18px;
+    --primary-font-size: 16px;
+    --primary-color: #5cdb95;
+    --secondary-color: #ffffff;
+    --text-color-one: #000000;
+    --text-color-two: rgba(31, 8, 8, 0.6));
+    --button-border-radius: 6px;
+    --button-padding: 0.5rem 1.5rem;
+  }
+
+  .second-custom-container {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .product-display-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+  }
+
+  .product-section-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4em 4em;
+    margin-top: 6.5em;
+    box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+    border-radius: 6px;
+    margin-bottom: 2em;
+  }
+
+  .no-of-products p {
+    margin-top: 1.3em;
+    text-align: left;
+    margin-left: 2em;
+  }
+
+  .product-title p {
+    font-size: var(--sub-heading-font-size);
+    font-weight: 500;
+    text-align: left;
+    margin-left: 1.4em;
+    margin-top: 0.6em;
+  }
+
+  .product-title,
+  .no-of-products {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .hover-container {
+    width: 75%;
+    margin: 2em auto;
+    height: 20em;
+    border-radius: 6px;
+  }
+
+  .hover-container p {
+    text-align: left;
+    margin-left: 2em;
+  }
+
+  .hover-container button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0.3rem 1.8rem;
+    border-radius: var(--button-border-radius);
+    font-size: var(--primary-font-size);
+    margin-top: 3em;
+  }
+
+  .hover-container button:hover {
+    background-color: #61eea1fb;
+  }
+
+  .hover-container p.product-name{
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+   .hover-container p.product-price{
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .hover-container:hover {
+    box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+  }
+
+  /*
   .product-container:hover .drug-backdrop {
     opacity: 0.3;
   }
@@ -67,17 +161,54 @@
       margin-top: 4.5em !important;
     }
    }
+   */
 </style>
 
+<body>
+  <div class="second-custom-container">
+    <div class="product-section-container">
+      <div class="product-title">
+        <p>Antimalaria</p>
+      </div>
+      <div class="no-of-products">
+        <p>28 products found.</p>
+      </div>
+
+      {{# each products }}
+      <div class="product-display-grid">
+
+        {{# each this }}
+        <div>
+          <div class="hover-container">
+            <img src="{{ this.imagepath }}">
+            <p class="product-name">{{ this.name }}</p>
+            <p class="product-price">N{{ this.price }}</p>
+            <button>Add to cart</button>
+          </div>
+        </div>
+        {{/each}}
+
+      </div>
+      {{/each}}
+
+    </div>
+  </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <div class="container-fluid p-0" style="margin-bottom: 7em;">
   <div class="container" style="margin-top: 5em;">
-
-    {{!-- <nav aria-label="breadcrumb" class="margin">
-      <ol class="breadcrumb" style="background-color: #5cdb95; color: #ffffff">
-        <li class="breadcrumb-item active" aria-current="page" style="color: #ffffff; font-size: 17px;">Anti-Malaria
-        </li>
-      </ol>
-    </nav> --}}
     {{# each products }}
     <div class="row justify-content-center margin">
       {{# each this }}
@@ -95,3 +226,4 @@
     {{/each}}
   </div>
 </div>
+-->
