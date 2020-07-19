@@ -4,150 +4,180 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    .add-one{
+    :root {
+    --biggest-font-size: 64px;
+    --header-font-size: 32px;
+    --sub-heading-font-size: 24px;
+    --secondary-font-size: 18px;
+    --primary-font-size: 16px;
+    --primary-color: #5cdb95;
+    --secondary-color: #ffffff;
+    --text-color-one: #000000;
+    --text-color-two: rgba(31, 8, 8, 0.6));
+    --button-border-radius: 6px;
+    --button-padding: 0.5rem 1.5rem;
+  }
+
+    .second-custom-container {
+      width: 75%;
       margin: 0 auto;
     }
-  /*  .add-one {
-      border: 2px solid rgb(119, 116, 116);
-      width: 30px;
-      margin: 0 auto;
+
+    .product-in-cart-headers{
       display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      border-radius: 20px;
-    }*/
-
-    div.add-one a {
-      display: inline;
-      width: 24px;
-      background-color: #5cdb95;
-      border-radius: 12px;
+      grid-template-columns: 2fr 1.3fr 1fr 1fr;
     }
 
-    .total {
-      width: 90%;
+    .product-header h6{
+      text-align: left;
+    }
+
+    .qty-header h6{
+      text-align: right;
+    }
+
+    .unit-price-header h6{
+      margin-left: 4em;
+    }
+
+    .subtotal-header h6{
+      margin-left: 2em;
+    }
+
+    .product-in-cart-card {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+      box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+      /*padding: 1rem 1.5rem 2rem 1rem;*/
+    }
+
+    .product-in-cart-image img{
+      margin-top: 1em;
+    }
+
+    .product-in-cart-description {
+      display: grid;
+      grid-template-columns: 1fr;
+      text-align: left;
+      padding: 1em 1em 1.5em 1.5em;
+    }
+
+    .product-in-cart-card > div{
+      border-right: 1px solid #ccc;
+    }
+
+    .product-in-cart-description p {
+      font-weight: 500;
+      margin-bottom: 0;
+      margin-top: 1rem;
+    }
+
+    .product-in-cart-description span {
+      font-size: 14px;
+      display: block;
+      margin-top: 3em;
+      color: var(--primary-color);
+    }
+
+    .product-in-cart-qty span,
+    .product-in-cart-price span,
+    .product-in-cart-subtotal span{
+      display: block;
+      margin-top: 2em;
+    } 
+
+    .product-increment-decrement{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 2.3em;
+    }
+
+    .product-increment-decrement-container{
+      width: 40%;
+      height: 2em;
       margin: 0 auto;
+      border-radius: 6px;
+      color: var(--secondary-color);
+      background-color: var(--primary-color);
+      font-size: 15px;
     }
 
-    .footer-paragraph p {
-      margin-bottom: 1.5em !important;
-    }
+     .product-increment-decrement-container:hover {
+        background-color: #61eea1fb;
+     }
 
-    .copyright-text {
-      margin-top: 3.5em;
-    }
-
-    @media(max-width: 767.98px) {
-      .header {
-        font-size: 15px;
-      }
-
-      .add-one {
-        width: 30px;
-      }
-
-      .t-d {
-        font-size: 15px;
-      }
-
-      nav {
-        font-size: 15px;
-      }
-
-      .checkout,
-      .bt-shop {
-        font-size: 15px;
-      }
-
-    }
-
-    @media(max-width: 575.98px) {
-  
-      .product-name{
-        font-size: 13px;
-      }
-
-
-      .remove {
-        padding: 0.5em 0.2em;
-      }
-
-      .no-items{
-        font-size: 24px;
-      }
-
+    .product-in-cart-subtotal{
+      border-right: 0 !important;
     }
   </style>
 </head>
 
 <body>
   {{# if products }}
-  <div class="container-fluid" style="margin-top: 4.5em">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="header" scope="col">Product</th>
-          <th class="header" scope="col">Price</th>
-          <th class="header" scope="col">Quantity</th>
-        <!--  <th class="header" scope="col">Subtotal</th>-->
-          <th class="header" scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        {{# each products }}
-        <tr>
-         
-          <th scope="row">
-            <img src="{{this.item.imagepath}}" alt="..." width="100" height="100">
-            <p class="product-name">{{this.item.name}}</p>
-         
-          </th>
-          
-
-
-          <td class="pt-5 t-d">
-            {{this.item.price}}
-          </td>
-          <td class="pt-5 t-d">
-            <div class="add-one">
-              <a href="/reduce/{{this.item._id}}">-</a>
-              <span>{{ this.qty }}</span>
-              <a href="/increment/{{this.item._id}}">+</a>
-            </div>
-          </td>
-          <!--<td class="pt-5 t-d">{{this.price}}</td>-->
-
-          <td class="pt-5 t-d"><a href="/remove/{{this.item._id}}"><i class="fas fa-times" style="font-size: 18px; color: #5cdb95;"></i></a></td>
-
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <div class="total">
-      <nav aria-label="breadcrumb" class="margin">
-        <ol class="breadcrumb"
-          style="background-color: #5cdb95; color: #ffffff; display: grid; grid-template-columns: 1fr 1fr;">
-          <li class="breadcrumb-item active" aria-current="page"
-            style="color: #ffffff; font-size: 17px; justify-self: start">Total:
-          </li>
-          <span style="justify-self: end;"> N{{totalPrice}}</span>
-        </ol>
-      </nav>
-
-      <a href="/checkout" type="button" class="btn btn-lg btn-block checkout"
-        style="background-color: #5cdb95; color: #fff; padding: 0.7rem 0;">Checkout</a>
-
-      <button type="button" class="btn btn-lg btn-block bt-shop" style="color: #5cdb95;">Back to shop</button>
+  <div class="second-custom-container"  style="margin-top: 6.5em;">
+    <div class="product-in-cart-headers">
+      <div class="product-header">
+        <h6>PRODUCT</h6>
+      </div>
+      <div class="qty-header">
+        <h6>QUANTITY</h6>
+      </div>
+      <div class="unit-price-header">
+        <h6>UNIT PRICE</h6>
+      </div>
+      <div class="subtotal-header">
+        <h6>SUBTOTAL</h6>
+      </div>
     </div>
-
-  </div>
-  {{ else }}
-  <div style="margin-top: 10em; margin-bottom: 10em;">
+    {{# each products }}
+    <div class="product-in-cart-card"  style="margin-top: 2em;">
+      <div class="product-in-cart-image">
+        <img src="{{this.item.imagepath}}" alt="..." width="100" height="100">
+      </div>
+      <div class="product-in-cart-description">
+        <div>
+          <p>{{this.item.name}}</p>
+        </div>
+        <div>
+          <a href="/remove/{{this.item._id}}" style="text-decoration: none";>
+            <span><i class="fas fa-trash" style="margin-right: 0.5em;"></i> Remove</span>
+          </a>
+        </div>
+      </div>
+      <div class="product-in-cart-qty">
+        <span>{{ this.qty }}</span>
+        <div class="product-increment-decrement">
+          <div class="product-increment">
+            <a href="/increment/{{this.item._id}}">
+              <div class="product-increment-decrement-container">
+              <i class="fas fa-plus" style="margin-top: 0.5rem;"></i>
+            </div>
+            </a>
+          </div>
+          <div class="product-decrement">
+            <a href="/reduce/{{this.item._id}}">
+              <div class="product-increment-decrement-container">
+              <i class="fas fa-minus" style="margin-top: 0.5rem;"></i>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="product-in-cart-price">
+        <span>{{this.item.price}}</span>
+      </div>
+      <div class="product-in-cart-subtotal">
+        <span>0000</span>
+      </div>
+    </div>
+    {{/each}}
+    </ {{ else }} <div style="margin-top: 10em; margin-bottom: 10em;">
     <h1 class="no-items">No items in your cart</h1>
     <div style="margin-top: 4em !important;">
-       <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
+      <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
       padding: 0.5rem 1rem; border: none;" class="remove">Go to shop</a>
     </div>
-  
+
   </div>
   {{/if}}
 </body>

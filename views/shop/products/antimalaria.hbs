@@ -183,7 +183,7 @@
             <img src="{{ this.imagepath }}">
             <p class="product-name">{{ this.name }}</p>
             <p class="product-price">N{{ this.price }}</p>
-            <button>Add to cart</button>
+            <button><a href="/add-to-cart/{{this._id}}" style="color: var(--secondary-color);">Add to cart</a></button>
           </div>
         </div>
         {{/each}}
