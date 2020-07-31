@@ -2,7 +2,6 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
 var logger = require('morgan');
 var handlebars = require('handlebars');
 var expressHbs = require('express-handlebars');
@@ -13,28 +12,19 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-
-
-
 var indexRouter = require('./routes/index');
 var userRoutes = require('./routes/user');
-
-
 var app = express();
-mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 require('./config/passport');
-
-
-
 
 // view engine setup
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs', handlebars: allowInsecurePrototypeAccess(handlebars) }));
 app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(validator());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(validator());
@@ -51,16 +41,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
-// app.use(express.static('images'));
-// app.use(express.static('stylesheets'));
-// app.use(express.static('javascripts'));
-
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated();
   res.locals.session = req.session;
   next();
 });
-
 app.use('/user', userRoutes);
 app.use('/', indexRouter);
 

@@ -21,7 +21,7 @@
   .product-display-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1em;
+   
   }
 
   .product-section-container {
@@ -54,16 +54,17 @@
   }
 
   .hover-container {
-    width: 75%;
+    width: 95%;
     margin: 2em auto;
     height: 20em;
     border-radius: 6px;
+    box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
   }
-
+/*
   .hover-container p {
     text-align: left;
     margin-left: 2em;
-  }
+  }*/
 
   .hover-container button {
     background-color: var(--primary-color);
@@ -84,12 +85,30 @@
   }
 
    .hover-container p.product-price{
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
   }
 
-  .hover-container:hover {
-    box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+  
+
+  @media(max-width: 575.98px) {
+    .product-display-grid{
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+   
+    .hover-container button a{
+      display: block;
+      width: 5em;
+    }
+
+    .hover-container button{
+      width: 8em;
+    }
+
+    .second-custom-container{
+      width: 95%;
+    }
   }
 
   /*

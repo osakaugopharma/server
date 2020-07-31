@@ -5,42 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
-    --biggest-font-size: 64px;
-    --header-font-size: 32px;
-    --sub-heading-font-size: 24px;
-    --secondary-font-size: 18px;
-    --primary-font-size: 16px;
-    --primary-color: #5cdb95;
-    --secondary-color: #ffffff;
-    --text-color-one: #000000;
-    --text-color-two: rgba(31, 8, 8, 0.6));
-    --button-border-radius: 6px;
-    --button-padding: 0.5rem 1.5rem;
-  }
+      --biggest-font-size: 64px;
+      --header-font-size: 32px;
+      --sub-heading-font-size: 24px;
+      --secondary-font-size: 18px;
+      --primary-font-size: 16px;
+      --primary-color: #5cdb95;
+      --secondary-color: #ffffff;
+      --text-color-one: #000000;
+      --text-color-two: rgba(31, 8, 8, 0.6));
+      --button-border-radius: 6px;
+      --button-padding: 0.5rem 1.5rem;
+    }
 
     .second-custom-container {
       width: 75%;
       margin: 0 auto;
     }
 
-    .product-in-cart-headers{
+    .product-in-cart-headers {
       display: grid;
       grid-template-columns: 2fr 1.3fr 1fr 1fr;
     }
 
-    .product-header h6{
+    .product-header h6 {
       text-align: left;
     }
 
-    .qty-header h6{
+    .qty-header h6 {
       text-align: right;
     }
 
-    .unit-price-header h6{
+    .unit-price-header h6 {
       margin-left: 4em;
     }
 
-    .subtotal-header h6{
+    .subtotal-header h6 {
       margin-left: 2em;
     }
 
@@ -51,7 +51,7 @@
       /*padding: 1rem 1.5rem 2rem 1rem;*/
     }
 
-    .product-in-cart-image img{
+    .product-in-cart-image img {
       margin-top: 1em;
     }
 
@@ -62,7 +62,7 @@
       padding: 1em 1em 1.5em 1.5em;
     }
 
-    .product-in-cart-card > div{
+    .product-in-cart-card>div {
       border-right: 1px solid #ccc;
     }
 
@@ -79,20 +79,24 @@
       color: var(--primary-color);
     }
 
-    .product-in-cart-qty span,
     .product-in-cart-price span,
-    .product-in-cart-subtotal span{
+    .product-in-cart-subtotal span {
       display: block;
-      margin-top: 2em;
-    } 
-
-    .product-increment-decrement{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 2.3em;
+      margin-top: 3.8em;
     }
 
-    .product-increment-decrement-container{
+    .product-qty span {
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    .product-increment-decrement {
+      display: grid;
+      grid-template-columns: 3fr 1fr 3fr;
+      margin-top: 3.5em;
+    }
+
+    .product-increment-decrement-container {
       width: 40%;
       height: 2em;
       margin: 0 auto;
@@ -102,19 +106,131 @@
       font-size: 15px;
     }
 
-     .product-increment-decrement-container:hover {
-        background-color: #61eea1fb;
-     }
+    .product-increment-decrement-container-mobile {
+      width: 100%;
+      height: 2em;
+      border-radius: 6px;
+      color: var(--secondary-color);
+      background-color: var(--primary-color);
+      font-size: 15px;
+    }
 
-    .product-in-cart-subtotal{
+    .product-increment-decrement-container:hover {
+      background-color: #61eea1fb;
+    }
+
+    .product-in-cart-subtotal {
       border-right: 0 !important;
+    }
+
+    .total-price {
+      margin-top: 3em;
+      margin-bottom: 2em;
+    }
+
+    .checkout-continue-shopping {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      column-gap: 1em;
+      margin-top: 2em;
+    }
+
+    .checkout-continue-shopping button {
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      padding: var(--button-padding);
+      border-radius: var(--button-border-radius);
+      font-size: var(--secondary-font-size);
+      width: 100%;
+    }
+
+    .product-in-cart-card-mobile {
+      display: grid;
+      grid-template-columns: 1fr;
+      box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+      padding: 1em;
+    }
+
+    .product-and-details {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      column-gap: 1em;
+    }
+
+    .product-details-mobile {
+      text-align: left;
+    }
+
+    .product-details-mobile p {
+      margin-top: 1.5em;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 9em;
+    }
+
+    .remove-mobile {
+      text-align: left;
+    }
+
+    .remove-mobile span {
+      font-size: 14px;
+      color: var(--primary-color);
+    }
+
+    .remove-mobile a {
+      margin-left: 1em;
+    }
+
+    .increment-and-decrement-mobile {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+    }
+
+
+    /* MEDIA QUERIES */
+    @media(max-width: 575.98px) {
+
+      .second-custom-container {
+        width: 95%;
+      }
+
+      .product-in-cart-headers {
+        display: none;
+      }
+
+      .product-in-cart-card {
+        display: none;
+      }
+
+      .empty-box{
+        display: none;
+      }
+
+      .checkout-continue-shopping{
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+      }
+
+      h1.no-items{
+        font-size: var(--sub-heading-font-size);
+      }
+    }
+
+    @media(min-width: 992px) {
+      .product-in-cart-card-mobile {
+        display: none;
+      }
     }
   </style>
 </head>
 
 <body>
   {{# if products }}
-  <div class="second-custom-container"  style="margin-top: 6.5em;">
+  <div class="second-custom-container" style="margin-top: 6.5em;">
     <div class="product-in-cart-headers">
       <div class="product-header">
         <h6>PRODUCT</h6>
@@ -130,7 +246,7 @@
       </div>
     </div>
     {{# each products }}
-    <div class="product-in-cart-card"  style="margin-top: 2em;">
+    <div class="product-in-cart-card" style="margin-top: 2em;">
       <div class="product-in-cart-image">
         <img src="{{this.item.imagepath}}" alt="..." width="100" height="100">
       </div>
@@ -139,26 +255,29 @@
           <p>{{this.item.name}}</p>
         </div>
         <div>
-          <a href="/remove/{{this.item._id}}" style="text-decoration: none";>
+          <a href="/remove/{{this.item._id}}" style="text-decoration: none" ;>
             <span><i class="fas fa-trash" style="margin-right: 0.5em;"></i> Remove</span>
           </a>
         </div>
       </div>
       <div class="product-in-cart-qty">
-        <span>{{ this.qty }}</span>
+
         <div class="product-increment-decrement">
           <div class="product-increment">
             <a href="/increment/{{this.item._id}}">
               <div class="product-increment-decrement-container">
-              <i class="fas fa-plus" style="margin-top: 0.5rem;"></i>
-            </div>
+                <i class="fas fa-plus" style="margin-top: 0.5rem;"></i>
+              </div>
             </a>
+          </div>
+          <div class="product-qty">
+            <span>{{ this.qty }}</span>
           </div>
           <div class="product-decrement">
             <a href="/reduce/{{this.item._id}}">
               <div class="product-increment-decrement-container">
-              <i class="fas fa-minus" style="margin-top: 0.5rem;"></i>
-            </div>
+                <i class="fas fa-minus" style="margin-top: 0.5rem;"></i>
+              </div>
             </a>
           </div>
         </div>
@@ -167,10 +286,82 @@
         <span>{{this.item.price}}</span>
       </div>
       <div class="product-in-cart-subtotal">
-        <span>0000</span>
+        <span>{{this.price}}</span>
+      </div>
+    </div>
+
+
+
+
+    <div class="product-in-cart-card-mobile" style="margin-top: 2em;">
+      <div class="product-and-details">
+        <div class="product-image-mobile">
+          <img src="{{this.item.imagepath}}" alt="..." width="100" height="100">
+        </div>
+        <div class="product-details-mobile">
+          <p>{{this.item.name}}</p>
+
+          <span>{{this.item.price}}</span>
+
+        </div>
+      </div>
+      <hr>
+      <div class="actions">
+        <div class="remove-mobile">
+          <a href="/remove/{{this.item._id}}" style="text-decoration: none" ;>
+            <span><i class="fas fa-trash" style="margin-right: 0.5em;"></i> Remove</span>
+          </a>
+        </div>
+        <div class="increment-and-decrement-mobile">
+          <div class="product-increment">
+            <a href="/increment/{{this.item._id}}">
+              <div class="product-increment-decrement-container-mobile">
+                <i class="fas fa-plus" style="margin-top: 0.4em;"></i>
+              </div>
+            </a>
+          </div>
+          <div>
+            <span style="display: block; margin-top: 0.2em;">{{ this.qty }}</span>
+          </div>
+          <div class="product-decrement">
+            <a href="/reduce/{{this.item._id}}">
+              <div class="product-increment-decrement-container-mobile">
+                <i class="fas fa-minus" style="margin-top: 0.4em;"></i>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
     {{/each}}
+
+    <div class="total-price">
+      <nav aria-label="breadcrumb" class="margin">
+        <ol class="breadcrumb"
+          style="background-color: #5cdb95; color: #ffffff; display: grid; grid-template-columns: 1fr 1fr;">
+          <li class="breadcrumb-item active" aria-current="page"
+            style="color: #ffffff; font-size: 17px; justify-self: start">Total:
+          </li>
+          <span style="justify-self: end;"> N{{totalPrice}}</span>
+        </ol>
+      </nav>
+    </div>
+
+    <hr>
+
+    <div class="checkout-continue-shopping">
+      <div class="empty-box">
+
+      </div>
+
+      <div class="continue-shopping">
+        <button><a href="/" style="text-decoration: none; color: var(--secondary-color)">Continue shopping</a></button>
+      </div>
+
+      <div class="checkout">
+        <button><a href="/checkout" style="text-decoration: none; color: var(--secondary-color)">Checkout</a></button>
+      </div>
+    </div>
     </ {{ else }} <div style="margin-top: 10em; margin-bottom: 10em;">
     <h1 class="no-items">No items in your cart</h1>
     <div style="margin-top: 4em !important;">

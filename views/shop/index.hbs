@@ -47,11 +47,12 @@
       color: var(--text-color-two);
       margin-bottom: 2.55em;
       width: 30em;
+      line-height: 1.8;
     }
 
     .hero-section-content-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
+      /* display: grid;
+      grid-template-columns: 2fr 1fr;*/
       text-align: left;
       margin-top: 10em !important;
     }
@@ -63,7 +64,8 @@
       border-radius: var(--button-border-radius);
       font-size: var(--secondary-font-size);
     }
-/*
+
+    /*
     .hero-section-illustration {
       background-image: url('/images/hero-section-illustration.svg');
       background-size: 300px 200px;
@@ -75,7 +77,7 @@
     .product-description h2 {
       font-size: var(--header-font-size);
       margin-bottom: 0.3em;
-      margin-top: 3em;
+      margin-top: 4em !important;
     }
 
     .product-description p {
@@ -91,8 +93,14 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 4em;
-      margin-top: 6.5em;
+      margin-top: 4em;
       color: #000;
+    }
+
+    .product-description-block {
+      box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+      border-radius: 6px;
+      padding: 3em 2em;
     }
 
     .product-description-text h3 {
@@ -123,6 +131,8 @@
       box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
       border-radius: 6px;
       background-color: #fff;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
     }
 
     .product-icon-description,
@@ -161,7 +171,6 @@
     .product-icon-description a {
       text-decoration: none;
       color: #000;
-      font-weight: 500;
     }
 
     .featured-product-category-header {
@@ -202,9 +211,105 @@
       margin-bottom: 2em;
     }
 
-    
+    .category-paragraph {
+      margin-bottom: 0;
+    }
 
 
+
+    /* MEDIA QUERIES */
+    @media(max-width: 575.98px) {
+      .hero-section {
+        height: 30em;
+      }
+
+      .hero-section-content-grid h1 {
+        font-size: 2.5em;
+        width: 10em;
+        margin-right: 0 !important;
+      }
+
+      .hero-section-content-grid p {
+        width: 20em;
+        margin-top: 1.5rem;
+      }
+
+      .product-description h2 {
+        margin-top: 3.5em;
+      }
+
+      .product-description p {
+        margin-top: 1rem;
+      }
+
+      .product-description-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-category-grid {
+        grid-template-columns: 1fr;
+        grid-gap: 1.5em;
+        margin-top: 3.5em;
+      }
+
+      .featured-product-category-header p {
+        font-size: var(--primary-font-size);
+      }
+
+      .featured-products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .featured-product-category-header {
+        grid-template-columns: 3fr 2fr;
+      }
+
+      .price {
+        font-weight: 500;
+      }
+
+      .category-paragraph,
+      .price {
+        font-size: 14px;
+      }
+
+      .view-more-button p a {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      /*   .product-category-element {
+        grid-template-columns: 3fr 4fr;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }*/
+      /*
+      .product-category-element.antihypertensives {
+        padding-right: 0.2rem;
+      }
+
+      .product-icon-description p {
+        font-size: 13px;
+        font-weight: 400;
+      }
+
+      .icon-container {
+        font-size: var(--secondary-font-size);
+        
+      }
+
+      .icon-container svg {
+      margin-top: 12px;
+
+    }
+     .icon-container div {
+     
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      margin: 0 auto;
+    }*/
+    }
   </style>
 
 
@@ -217,7 +322,7 @@
         <h1>Pharmaceuticals made easy and accessible.</h1>
         <p>Get quality products and services tailored just for you at affordable prices. We use the latest technologies
           to provide top-notch experiences to our customers.</p>
-        <button>Shop now</button>
+        <button><a href="#scroll-section">Shop now</a></button>
       </div>
       {{!-- <div class="hero-section-illustration"></div> --}}
     </div>
@@ -225,7 +330,7 @@
 
   <div class="custom-container">
     <div class="product-description">
-      <h2>A new system for purchasing medication</h2>
+      <h2 style="color: #000;">A new system for purchasing medication</h2>
       <p>Get access to better products and purchases.</p>
     </div>
   </div>
@@ -238,8 +343,7 @@
         </div>
         <div class="product-description-text">
           <h3>Efficient prices</h3>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam rerum totam autem ipsam nesciunt? Cum.
-          </p>
+          <p>We offer our products at the most efficient and affordable prices in the market.</p>
         </div>
       </div>
 
@@ -249,8 +353,7 @@
         </div>
         <div class="product-description-text">
           <h3>Payment made easy</h3>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam rerum totam autem ipsam nesciunt? Cum.
-          </p>
+          <p>We make use of secure payment processing systems to enable transactions on our platform.</p>
         </div>
       </div>
 
@@ -267,15 +370,18 @@
 
     </div>
   </div>
+  
 
   <div class="custom-container">
+    
     <div class="product-description">
-      <h2>Product categories</h2>
+      <h2 style="color: #000;">Product categories</h2>
     </div>
   </div>
 
   <div class="second-custom-container">
     <div class="product-category-grid">
+
       <div class="product-category-element">
         <div class="icon-container">
           <div>
@@ -286,7 +392,12 @@
         <div class="product-icon-description">
           <p><a href="#">Antimalaria</a></p>
         </div>
+
       </div>
+
+
+
+
 
       <div class="product-category-element">
         <div class="icon-container">
@@ -372,7 +483,7 @@
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element antihypertensives">
         <div class="icon-container">
           <div>
             <i class="fas fa-heartbeat"></i>
@@ -384,24 +495,25 @@
         </div>
       </div>
 
-
+<div id="scroll-section"></div>
     </div>
   </div>
-
+  <!--
   <div class="custom-container">
     <div class="product-description">
       <h2 class="featured-product-heading" style="margin-bottom: 3.5em;">Featured products</h2>
     </div>
   </div>
+  -->
 
-  <div class="custom-container">
+  <div class="custom-container" style="margin-top: -4em;">
     <div class="featured-product-category">
       <div class="featured-product-category-header">
         <div>
-          <p>Antimalaria | Get well soon</p>
+          <p>Antimalaria</p>
         </div>
         <div class="view-more-button">
-          <p><a>View more ></a></p>
+          <p><a><u>View more</u></a></p>
         </div>
 
       </div>
@@ -425,10 +537,10 @@
     <div class="featured-product-category">
       <div class="featured-product-category-header">
         <div>
-          <p>Antimalaria | Get well soon</p>
+          <p>Multivitamins</p>
         </div>
         <div class="view-more-button">
-          <p><a>View more ></a></p>
+          <p><a><u>View more</u></a></p>
         </div>
 
       </div>
@@ -448,7 +560,7 @@
     </div>
   </div>
 
- 
+
 
 
 

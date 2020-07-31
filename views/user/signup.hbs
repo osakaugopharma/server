@@ -47,6 +47,20 @@
             color: var(--text-color-one);
         }
 
+        .signup-header-mobile {
+            font-size: var(--header-font-size);
+            font-weight: 500;
+            text-align: left;
+            color: var(--text-color-one);
+        }
+
+        div.signup-info-paragraph-mobile {
+            text-align: left;
+            font-size: var(--primary-font-size);
+            color: var(--text-color-two);
+
+        }
+
         div.signup-info-paragraph {
             text-align: left;
             font-size: var(--primary-font-size);
@@ -87,11 +101,50 @@
             font-size: var(--secondary-font-size);
         }
 
-        .already-a-member p{
+        .already-a-member p {
             margin-top: 0.2em;
             font-weight: 400 !important;
             font-size: 14px;
         }
+
+        @media(max-width: 575.98px) {
+            .signup-container {
+                grid-template-columns: 1fr;
+                margin-top: 4em;
+            }
+
+            div.info-section {
+                display: none;
+            }
+
+            .form-section div input {
+                width: 23em;
+            }
+
+            div.signup-info-paragraph-mobile p {
+                font-weight: 400 !important;
+                margin-top: -1em;
+            }
+
+            div.submit-button-container{
+                margin-top: 3em;
+            }
+
+            p.signup-paragraph-secondary-text{
+                margin-top: 2em;
+                font-size: 14px;
+            }
+        }
+
+         @media(min-width: 992px){
+             .signup-header-mobile{
+                 display: none;
+             }
+
+             div.signup-info-paragraph-mobile{
+                  display: none;
+             }
+         }
     </style>
 </head>
 
@@ -108,19 +161,26 @@
 
             </div>
             <div class="form-section">
-                 {{#if hasErrors}}
-            <div class="alert alert-danger val-errors" style="width: 26em;">
-                {{# each messages }}
-                <p>{{this}}</p>
-                {{/each}}
-            </div>
-            {{/if}}
-                <p>Sign up to inorder to purchase from us.</p>
+
+                <div class="signup-header-mobile">
+                    Create an account.
+                </div>
+                <div class="signup-info-paragraph-mobile">
+                    <p>Get the best of our products and services by creating a user account on our platform.</p>
+                </div>
+                {{#if hasErrors}}
+                <div class="alert alert-danger val-errors" style="width: 26em;">
+                    {{# each messages }}
+                    <p>{{this}}</p>
+                    {{/each}}
+                </div>
+                {{/if}}
+                <p class="signup-paragraph-secondary-text">Sign up to inorder to purchase from us.</p>
                 <form action="/user/signup" method="post">
                     <div>
                         <label>Full Name</label>
                         <br>
-                        <input type="text"  />
+                        <input type="text" />
                     </div>
 
                     <div>
@@ -134,16 +194,16 @@
                         <label>Password</label>
                         <br>
                         <input type="password" placeholder="6+ characters" id="password" name="password" />
-                         <input type="hidden" name="_csrf" value="{{ csrfToken }}"
-                    </div>
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" </div>
 
-                    <div>
-                        <button type="submit">Submit</button>
-                    </div>
+                        <div class="submit-button-container">
+                            <button type="submit">Submit</button>
+                        </div>
 
-                    <div class="already-a-member">
-                        <p>Already a member? <a href="/user/signin"><span style="color: var(--primary-color); font-weight: 500">Sign in</span></a></p>
-                    </div>
+                        <div class="already-a-member">
+                            <p>Already a member? <a href="/user/signin"><span
+                                        style="color: var(--primary-color); font-weight: 500">Sign in</span></a></p>
+                        </div>
 
 
                 </form>

@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-      :root {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
             --biggest-font-size: 64px;
             --header-font-size: 32px;
             --sub-heading-font-size: 24px;
@@ -53,6 +53,20 @@
             color: var(--text-color-two);
         }
 
+        .signup-header-mobile {
+            font-size: var(--header-font-size);
+            font-weight: 500;
+            text-align: left;
+            color: var(--text-color-one);
+        }
+
+        div.signup-info-paragraph-mobile {
+            text-align: left;
+            font-size: var(--primary-font-size);
+            color: var(--text-color-two);
+
+        }
+
 
         .form-section p {
             color: var(--text-color-one);
@@ -87,16 +101,60 @@
             font-size: var(--secondary-font-size);
         }
 
-        .already-a-member p{
+        .already-a-member p {
             margin-top: 0.2em;
             font-weight: 400 !important;
             font-size: 14px;
         }
-  </style>
+
+        @media(max-width: 575.98px) {
+            .signup-container {
+                grid-template-columns: 1fr;
+                margin-top: 4em;
+            }
+
+            div.signup-info-paragraph-mobile p {
+                font-weight: 400 !important;
+                margin-top: -1em;
+            }
+
+            div.info-section {
+                display: none;
+            }
+
+            .form-section div input {
+                width: 23em;
+            }
+
+            div.signup-info-paragraph-mobile p {
+                font-weight: 400 !important;
+            }
+
+            p.signin-paragraph-secondary-text {
+                margin-top: 2em;
+                font-size: 14px;
+            }
+
+             div.submit-button-container{
+                margin-top: 3em;
+            }
+
+        }
+
+        @media(min-width: 992px) {
+            .signup-header-mobile {
+                display: none;
+            }
+
+            div.signup-info-paragraph-mobile {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-   <div class="third-custom-container">
+    <div class="third-custom-container">
         <div class="signup-container">
             <div class="info-section">
                 <div class="signin-header">
@@ -108,14 +166,21 @@
 
             </div>
             <div class="form-section">
-                 {{#if hasErrors}}
-            <div class="alert alert-danger val-errors" style="width: 26em;">
-                {{# each messages }}
-                <p>{{this}}</p>
-                {{/each}}
-            </div>
-            {{/if}}
-                <p>Sign in to access your account.</p>
+
+                <div class="signup-header-mobile">
+                    Login.
+                </div>
+                <div class="signup-info-paragraph-mobile">
+                    <p>Welcome back! We missed you.</p>
+                </div>
+                {{#if hasErrors}}
+                <div class="alert alert-danger val-errors" style="width: 26em;">
+                    {{# each messages }}
+                    <p>{{this}}</p>
+                    {{/each}}
+                </div>
+                {{/if}}
+                <p class="signin-paragraph-secondary-text">Sign in to access your account.</p>
                 <form action="/user/signin" method="post">
                     <div>
                         <label>Email Address</label>
@@ -128,16 +193,16 @@
                         <label>Password</label>
                         <br>
                         <input type="password" placeholder="6+ characters" id="password" name="password" />
-                         <input type="hidden" name="_csrf" value="{{ csrfToken }}"
-                    </div>
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" </div>
 
-                    <div>
-                        <button type="submit">Submit</button>
-                    </div>
+                        <div class="submit-button-container">
+                            <button type="submit">Submit</button>
+                        </div>
 
-                    <div class="already-a-member">
-                        <p>Don't have an account? <a href="/user/signup"><span style="color: var(--primary-color); font-weight: 500">Sign up</span></a></p>
-                    </div>
+                        <div class="already-a-member">
+                            <p>Don't have an account? <a href="/user/signup"><span
+                                        style="color: var(--primary-color); font-weight: 500">Sign up</span></a></p>
+                        </div>
 
 
                 </form>
@@ -146,7 +211,7 @@
 
         </div>
     </div>
- <!-- <div class="container-fluid p-0" style="margin-top: 10em;">
+    <!-- <div class="container-fluid p-0" style="margin-top: 10em;">
     <header style="box-shadow: none;">
       <h2 class="header">Sign In</h2>
       <p>Welcome back!</p>

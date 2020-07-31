@@ -85,9 +85,9 @@
     outline: none;
     width: 29em;
     font-size: 14px;
-     background-color: #f4f6f8;
-            border: 0;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+    background-color: #f4f6f8;
+    border: 0;
+    box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
   }
 
   .form-section div button {
@@ -96,6 +96,48 @@
     padding: var(--button-padding);
     border-radius: var(--button-border-radius);
     font-size: var(--secondary-font-size);
+  }
+
+  @media(max-width: 575.98px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+
+    .form-section div input,
+    .form-section div textarea {
+      width: 23em;
+    }
+
+    div.contact-header-mobile {
+      font-size: var(--header-font-size);
+      font-weight: 500;
+      color: var(--text-color-one);
+      margin-top: 1em;
+    }
+
+    .info-section {
+      display: none;
+    }
+
+    div.email-and-phone-mobile {
+      margin-top: 5em;
+      font-weight: 500;
+      color: var(--text-color-two);
+    }
+
+    div.submit-button-container{
+                margin-top: 3em;
+            }
+  }
+
+  @media(min-width: 992px) {
+    div.contact-header-mobile {
+      display: none;
+    }
+
+    div.email-and-phone-mobile {
+      display: none;
+    }
   }
 </style>
 
@@ -119,6 +161,9 @@
       </div>
     </div>
     <div class="form-section">
+      <div class="contact-header-mobile">
+        Talk to us
+      </div>
       <p>Write to us and we will get in touch with you as soon as possible.</p>
       <form action="post">
         <div>
@@ -140,12 +185,20 @@
           <textarea></textarea>
         </div>
 
-        <div>
+        <div class="submit-button-container">
           <button type="submit">Submit</button>
         </div>
 
 
       </form>
+      <div class="email-and-phone-mobile">
+        <div>
+          example@email.com
+        </div>
+
+        <div>0000-0000-0000</div>
+      </div>
+
 
     </div>
 

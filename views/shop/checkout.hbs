@@ -1,44 +1,115 @@
 <style>
-    .shop-now {
-      border: none;
-      background-color: #5cdb95;
-      border-radius: 3px;
-      padding: 0.5rem 1.5rem;
-      color: rgb(255, 255, 255);
-      margin-top: 1rem;
-      font-size: 18px;
+  :root {
+    --biggest-font-size: 64px;
+    --header-font-size: 32px;
+    --sub-heading-font-size: 24px;
+    --secondary-font-size: 18px;
+    --primary-font-size: 16px;
+    --primary-color: #5cdb95;
+    --secondary-color: #ffffff;
+    --text-color-one: #000000;
+    --text-color-two: rgba(31, 8, 8, 0.6));
+    --button-border-radius: 6px;
+    --button-padding: 0.5rem 1.5rem;
+  }
 
+  .second-custom-container {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .shop-now {
+    border: none;
+    background-color: #5cdb95;
+    border-radius: 3px;
+    padding: 0.5rem 1.5rem;
+    color: rgb(255, 255, 255);
+    margin-top: 2em;
+    font-size: 18px;
+    display: block;
+  }
+
+  .delivery-address-input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.7em 0.5em;
+    outline: none;
+    width: 35em;
+    font-size: 14px;
+    background-color: #f4f6f8;
+    border: 0;
+    box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+  }
+
+  .button-container {
+    width: 12%;
+    margin: 0 auto;
+  }
+
+  .header h1 {
+    font-size: var(--sub-heading-font-size);
+  }
+
+  form {
+    margin-top: 3em;
+  }
+
+  @media(max-width: 575.98px) {
+    .delivery-address-input {
+      width: 29em;
     }
+
+    .second-custom-container {
+      width: 95%;
+    }
+
+    .button-container {
+      width: 40%;
+    }
+
+    button {
+      margin-left: 1em;
+    }
+  }
 </style>
+<div class="second-custom-container">
+  <div class="header" style="margin-top: 7em;">
+    <h1>Add your delivery address</h1>
+  </div>
+  <form action="/checkout" method="post">
+    <input type="text" class="delivery-address-input" name="address">
+    <input type="tel" class="delivery-address-input" name="phone">
+    <script src="https://api.flutterwave.com/checkout.js"></script>
+    <div class="button-container">
+      <button type="submit" class="shop-now" onClick="makePayment()">Pay Now</button>
+    </div>
 
+  </form>
+</div>
 
-<form style="margin-top: 7em;">
-  <script src="https://api.flutterwave.com/checkout.js"></script>
-  <button type="button" class="shop-now" onClick="makePayment()">Pay Now</button>
-</form>
 
 <script>
-  var uid = Math.random().toString(36).substr(2, 9); 
+  var uid = Math.random().toString(36).substr(2, 9);
   function makePayment() {
     FlutterwaveCheckout({
       public_key: "FLWPUBK_TEST-b558592d89819939a19def517273deec-X",
       tx_ref: `oup-${uid}`,
-      amount: {{total}},
-      currency: "NGN",
-      payment_options: "card,mobilemoney,ussd",
+      amount: {{ total }},
+  currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
       redirect_url: // specified redirect URL
-       "/success" ,
-      customer: {
-        email: "{{email}}",
-        phone_number: "08102909304",
+  "/success",
+    customer: {
+    email: "{{email}}",
+      phone_number: "08102909304",
         name: "yemi desola",
       },
-      callback: function (data) {
-        console.log(data);
-      },
-      customizations: {
-        title: "Payment for item",
-        description: "Payment for items in cart",
+  callback: function (data) {
+    console.log(data);
+  },
+  customizations: {
+    title: "Payment for item",
+      description: "Payment for items in cart",
       },
     });
   }

@@ -3,27 +3,9 @@ var router = express.Router();
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
-
-// var User = require('../models/users')
-
-
-// var { check, validationResult } = require('express-validator');
-
-// Loop through product database to output products automatically to the index view(No.4 video; 3:44)
-
-
-/* GET home page. */
-
-/*router.get('/', function (req, res) {
-  Product.find(function (err, docs) {
-    var productChunks = [];
-    var chunkSize = 3;
-    for (var i = 0; i < docs.length; i += chunkSize) {
-      productChunks.push(docs.slice(i, i + chunkSize));
-    }
-    res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks });
-  });
-});*/
+var User = require('../models/users');
+const mongo = require('mongodb').MongoClient;
+const url = 'mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority';
 
 router.get('/', function (req, res) {
   Product.find(function (err, docs) {
@@ -37,14 +19,12 @@ router.get('/', function (req, res) {
 router.get('/add-to-cart/:id', function (req, res) {
   var productId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
-
   Product.findById(productId, function (err, product) {
     if (err) {
       return res.redirect('/');
     }
     cart.add(product, product.id);
     req.session.cart = cart;
-    // console.log(req.session.cart);
     res.redirect('/');
   });
 });
@@ -80,8 +60,6 @@ router.get('/remove/:id', function (req, res) {
   req.session.cart = cart;
   res.redirect('/shopping-cart');
 });
-
-
 
 router.get('/antimalaria', function (req, res) {
   Product.find(function (err, docs) {
@@ -159,18 +137,15 @@ router.get('/ulcerandgastro', function (req, res) {
   res.render('shop/products/ulcerandgastro');
 });
 
-
 router.get('/success', function (req, res) {
   res.render('shop/success');
   var cart = new Cart(req.session.cart);
-
   var order = new Order({
     user: req.user,
     cart: cart,
     email: req.user.email,
     paymentId: req.query.tx_ref,
   });
-
   order.save(function (err, result) {
     req.session.cart = null;
   });
@@ -180,27 +155,33 @@ router.get('/failure', function (req, res) {
   res.render('shop/failure');
 });
 
-
+router.post('/checkout', (req, res) => {
+  let address = req.body.address;
+  let phone = req.body.phone;
+  const email = req.session.email;
+  mongo.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }, (err, client) => {
+    if (err) {
+      console.error(err)
+      return;
+    }
+    const db = client.db('shop');
+    const collection = db.collection('users');
+    collection.updateOne({ email: email }, { $set: { address: address, phone: phone } });
+  });
+});
 
 router.get('/shopping-cart', function (req, res) {
- /* Product.find(function (err, docs) {
-    var productChunks = [];
-    var chunkSize = 6;
-    for (var i = 0; i < docs.length; i += chunkSize) {
-      productChunks.push(docs.slice(i, i + chunkSize));
-    }
-    res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks });
-  });*/
   if (!req.session.cart) {
     return res.render('shop/shopping-cart', { products: null });
   }
   var cart = new Cart(req.session.cart);
   res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice });
-
 });
 
 router.get('/checkout', isLoggedIn, function (req, res) {
-
   if (!req.session.cart) {
     return res.redirect('/shopping-cart');
   }
@@ -208,12 +189,7 @@ router.get('/checkout', isLoggedIn, function (req, res) {
   res.render('shop/checkout', { total: cart.totalPrice, email: req.user.email });
 });
 
-// router.get('/verify', function(req, res) {
-//   res.render('shop/verify');
-// });
-
 module.exports = router;
-
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
