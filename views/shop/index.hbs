@@ -169,7 +169,6 @@
     }
 
     .product-icon-description a {
-      text-decoration: none;
       color: #000;
     }
 
@@ -213,6 +212,12 @@
 
     .category-paragraph {
       margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    p.price{
+       font-size: 14px;
+        font-weight: 500;
     }
 
 
@@ -265,6 +270,7 @@
       }
 
       .price {
+       font-size: 14px;
         font-weight: 500;
       }
 
@@ -277,38 +283,6 @@
         font-size: 14px;
         font-weight: bold;
       }
-
-      /*   .product-category-element {
-        grid-template-columns: 3fr 4fr;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-      }*/
-      /*
-      .product-category-element.antihypertensives {
-        padding-right: 0.2rem;
-      }
-
-      .product-icon-description p {
-        font-size: 13px;
-        font-weight: 400;
-      }
-
-      .icon-container {
-        font-size: var(--secondary-font-size);
-        
-      }
-
-      .icon-container svg {
-      margin-top: 12px;
-
-    }
-     .icon-container div {
-     
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-      margin: 0 auto;
-    }*/
     }
   </style>
 
@@ -322,9 +296,8 @@
         <h1>Pharmaceuticals made easy and accessible.</h1>
         <p>Get quality products and services tailored just for you at affordable prices. We use the latest technologies
           to provide top-notch experiences to our customers.</p>
-        <button><a href="#scroll-section">Shop now</a></button>
+        <button><a style="color: var(--secondary-color);" href="#scroll-section">Shop now</a></button>
       </div>
-      {{!-- <div class="hero-section-illustration"></div> --}}
     </div>
   </div>
 
@@ -381,33 +354,25 @@
 
   <div class="second-custom-container">
     <div class="product-category-grid">
-
       <div class="product-category-element">
         <div class="icon-container">
           <div>
             <i class="fas fa-syringe"></i>
           </div>
-
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Antimalaria</a></p>
+          <p><a href="/antimalaria">Antimalaria</a></p>
         </div>
-
       </div>
-
-
-
-
 
       <div class="product-category-element">
         <div class="icon-container">
           <div>
             <i class="fas fa-pills"></i>
           </div>
-
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Multivitamins</a></p>
+          <p><a href="/multivitamins">Multivitamins</a></p>
         </div>
       </div>
 
@@ -416,10 +381,9 @@
           <div>
             <i class="fas fa-stethoscope"></i>
           </div>
-
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Medical equipment</a></p>
+          <p><a href="/equipments">Medical equipment</a></p>
         </div>
       </div>
 
@@ -431,7 +395,7 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Contraceptives</a></p>
+          <p><a href="/contraceptives">Contraceptives</a></p>
         </div>
       </div>
 
@@ -443,7 +407,7 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Antibiotics</a></p>
+          <p><a href="/antibiotics">Antibiotics</a></p>
         </div>
       </div>
 
@@ -455,7 +419,7 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Vision drugs</a></p>
+          <p><a href="/eyedrugs">Vision drugs</a></p>
         </div>
       </div>
 
@@ -467,7 +431,7 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Ulcer and gastro drugs</a></p>
+          <p><a href="/ulcerandgastro">Ulcer and gastro drugs</a></p>
         </div>
       </div>
 
@@ -479,7 +443,7 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Analgesics</a></p>
+          <p><a href="/analgesics">Analgesics</a></p>
         </div>
       </div>
 
@@ -491,7 +455,7 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="#">Antihypertensives</a></p>
+          <p><a href="/antihypertensives">Antihypertensives</a></p>
         </div>
       </div>
 
@@ -513,7 +477,7 @@
           <p>Antimalaria</p>
         </div>
         <div class="view-more-button">
-          <p><a><u>View more</u></a></p>
+          <p><a href="/antimalaria" style="color: var(--secondary-color);"><u>View more</u></a></p>
         </div>
 
       </div>
@@ -540,7 +504,7 @@
           <p>Multivitamins</p>
         </div>
         <div class="view-more-button">
-          <p><a><u>View more</u></a></p>
+          <p><a href="/multivitamins" style="color: var(--secondary-color);"><u>View more</u></a></p>
         </div>
 
       </div>
