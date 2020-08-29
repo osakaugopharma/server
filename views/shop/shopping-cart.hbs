@@ -206,17 +206,44 @@
         display: none;
       }
 
-      .empty-box{
+      .empty-box {
         display: none;
       }
 
-      .checkout-continue-shopping{
+      .checkout-continue-shopping {
         grid-template-columns: 1fr;
         grid-gap: 1em;
       }
 
-      h1.no-items{
+      h1.no-items {
         font-size: var(--sub-heading-font-size);
+      }
+    }
+
+    @media(min-width: 576px) {
+      .product-in-cart-card-mobile {
+        display: block;
+      }
+
+      .product-in-cart-headers {
+        display: none;
+      }
+
+      .product-in-cart-card {
+        display: none;
+      }
+
+      .empty-box {
+        display: none;
+      }
+
+      .checkout-continue-shopping {
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+      }
+
+      .actions {
+        grid-gap: 4em;
       }
     }
 
@@ -224,6 +251,44 @@
       .product-in-cart-card-mobile {
         display: none;
       }
+
+      .product-in-cart-headers {
+        display: grid;
+        grid-template-columns: 2fr 1.3fr 1fr 1fr;
+      }
+
+      .product-header h6 {
+        text-align: left;
+      }
+
+      .product-in-cart-card {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+        /*padding: 1rem 1.5rem 2rem 1rem;*/
+      }
+
+      .checkout-continue-shopping {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 1em;
+        margin-top: 2em;
+      }
+
+      .checkout-continue-shopping button {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: var(--button-padding);
+        border-radius: var(--button-border-radius);
+        font-size: var(--secondary-font-size);
+        width: 100%;
+      }
+
+      .empty-box {
+        display: block;
+      }
+
+
     }
   </style>
 </head>
@@ -283,10 +348,10 @@
         </div>
       </div>
       <div class="product-in-cart-price">
-        <span>{{this.item.price}}</span>
+        <span>₦{{this.item.price}}</span>
       </div>
       <div class="product-in-cart-subtotal">
-        <span>{{this.price}}</span>
+        <span>₦{{this.price}}</span>
       </div>
     </div>
 
@@ -301,7 +366,7 @@
         <div class="product-details-mobile">
           <p>{{this.item.name}}</p>
 
-          <span>{{this.item.price}}</span>
+          <span><b>₦{{this.item.price}}</b></span>
 
         </div>
       </div>
@@ -342,7 +407,7 @@
           <li class="breadcrumb-item active" aria-current="page"
             style="color: #ffffff; font-size: 17px; justify-self: start">Total:
           </li>
-          <span style="justify-self: end;"> N{{totalPrice}}</span>
+          <span style="justify-self: end;">₦{{totalPrice}}</span>
         </ol>
       </nav>
     </div>
@@ -362,15 +427,15 @@
         <button><a href="/checkout" style="text-decoration: none; color: var(--secondary-color)">Checkout</a></button>
       </div>
     </div>
-    </ {{ else }} <div style="margin-top: 10em; margin-bottom: 10em;">
-    <h1 class="no-items">No items in your cart</h1>
-    <div style="margin-top: 4em !important;">
-      <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
+    {{ else }} <div style="margin-top: 10em; margin-bottom: 10em;">
+      <h1 class="no-items">No items in your cart</h1>
+      <div style="margin-top: 4em !important;">
+        <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
       padding: 0.5rem 1rem; border: none;" class="remove">Go to shop</a>
-    </div>
+      </div>
 
-  </div>
-  {{/if}}
+    </div>
+    {{/if}}
 </body>
 
 </html>

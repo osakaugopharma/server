@@ -34,7 +34,7 @@
     border-radius: 6px;
     padding: 0.7em 0.5em;
     outline: none;
-    width: 35em;
+    width: 100%;
     font-size: 14px;
     background-color: #f4f6f8;
     border: 0;
@@ -56,7 +56,8 @@
 
   @media(max-width: 575.98px) {
     .delivery-address-input {
-      width: 29em;
+      width: 100%;
+      margin-bottom: 2em;
     }
 
     .second-custom-container {
@@ -70,22 +71,115 @@
     button {
       margin-left: 1em;
     }
+
+    .label-container{
+      width: 85%;
+      margin: auto;
+      text-align: left;
+    }
+
+    .input-container{
+      width: 85%;
+      margin: auto;
+    }
+  }
+
+  @media(min-width: 576px) {
+    .delivery-address-input {
+      width: 100%;
+      margin-bottom: 2em;
+    }
+
+     .second-custom-container {
+      width: 85%;
+    }
+
+    .label-container{
+      width: 85%;
+      margin: auto;
+      text-align: left;
+    }
+
+    .input-container{
+      width: 85%;
+      margin: auto;
+    }
+
+    .button-container {
+      text-align: center;
+      width: 30%;
+      margin: auto;
+    }
+
+    button{
+      width: 100%;
+    }
+  }
+
+  @media(min-width: 992px){
+    .input-container{
+      width: 60%;
+      margin: auto;
+    }
+
+    .label-container{
+      width: 60%;
+      margin: auto;
+      text-align: left;
+    }
+
+    .button-container {
+      text-align: center;
+      width: 20%;
+      margin: auto;
+    }
   }
 </style>
+
 <div class="second-custom-container">
+  {{#if signInEmail}}
   <div class="header" style="margin-top: 7em;">
-    <h1>Add your delivery address</h1>
+    <h1>Pay for your purchase</h1>
   </div>
-  <form action="/checkout" method="post">
-    <input type="text" class="delivery-address-input" name="address">
-    <input type="tel" class="delivery-address-input" name="phone">
+ <form action="/checkout" method="post">
     <script src="https://api.flutterwave.com/checkout.js"></script>
     <div class="button-container">
       <button type="submit" class="shop-now" onClick="makePayment()">Pay Now</button>
     </div>
-
   </form>
+
+  {{ else }}
+ 
+<div class="header" style="margin-top: 7em;">
+    <h1>Add your delivery info</h1>
+  </div>
+  <form action="/checkout" method="post">
+  <div class="label-container">
+    <label for="delivery-address">Delivery address</label>
+  </div>
+  <div class="input-container">
+     <input id="delivery-address"type="text" class="delivery-address-input" name="address">
+  </div>
+ 
+
+  <div class="label-container">
+    <label for="delivery-phone">Phone number</label>
+  </div>
+  <div class="input-container">
+    <input id="delivery-phone" type="tel" class="delivery-address-input" name="phone">
+  </div>
+  
+
+    <script src="https://api.flutterwave.com/checkout.js"></script>
+    <div class="button-container">
+      <button type="submit" class="shop-now" onClick="makePayment()">Pay Now</button>
+    </div>
+  </form>
+  {{/if}}
 </div>
+
+
+
 
 
 <script>
@@ -97,12 +191,10 @@
       amount: {{ total }},
   currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
-      redirect_url: // specified redirect URL
-  "/success",
-    customer: {
+      redirect_url: "/success",
+        customer: {
     email: "{{email}}",
       phone_number: "08102909304",
-        name: "yemi desola",
       },
   callback: function (data) {
     console.log(data);

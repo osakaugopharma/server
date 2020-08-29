@@ -1,18 +1,28 @@
 var express = require('express');
+var nodemailer = require('nodemailer');
 var router = express.Router();
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
-var User = require('../models/users');
 const mongo = require('mongodb').MongoClient;
-const url = 'mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority';
+// const url = 'mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority';
+const url = 'mongodb://localhost:27017';
+var request = require('request');
 
 router.get('/', function (req, res) {
   Product.find(function (err, docs) {
     var productChunks = [];
     var chunkSize = 5;
     productChunks.push(docs.slice(0, chunkSize));
-    res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks });
+
+    var multiproduct = docs.filter(multivitamin => multivitamin.tag == 'Multivitamin');
+    var multivitaminArr = [];
+    var multiChunkSize = 5;
+    for (var i = 0; i < multiproduct.length; i += multiChunkSize) {
+      multivitaminArr.push(multiproduct.slice(i, i + multiChunkSize));
+    }
+
+    res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks, multivitaminsProducts: multivitaminArr });
   });
 });
 
@@ -55,7 +65,6 @@ router.get('/add/:id', function (req, res) {
 
 router.get('/remove/:id', function (req, res) {
   var productId = req.params.id;
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.removeItem(productId);
   req.session.cart = cart;
   res.redirect('/shopping-cart');
@@ -69,7 +78,7 @@ router.get('/antimalaria', function (req, res) {
     for (var i = 0; i < product.length; i += chunkSize) {
       antiMalariaArr.push(product.slice(i, i + chunkSize));
     }
-    res.render('shop/products/antimalaria', { products: antiMalariaArr });
+    res.render('shop/products/antimalaria', { products: antiMalariaArr, noOfProducts: product.length });
   });
 });
 
@@ -81,7 +90,7 @@ router.get('/multivitamins', function (req, res) {
     for (var i = 0; i < product.length; i += chunkSize) {
       multivitaminArr.push(product.slice(i, i + chunkSize));
     }
-    res.render('shop/products/multivitamins', { products: multivitaminArr });
+    res.render('shop/products/multivitamins', { products: multivitaminArr, noOfProducts: product.length });
   });
 });
 
@@ -93,7 +102,7 @@ router.get('/equipments', function (req, res) {
     for (var i = 0; i < product.length; i += chunkSize) {
       equipmentArr.push(product.slice(i, i + chunkSize));
     }
-    res.render('shop/products/equipments', { products: equipmentArr });
+    res.render('shop/products/equipments', { products: equipmentArr, noOfProducts: product.length });
   });
 });
 
@@ -137,19 +146,123 @@ router.get('/ulcerandgastro', function (req, res) {
   res.render('shop/products/ulcerandgastro');
 });
 
-router.get('/success', function (req, res) {
-  res.render('shop/success');
-  var cart = new Cart(req.session.cart);
-  var order = new Order({
-    user: req.user,
-    cart: cart,
-    email: req.user.email,
-    paymentId: req.query.tx_ref,
-  });
-  order.save(function (err, result) {
-    req.session.cart = null;
+router.get('/product-details/:id', (req, res) => {
+  var productId = req.params.id;
+  Product.findById(productId, (err, product) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(product);
+    res.render('shop/product-details/product-details', { product: [product] });
   });
 });
+
+router.get('/success', function (req, res) {
+  var cart = new Cart(req.session.cart);
+  var amount = cart.totalPrice;
+  var cartOrderArr = [];
+  var itemArr = [];
+  var orderStore = [];
+  var pusherValue = [];
+  var itemQtyArr = [];
+  var cartItems = cart.items;
+
+  for (let value of Object.values(cartItems)) {
+    itemQtyArr.push(value.qty);
+  }
+
+  let entries = Object.entries(cartItems);
+  for (let [entry, value] of entries) {
+    itemArr.push(value);
+    cartOrderArr.push(itemArr);
+    itemArr = [];
+  }
+  cartOrderArr.forEach((item, index) => {
+    pusherValue.push(item[0].item.name);
+    pusherValue.push(item[0].item.price);
+    pusherValue.push(itemQtyArr[index]);
+    orderStore.push(pusherValue);
+    pusherValue = [];
+  });
+
+  var output = '';
+  var orderStringTempLiteral = '';
+
+  orderStore.forEach(orderString => {
+    orderStringTempLiteral = `Product name: ${orderString[0]}, Price: ${orderString[1]}, Quantity: ${orderString[2]} *** `;
+    output += orderStringTempLiteral;
+    orderStringTempLiteral = '';
+  });
+
+
+
+  var options = {
+    'method': 'GET',
+    'url': `https://api.flutterwave.com/v3/transactions/${req.query.transaction_id}/verify`,
+    'headers': {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer FLWSECK_TEST-a0c7f66918bc15d9e7eb2a65146cbd79-X'
+    }
+  };
+
+  request(options, (error, response) => {
+    if (error) throw new Error(error);
+    var response_object = JSON.parse(response.body);
+
+    if (response_object.status === 'success' && response_object.data.currency === 'NGN' && response_object.data.amount >= amount) {
+      var container = [];
+      orderStore.forEach(string => {
+        container.push(string[0]);
+      });
+
+      for (let i = 0; i < container.length; i++) {
+        var noAfterPurchase;
+        Product.findOne({ 'name': container[i] }, function (err, product) {
+          if (err) {
+            console.log(err);
+          }
+          if (product) {
+            var no_in_stock = product.noOfProductInStock;
+            noAfterPurchase = no_in_stock - 1;
+          }
+        });
+        // const filter = { name: container[i] };
+        // const update = { noOfProductInStock: noAfterPurchase }
+        let doc = Product.findOneAndUpdate({ 'name': container[i] }, { 'noOfProductInStock': noAfterPurchase }, { new: true });
+        console.log(doc.noOfProductInStock);
+
+        // Product.findOne({ 'name': container[i] }, function (err, product) {
+        //   if (err) {
+        //       console.log(err);
+        //   }
+        //   if (product) {
+        //       product.noOfProductInStock -= 1;
+        //       // console.log(product);
+        //   }
+        // });
+      }
+
+      var order = new Order({
+        user: req.user,
+        cart: output,
+        totalprice: cart.totalPrice,
+        totalquantity: cart.totalQty,
+        email: req.user.email,
+        paymentId: req.query.tx_ref,
+        orderDate: new Date(),
+      });
+      order.save(function (err, result) {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  });
+  req.session.cart = null;
+  res.render('shop/success');
+});
+
+
 
 router.get('/failure', function (req, res) {
   res.render('shop/failure');
@@ -186,7 +299,51 @@ router.get('/checkout', isLoggedIn, function (req, res) {
     return res.redirect('/shopping-cart');
   }
   var cart = new Cart(req.session.cart);
-  res.render('shop/checkout', { total: cart.totalPrice, email: req.user.email });
+  res.render('shop/checkout', { total: cart.totalPrice, email: req.user.email, signInEmail: req.session.email || null });
+});
+
+router.post('/contact-us', (req, res) => {
+  const output = `
+    <p>You have a new contact request</p>
+    <h3>Contact Details</h3>
+    <ul>
+      <li>Name: ${req.body.name}</li>
+      <li>Email: ${req.body.email}</li>
+    </ul>
+    <h3>Message</h3>
+    <p>${req.body.message}</p>
+  `;
+
+  async function main() {
+    let transporter = nodemailer.createTransport({
+      host: "mail.osakaugopharma.com.ng",
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'oup@osakaugopharma.com.ng',
+        pass: '{C,$r7L1Jo[n',
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+
+    let info = await transporter.sendMail({
+      from: '"Nodemailer Contact" <oup@osakaugopharma.com.ng>',
+      to: "osakaugopharma@gmail.com",
+      subject: "Node Contact Request",
+      text: "Hello world?",
+      html: output
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    res.render('shop/contact', { msg: 'Email has been sent' });
+  }
+
+  main().catch(console.error);
+
 });
 
 module.exports = router;

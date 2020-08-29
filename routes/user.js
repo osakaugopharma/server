@@ -4,25 +4,29 @@ var csrf = require('csurf');
 var passport = require('passport');
 var Order = require('../models/order');
 var Cart = require('../models/cart');
+// const { session } = require('passport');
 var email;
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
-router.get('/profile', isLoggedIn, function (req, res, next) {
+router.get('/profile', isLoggedIn, function (req, res) {
   Order.find({ user: req.user }, function (err, orders) {
     if (err) {
       return res.write('Error');
     }
     var cart;
     orders.forEach(function (order) {
-      cart = new Cart(order.cart);
-      order.items = cart.generateArray();
+      // cart = new Cart(order.cart);
+      cart = order.cart;
+      // order.items = cart.generateArray();
     });
     res.render('user/profile', { orders: orders });
   });
 });
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
+  req.session.email = null;
+  req.session.cart = null;
   req.logout();
   res.redirect('/');
 });
@@ -36,8 +40,6 @@ router.post('/signup',
     failureRedirect: '/user/signup',
     failureFlash: true
   }), function (req, res, next) {
-    email = req.body.email;
-    req.session.email = email;
     if (req.session.oldUrl) {
       var oldUrl = req.session.oldUrl;
       req.session.oldUrl = null;
@@ -67,6 +69,8 @@ router.post('/signin', passport.authenticate('local.signin', {
     req.session.oldUrl = null;
     res.redirect(oldUrl);
   } else {
+    var email = req.body.email;
+    req.session.email = email;
     res.redirect('/user/profile');
   }
 });

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
   <style>
-
     .footer-copyright-text {
       width: 90%;
       margin: 0 auto 2.5em auto;
@@ -50,6 +50,10 @@
       color: var(--text-color-two);
     }
 
+    .link{
+      text-decoration: none;
+      color: #000;
+    }
     .social-icons-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -72,6 +76,54 @@
         justify-items: center;
       }
     }
+
+    @media(min-width: 576px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: justify;
+        grid-gap: 2em;
+      }
+
+      div.footer-text-content {
+        text-align: center;
+      }
+
+      .social-icons-container {
+        justify-items: center;
+      }
+    }
+
+    @media(min-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+        text-align: justify;
+        grid-gap: 2em;
+      }
+
+       div.footer-text-content {
+        text-align: center;
+      }
+
+      .social-icons-container {
+        justify-items: center;
+      }
+    }
+
+  @media(min-width: 992px) {
+    .footer-container {
+        grid-template-columns: repeat(3, 1fr);
+        text-align: justify;
+        grid-gap: 2em;
+      }
+
+      div.footer-text-content {
+        text-align: center;
+      }
+
+      .social-icons-container {
+        justify-items: center;
+      }
+  }
   </style>
 </head>
 
@@ -81,17 +133,17 @@
       <div>
         <div class="footer-text-content">
           <h3>Get in touch</h3>
-          <p>example@email.com</p>
-          <p>0000-0000-0000</p>
+          <p><a class="link" href="mailto:osakaugopharma@gmail.com?subject=Email from Our Site">example@email.com</a></p>
+          <p><a class="link" href="tel:0000-0000-0000">0000-0000-0000</a></p>
         </div>
       </div>
 
       <div>
         <div class="footer-text-content">
           <h3>About us</h3>
-          <p>Our Mission</p>
-          <p>Terms And Conditions</p>
-          <p>Privacy Policy</p>
+          <p><a class="link" href="/about">Our Mission</a></p>
+          <p><a class="link" href="/terms">Terms And Conditions</a></p>
+          <p><a class="link" href="/privacy">Privacy Policy</a></p>
         </div>
       </div>
 

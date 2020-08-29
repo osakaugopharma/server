@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const formidableMiddleware = require('express-formidable');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -12,12 +13,15 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
+
+
 var indexRouter = require('./routes/index');
 var userRoutes = require('./routes/user');
+var adminRouter = require('./routes/admin.router');
 var app = express();
 
-// mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 require('./config/passport');
 
 // view engine setup
@@ -26,7 +30,9 @@ app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
+app.use('/admin', formidableMiddleware());
+app.use(/^\/(?!admin).*/, express.urlencoded({ extended: false}));
 app.use(validator());
 app.use(cookieParser());
 app.use(session({
@@ -47,7 +53,9 @@ app.use(function (req, res, next) {
   next();
 });
 app.use('/user', userRoutes);
+app.use('/admin', adminRouter);
 app.use('/', indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -71,7 +71,6 @@
         .form-section p {
             color: var(--text-color-one);
             font-size: var(--primary-font-size);
-            font-weight: 500;
             margin-top: 3em;
             text-align: left;
         }
@@ -118,33 +117,93 @@
             }
 
             .form-section div input {
-                width: 23em;
+                width: 100%;
             }
 
             div.signup-info-paragraph-mobile p {
-                font-weight: 400 !important;
-                margin-top: -1em;
+                display: none;
             }
 
-            div.submit-button-container{
+            div.submit-button-container {
                 margin-top: 3em;
+                text-align: center;
             }
 
-            p.signup-paragraph-secondary-text{
-                margin-top: 2em;
-                font-size: 14px;
+            .already-a-member p {
+                text-align: center;
+            }
+
+            p.signup-paragraph-secondary-text {
+                text-align: left;
+                color: var(--text-color-two);
+                margin-top: -0.5rem;
+                margin-bottom: 3rem;
+                font-size: var(--primary-font-size);
             }
         }
 
-         @media(min-width: 992px){
-             .signup-header-mobile{
-                 display: none;
-             }
+        @media(min-width: 576px) {
+            .signup-container {
+                grid-template-columns: 1fr;
+                margin-top: 4em;
+            }
 
-             div.signup-info-paragraph-mobile{
-                  display: none;
-             }
-         }
+            div.info-section {
+                display: none;
+            }
+
+            .form-section div input {
+                width: 100%;
+            }
+
+
+            .signup-header-mobile {
+                display: block;
+            }
+
+            .form-section p {
+                margin-top: 2em;
+            }
+
+            div.signup-info-paragraph-mobile {
+                display: none;
+            }
+
+             p.signup-paragraph-secondary-text {
+        
+                color: var(--text-color-two);
+    
+            }
+
+        }
+
+        @media(min-width: 992px) {
+            .signup-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                margin-top: 6em;
+            }
+
+            .third-custom-container {
+            width: 85%;
+        }
+
+            div.info-section {
+                display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 100px 50px 200px;
+            padding-top: 2em;
+            padding-left: 2em;
+            }
+
+            .signup-header-mobile {
+                display: none;
+            }
+
+            div.signup-info-paragraph-mobile {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -194,14 +253,14 @@
                         <label>Password</label>
                         <br>
                         <input type="password" placeholder="6+ characters" id="password" name="password" />
-                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" </div>
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
 
                         <div class="submit-button-container">
                             <button type="submit">Submit</button>
                         </div>
 
                         <div class="already-a-member">
-                            <p>Already a member? <a href="/user/signin"><span
+                            <p>Already registered? <a href="/user/signin"><span
                                         style="color: var(--primary-color); font-weight: 500">Sign in</span></a></p>
                         </div>
 

@@ -123,32 +123,85 @@
             }
 
             .form-section div input {
-                width: 23em;
+                width: 100%
             }
 
             div.signup-info-paragraph-mobile p {
-                font-weight: 400 !important;
+                display: none;
+            }
+
+            .form-section p {
+                font-weight: 400;
             }
 
             p.signin-paragraph-secondary-text {
-                margin-top: 2em;
-                font-size: 14px;
+                margin-top: -0.5rem;
+                margin-bottom: 3rem;
+                font-size: var(--primary-font-size);
+                color: var(--text-color-two);
             }
 
-             div.submit-button-container{
+            div.submit-button-container {
                 margin-top: 3em;
+                text-align: center;
             }
 
+            .already-a-member p {
+                text-align: center;
+            }
         }
 
-        @media(min-width: 992px) {
-            .signup-header-mobile {
+        @media(min-width: 576px) {
+            .signup-container {
+                grid-template-columns: 1fr;
+                margin-top: 4em;
+            }
+
+            .info-section {
                 display: none;
+            }
+
+            .signup-header-mobile {
+                display: block;
+            }
+
+            .form-section p {
+                margin-top: 2em;
             }
 
             div.signup-info-paragraph-mobile {
                 display: none;
             }
+
+            .form-section div input {
+                width: 100%;
+            }
+
+            div.submit-button-container {
+                margin-top: 3em;
+                text-align: center;
+            }
+
+             .already-a-member p {
+                text-align: center;
+            }
+
+        }
+
+        @media(min-width: 992px) {
+            .signup-container {
+                grid-template-columns: 1fr 1fr;
+                margin-top: 6em;
+            }
+
+             .info-section {
+                display: block;
+            }
+
+              .signup-header-mobile {
+                display: none;
+            }
+
         }
     </style>
 </head>
@@ -193,7 +246,7 @@
                         <label>Password</label>
                         <br>
                         <input type="password" placeholder="6+ characters" id="password" name="password" />
-                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" </div>
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
 
                         <div class="submit-button-container">
                             <button type="submit">Submit</button>
@@ -239,7 +292,7 @@
           <button type="submit" class="shop-now">Sign in</button>
         </div>
       </form>
-      <p style="margin-top: 2em;">Don't have an account? <a href="/user/signup">Sign up</a></p>
+      <p class="does-not-have-an-account" style="margin-top: 2em;">Don't have an account? <a href="/user/signup">Sign up</a></p>
     </section>
   </div>-->
 </body>

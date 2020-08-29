@@ -1,39 +1,48 @@
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-         {{# if products}}
-        <h1>User Profile</h1>
-        <hr>
-        <h2>My Orders</h2>
-       
-        {{# each orders}}
-             <div class="panel panel-default">
-            <div class="panel-body">
-                <ul class="list-group">
-                    {{# each this.items}}
-                        <li class="list-group-item">
-                        <span class="badge">N{{this.price}}</span>
-                       {{this.item.name}} | {{this.qty}} Units
-                    </li>
-                    {{/each}}
-                    
-                </ul>
-            </div>
-            <div class="panel-footer">
-                {{this.cart.totalPrice}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            margin-top: 4em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container wrapper">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                {{# if orders}}
+                <h1>User Profile</h1>
+                <hr>
+                <h2>My Orders</h2>
+
+                {{# each orders}}
+                <div class="card">
+                    <div class="card-body">
+                        {{ this.cart }}
+                    </div>
+                </div>
+                {{/each}}
+
+                {{ else }}
+                <h1>User Profile</h1>
+                <hr>
+                <h2>You have no orders yet</h2>
+                <div style="margin-top: 4em !important;">
+                    <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
+      padding: 0.5rem 1rem; border: none;" class="remove">Go to shop</a>
+                </div>
+
+                {{/if}}
+
             </div>
         </div>
-        {{/each}}
-
-        {{ else }}
-         <h1>User Profile</h1>
-        <hr>
-        <h2>You have no orders yet</h2>
-        <div style="margin-top: 4em !important;">
-       <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
-      padding: 0.5rem 1rem; border: none;" class="remove">Go to shop</a>
     </div>
+</body>
 
-        {{/if}}
-       
-    </div>
-</div>
+</html>

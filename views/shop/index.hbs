@@ -215,9 +215,9 @@
       font-size: 14px;
     }
 
-    p.price{
-       font-size: 14px;
-        font-weight: 500;
+    p.price {
+      font-size: 14px;
+      font-weight: 500;
     }
 
 
@@ -240,7 +240,7 @@
       }
 
       .product-description h2 {
-        margin-top: 3.5em;
+        margin-top: 2.8em !important;
       }
 
       .product-description p {
@@ -270,7 +270,7 @@
       }
 
       .price {
-       font-size: 14px;
+        font-size: 14px;
         font-weight: 500;
       }
 
@@ -282,6 +282,94 @@
       .view-more-button p a {
         font-size: 14px;
         font-weight: bold;
+      }
+    }
+
+    @media(min-width: 576px) {
+      .hero-section-content-grid p {
+        width: 23em;
+        margin-top: 1.5rem;
+      }
+
+      .hero-section-content-grid h1 {
+        font-size: 2.5em;
+        width: 10em;
+      }
+
+      .hero-section {
+        height: 25em;
+      }
+
+      .product-description {
+        width: 80%;
+        margin: auto;
+      }
+
+      .product-description-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-category-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .featured-products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(min-width: 768px) {
+      .product-category-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(min-width: 992px) {
+      .hero-section h1 {
+        font-size: var(--biggest-font-size);
+        font-weight: bold;
+        color: var(--text-color-one);
+        margin-bottom: 0.34em;
+      }
+
+      .hero-section p {
+        font-size: var(--secondary-font-size);
+        color: var(--text-color-two);
+        margin-bottom: 2.55em;
+        width: 30em;
+        line-height: 1.8;
+      }
+
+      .product-description-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 4em;
+        margin-top: 4em;
+        color: #000;
+      }
+
+      .product-category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 1em;
+        grid-row-gap: 3em;
+        grid-auto-rows: minmax(50px, auto);
+        margin-top: 6.5em;
+        margin-bottom: 6.5em;
+      }
+
+      .featured-product-category-header p {
+        margin-top: 15px;
+        color: #fff;
+        font-size: var(--secondary-font-size);
+      }
+
+      .featured-products {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 1em;
       }
     }
   </style>
@@ -296,7 +384,7 @@
         <h1>Pharmaceuticals made easy and accessible.</h1>
         <p>Get quality products and services tailored just for you at affordable prices. We use the latest technologies
           to provide top-notch experiences to our customers.</p>
-        <button><a style="color: var(--secondary-color);" href="#scroll-section">Shop now</a></button>
+        <button><a style="color: var(--secondary-color);" id="view-products">Shop now</a></button>
       </div>
     </div>
   </div>
@@ -343,10 +431,10 @@
 
     </div>
   </div>
-  
+
 
   <div class="custom-container">
-    
+
     <div class="product-description">
       <h2 style="color: #000;">Product categories</h2>
     </div>
@@ -354,16 +442,16 @@
 
   <div class="second-custom-container">
     <div class="product-category-grid">
-      <div class="product-category-element">
-        <div class="icon-container">
-          <div>
-            <i class="fas fa-syringe"></i>
+        <div class="product-category-element">
+          <div class="icon-container">
+            <div>
+              <i class="fas fa-syringe"></i>
+            </div>
+          </div>
+          <div class="product-icon-description">
+            <p><a href="/antimalaria">Antimalaria</a></p>
           </div>
         </div>
-        <div class="product-icon-description">
-          <p><a href="/antimalaria">Antimalaria</a></p>
-        </div>
-      </div>
 
       <div class="product-category-element">
         <div class="icon-container">
@@ -454,12 +542,12 @@
           </div>
 
         </div>
-        <div class="product-icon-description">
+        <div class="product-icon-description" id="scroll-section">
           <p><a href="/antihypertensives">Antihypertensives</a></p>
         </div>
       </div>
 
-<div id="scroll-section"></div>
+
     </div>
   </div>
   <!--
@@ -469,6 +557,7 @@
     </div>
   </div>
   -->
+
 
   <div class="custom-container" style="margin-top: -4em;">
     <div class="featured-product-category">
@@ -485,12 +574,14 @@
       {{# each products }}
       <div class="featured-products">
         {{# each this }}
-        <div>
-          <img src="{{ this.imagepath }}" class="drug-backdrop">
+        <a href="/product-details/{{this._id}}" style="text-decoration: none; color: #000;">
+          <div>
+            <img src="{{ this.imagepath }}" class="drug-backdrop">
 
-          <p class="category-paragraph">{{ this.name }}</p>
-          <p class="price">N{{ this.price }}</p>
-        </div>
+            <p class="category-paragraph">{{ this.name }}</p>
+            <p class="price">N{{ this.price }}</p>
+          </div>
+        </a>
         {{/each}}
       </div>
       {{/each}}
@@ -509,15 +600,17 @@
 
       </div>
 
-      {{# each products }}
+      {{# each multivitaminsProducts }}
       <div class="featured-products">
         {{# each this }}
-        <div>
-          <img src="{{ this.imagepath }}" class="drug-backdrop">
+        <a href="/product-details/{{this._id}}" style="text-decoration: none; color: #000;">
+          <div>
+            <img src="{{ this.imagepath }}" class="drug-backdrop">
 
-          <p class="category-paragraph">{{ this.name }}</p>
-          <p class="price">N{{ this.price }}</p>
-        </div>
+            <p class="category-paragraph">{{ this.name }}</p>
+            <p class="price">N{{ this.price }}</p>
+          </div>
+        </a>
         {{/each}}
       </div>
       {{/each}}
@@ -528,7 +621,14 @@
 
 
 
-
+  <script>
+    $('#view-products').on('click', function () {
+      const productSection = $('#scroll-section').position().top;
+      $('html, body').animate({
+        scrollTop: productSection
+      }, 1500);
+    });
+  </script>
 
 </body>
 

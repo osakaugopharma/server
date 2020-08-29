@@ -1,8 +1,8 @@
 var Product = require('../models/product');
 const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 var products = [
     new Product({
@@ -42,7 +42,7 @@ var products = [
     }),
     new Product({
         name: 'Amatem Softgel',
-        imagepath: '/images/amatem-forte-softgel.jpg',
+        imagepath: '/images/amatem-soft-gel.jpg',
         price: 2000,
         tag: 'Antimalaria',
         noOfProductInStock: 12
@@ -105,7 +105,7 @@ var products = [
     }),
     new Product({
         name: 'Omron 5 Series Blood Pressure Monitor Machine',
-        imagepath: '/images/fine-test-auto-coding.jpg',
+        imagepath: '/images/omron-5-series.jpg',
         price: 2000,
         tag: 'Equipment',
         noOfProductInStock: 12

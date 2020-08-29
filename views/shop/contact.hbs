@@ -40,6 +40,13 @@
     color: var(--text-color-one);
   }
 
+  .contact-header-mobile {
+    font-size: var(--header-font-size);
+    font-weight: 500;
+    color: var(--text-color-one);
+    display: none;
+  }
+
   div.email {
     text-align: left;
     font-size: var(--primary-font-size);
@@ -67,9 +74,9 @@
   .form-section p {
     color: var(--text-color-one);
     font-size: var(--primary-font-size);
-    font-weight: 500;
     margin-top: 1em;
     text-align: left;
+    font-weight: 500;
   }
 
   .form-section div {
@@ -90,7 +97,7 @@
     box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
   }
 
-  .form-section div button {
+  .form-section div button.submit {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     padding: var(--button-padding);
@@ -105,29 +112,59 @@
 
     .form-section div input,
     .form-section div textarea {
-      width: 23em;
-    }
-
-    div.contact-header-mobile {
-      font-size: var(--header-font-size);
-      font-weight: 500;
-      color: var(--text-color-one);
-      margin-top: 1em;
+      width: 100%;
     }
 
     .info-section {
       display: none;
     }
 
-    div.email-and-phone-mobile {
-      margin-top: 5em;
-      font-weight: 500;
-      color: var(--text-color-two);
+    div.submit-button-container {
+      margin-top: 3em;
+      text-align: center;
     }
 
-    div.submit-button-container{
-                margin-top: 3em;
-            }
+    div.contact-header-mobile {
+      display: block;
+      margin-top: 0;
+    }
+
+    div.form-section p {
+      margin-bottom: 3rem;
+      color: var(--text-color-two);
+      font-weight: 400;
+    }
+  }
+
+  @media(min-width: 576px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+
+    .form-section div input,
+    .form-section div textarea {
+      width: 100%;
+    }
+
+    .info-section {
+      display: none;
+    }
+
+    div.submit-button-container {
+      margin-top: 3em;
+      text-align: center;
+    }
+
+    div.contact-header-mobile {
+      display: block;
+      margin-top: 0;
+    }
+
+    div.form-section p {
+      margin-bottom: 3rem;
+      color: var(--text-color-two);
+      font-weight: 400;
+    }
   }
 
   @media(min-width: 992px) {
@@ -135,8 +172,29 @@
       display: none;
     }
 
-    div.email-and-phone-mobile {
-      display: none;
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 6.5em;
+      grid-column-gap: 6em;
+    }
+
+    .info-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 100px 50px 200px;
+      padding-top: 2em;
+      padding-left: 2em;
+    }
+
+    .third-custom-container {
+      width: 75%;
+      margin: 0 auto;
+    }
+
+    .form-section div {
+      text-align: left;
+      margin-top: 2em;
     }
   }
 </style>
@@ -165,39 +223,38 @@
         Talk to us
       </div>
       <p>Write to us and we will get in touch with you as soon as possible.</p>
-      <form action="post">
+      {{#if msg}}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {{/if}}
+      <form method='POST' action="/contact-us">
         <div>
           <label>Name</label>
           <br>
-          <input type="text" />
+          <input type="text" name="name">
         </div>
 
         <div>
           <label>Email</label>
           <br>
-          <input type="email" placeholder="example@gmail.com" />
+          <input type="email" name="email">
 
         </div>
 
         <div>
           <label>Message</label>
           <br>
-          <textarea></textarea>
+          <textarea rows="4" name="message"></textarea>
         </div>
 
         <div class="submit-button-container">
-          <button type="submit">Submit</button>
+          <button class="submit" type="submit">Submit</button>
         </div>
-
-
       </form>
-      <div class="email-and-phone-mobile">
-        <div>
-          example@email.com
-        </div>
-
-        <div>0000-0000-0000</div>
-      </div>
 
 
     </div>
