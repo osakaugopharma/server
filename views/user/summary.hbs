@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --biggest-font-size: 64px;
+            --header-font-size: 32px;
+            --sub-heading-font-size: 24px;
+            --secondary-font-size: 18px;
+            --primary-font-size: 16px;
+            --primary-color: #5cdb95;
+            --secondary-color: #ffffff;
+            --text-color-one: #000000;
+            --text-color-two: rgba(31, 8, 8, 0.6));
+            --button-border-radius: 6px;
+            --button-padding: 0.5rem 1.5rem;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .details-container {
+            margin-top: 6em;
+            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+            padding: 2em;
+            text-align: left;
+        }
+
+        .wrapper-link {
+            display: block;
+            text-align: center;
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: var(--button-padding);
+            border-radius: var(--button-border-radius);
+            font-size: var(--secondary-font-size);
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-content: center;
+            margin-top: 3em;
+        }
+
+        .items-bought-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            box-shadow: rgba(97, 92, 78, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+            justify-content: center;
+            margin-bottom: 1em;
+        }
+
+        .items-bought-paragraph {
+            align-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="details-container">
+            <h2>Shopping summary</h2>
+            <hr>
+            <p>Email Address: {{email}}</p>
+            <p>Delivery address: {{address}}</p>
+            <p>Phone number: {{phone}}</p>
+            <h2>Items bought</h2>
+            {{#if products}}
+            {{#each products}}
+            <div class="items-bought-container">
+
+                <div>
+                    <img src="{{this.item.imagepath}}" width="100" height="100" alt="product image">
+                    <p>{{this.item.name}}</p>
+                </div>
+                <div class="items-bought-paragraph">
+                    <p>{{this.item.price}}</p>
+                </div>
+                <div class="items-bought-paragraph">
+                    <p>{{this.qty}}</p>
+                </div>
+
+
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+         <form>
+        <script src="https://checkout.flutterwave.com/v3.js"></script>
+        <div class="button-container">
+            <button type="button" class="wrapper-link button" onClick="makePayment()">Pay now</button>
+        </div>
+    </form>
+    </div>
+
+
+    <script>
+        var uid = Math.random().toString(36).substr(2, 9);
+        function makePayment() {
+            FlutterwaveCheckout({
+                public_key: 'FLWPUBK_TEST-b558592d89819939a19def517273deec-X',
+                tx_ref: `oup-${uid}`,
+                amount: {{ totalPrice }},
+        currency: "NGN",
+            payment_options: "card,mobilemoney,ussd",
+                redirect_url: "/success",
+                    customer: {
+            email: "{{ email }}",
+                phone_number: "08102909304",
+      },
+        callback: function (data) {
+            console.log(data);
+        },
+        customizations: {
+            title: "Payment for item",
+                description: "Payment for items in cart",
+      },
+    });
+  }
+    </script>
+</body>
+
+</html>

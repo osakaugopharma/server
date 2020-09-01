@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --biggest-font-size: 64px;
+            --header-font-size: 32px;
+            --sub-heading-font-size: 24px;
+            --secondary-font-size: 18px;
+            --primary-font-size: 16px;
+            --primary-color: #5cdb95;
+            --secondary-color: #ffffff;
+            --text-color-one: #000000;
+            --text-color-two: rgba(31, 8, 8, 0.6));
+            --button-border-radius: 6px;
+            --button-padding: 0.5rem 1.5rem;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .details-container {
+            margin-top: 6em;
+            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+            padding: 2em;
+            text-align: left;
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: var(--button-padding);
+            border-radius: var(--button-border-radius);
+            font-size: var(--secondary-font-size);
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            margin-top: 3em;
+        }
+
+        .label-container {
+            width: 95%;
+            margin: auto;
+            text-align: left;
+        }
+
+        .input-container {
+            width: 95%;
+            margin: auto;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 0.7em 0.5em;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            background-color: #f4f6f8;
+            border: 0;
+            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="details-container">
+            <form action="/user/update-details" method="POST">
+                <div class="label-container">
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="email" name="email" value="{{email}}">
+                </div>
+
+                <div class="label-container">
+                    <label for="address">Delivery Address</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="address" name="address" value="{{address}}">
+                </div>
+
+                <div class="label-container">
+                    <label for="phone">Phone number</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="phone" name="phone" value="{{phone}}">
+                </div>
+                
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+                <div class="button-container">
+                    <button class="button" type="submit">Update details</button>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -4,9 +4,12 @@ var router = express.Router();
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
-const mongo = require('mongodb').MongoClient;
+var User = require('../models/users');
+var orderAddress;
+var orderPhone;
+// const mongo = require('mongodb').MongoClient;
 // const url = 'mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority';
-const url = 'mongodb://localhost:27017';
+// const url = 'mongodb://localhost:27017';
 var request = require('request');
 
 router.get('/', function (req, res) {
@@ -65,6 +68,7 @@ router.get('/add/:id', function (req, res) {
 
 router.get('/remove/:id', function (req, res) {
   var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.removeItem(productId);
   req.session.cart = cart;
   res.redirect('/shopping-cart');
@@ -215,41 +219,67 @@ router.get('/success', function (req, res) {
         container.push(string[0]);
       });
 
+      // for (let i = 0; i < container.length; i++) {
+      //   var noAfterPurchase;
+      //   Product.findOne({ 'name': container[i] }, function (err, product) {
+      //     if (err) {
+      //       console.log(err);
+      //     }
+      //     if (product) {
+      //       var no_in_stock = product.noOfProductInStock;
+      //       noAfterPurchase = no_in_stock - 1;
+      //     }
+      //   });
+      // const filter = { name: container[i] };
+      // const update = { noOfProductInStock: noAfterPurchase }
+      // let doc = Product.findOneAndUpdate({ 'name': container[i] }, { 'noOfProductInStock': noAfterPurchase }, { new: true });
+      // console.log(doc.noOfProductInStock);
       for (let i = 0; i < container.length; i++) {
-        var noAfterPurchase;
-        Product.findOne({ 'name': container[i] }, function (err, product) {
-          if (err) {
+        Product.findOne({ name: container[i] })
+          .then(doc => {
+            var productObject = doc.toObject();
+            var productStockNumber = productObject.noOfProductInStock;
+            var qtyBought;
+            orderStore.forEach(orderString => {
+              qtyBought = orderString[2];
+            });
+            Product.findOneAndUpdate({ name: container[i] }, { noOfProductInStock: productStockNumber - qtyBought }, { new: true })
+              .then(doc => {
+                console.log(doc);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          })
+          .catch(err => {
             console.log(err);
-          }
-          if (product) {
-            var no_in_stock = product.noOfProductInStock;
-            noAfterPurchase = no_in_stock - 1;
-          }
-        });
-        // const filter = { name: container[i] };
-        // const update = { noOfProductInStock: noAfterPurchase }
-        let doc = Product.findOneAndUpdate({ 'name': container[i] }, { 'noOfProductInStock': noAfterPurchase }, { new: true });
-        console.log(doc.noOfProductInStock);
-
-        // Product.findOne({ 'name': container[i] }, function (err, product) {
-        //   if (err) {
-        //       console.log(err);
-        //   }
-        //   if (product) {
-        //       product.noOfProductInStock -= 1;
-        //       // console.log(product);
-        //   }
-        // });
+          });
       }
+
+
+
+
+      // Product.findOne({ 'name': container[i] }, function (err, product) {
+      //   if (err) {
+      //       console.log(err);
+      //   }
+      //   if (product) {
+      //       product.noOfProductInStock -= 1;
+      //       // console.log(product);
+      //   }
+      // });
+      // }
 
       var order = new Order({
         user: req.user,
         cart: output,
         totalprice: cart.totalPrice,
         totalquantity: cart.totalQty,
-        email: req.user.email,
+        email: req.session.email,
         paymentId: req.query.tx_ref,
         orderDate: new Date(),
+        address: orderAddress,
+        phone: orderPhone
       });
       order.save(function (err, result) {
         if (err) {
@@ -269,21 +299,69 @@ router.get('/failure', function (req, res) {
 });
 
 router.post('/checkout', (req, res) => {
-  let address = req.body.address;
-  let phone = req.body.phone;
   const email = req.session.email;
-  mongo.connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }, (err, client) => {
-    if (err) {
-      console.error(err)
-      return;
-    }
-    const db = client.db('shop');
-    const collection = db.collection('users');
-    collection.updateOne({ email: email }, { $set: { address: address, phone: phone } });
-  });
+  var existingAddress;
+  var existingPhone;
+  User.findOne({ email: email })
+    .then(doc => {
+      var userObject = doc.toObject();
+      if (userObject.address && userObject.phone) {
+        existingAddress = userObject.address;
+        existingPhone = userObject.phone;
+        orderAddress = existingAddress;
+        orderPhone = existingPhone;
+        res.redirect('/user/summary');
+      } else {
+        var address = req.body.address;
+        var phone = req.body.phone;
+
+
+        orderAddress = address;
+        orderPhone = phone;
+
+        User.findOne({ email: email })
+          .then(doc => {
+            if (!doc.address && !doc.phone) {
+              User.findOneAndUpdate({ email: email }, { address: address, phone: phone }, { new: true })
+                .then(doc => {
+                  console.log(doc)
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
+        res.redirect('/user/summary');
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  // console.log(orderAddress, orderPhone);
+
+  // req.session.address = address;
+  // req.session.phone = phone;
+
+
+
+  // mongo.connect(url, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true
+  // }, (err, client) => {
+  //   if (err) {
+  //     console.error(err)
+  //     return;
+  //   }
+  //   const db = client.db('shop');
+  //   const collection = db.collection('users');
+  //   collection.updateOne({ email: email }, { $set: { address: address, phone: phone } });
+  // });
+
 });
 
 router.get('/shopping-cart', function (req, res) {
@@ -295,11 +373,33 @@ router.get('/shopping-cart', function (req, res) {
 });
 
 router.get('/checkout', isLoggedIn, function (req, res) {
+  var userExists;
+  var email = req.session.email;
+
+
+
   if (!req.session.cart) {
     return res.redirect('/shopping-cart');
   }
   var cart = new Cart(req.session.cart);
-  res.render('shop/checkout', { total: cart.totalPrice, email: req.user.email, signInEmail: req.session.email || null });
+  User.findOne({ email: email }, function (err, user) {
+    if (err) {
+      console.log(err);
+    }
+
+    if (user) {
+      var userObject = user.toObject();
+
+      if (userObject.address) {
+        userExists = true;
+      }
+      // else{
+      //   userExists = false;
+      // }
+      res.render('shop/checkout', { total: cart.totalPrice, exists: userExists });
+    }
+  });
+
 });
 
 router.post('/contact-us', (req, res) => {

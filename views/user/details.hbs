@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --biggest-font-size: 64px;
+            --header-font-size: 32px;
+            --sub-heading-font-size: 24px;
+            --secondary-font-size: 18px;
+            --primary-font-size: 16px;
+            --primary-color: #5cdb95;
+            --secondary-color: #ffffff;
+            --text-color-one: #000000;
+            --text-color-two: rgba(31, 8, 8, 0.6));
+            --button-border-radius: 6px;
+            --button-padding: 0.5rem 1.5rem;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .details-container {
+            margin-top: 6em;
+            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+            padding: 2em;
+            text-align: left;
+        }
+
+        .wrapper-link{
+            display: block;
+            text-align: center;
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: var(--button-padding);
+            border-radius: var(--button-border-radius);
+            font-size: var(--secondary-font-size);
+        }
+
+        .button-container{
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            margin-top: 3em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="details-container">
+            <h2>User details</h2>
+            <hr>
+            <p>Email: {{email}}</p>
+            <p>Delivery address: {{address}}</p>
+            <p>Phone number: {{phone}}</p>
+            <div class="button-container">
+                <a href="/user/update-details" class="wrapper-link button">Update details</a>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

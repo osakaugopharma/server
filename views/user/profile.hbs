@@ -20,7 +20,8 @@
             color: #fff;
             margin-bottom: 2.5em;
         }
-        .sub-layer-grid{
+
+        .sub-layer-grid {
             display: grid;
             grid-template-columns: 1fr;
             row-gap: 1em;
@@ -36,7 +37,11 @@
             grid-template-columns: 1fr 3fr 1fr;
             align-items: center;
             justify-items: left;
-            padding: 1em;
+            padding: 0.5em;
+        }
+
+        .icon-container {
+            justify-self: center;
         }
 
         .paragraph p {
@@ -47,8 +52,12 @@
             font-size: 24px;
         }
 
-        .angle-right-icon{
-            justify-self: right;
+        .sub-layer-link{
+            display: block;
+        }
+
+        .angle-right-icon {
+            justify-self: center;
             font-size: 18px;
         }
 
@@ -58,6 +67,16 @@
 
         .margin {
             margin-top: 6em;
+        }
+
+        @media(min-width: 992px) {
+            .wrapper {
+                width: 80%;
+            }
+
+            .layer p {
+                padding: 2em;
+            }
         }
     </style>
 </head>
@@ -69,37 +88,44 @@
         </div>
 
         <div class="sub-layer-grid">
-             <div class="sub-layer">
-            <div class="icon-container">
-                <i class="fas fa-boxes icon"></i>
-            </div>
-            <div class="paragraph">
-                <p>Orders</p>
-            </div>
-            <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
-        </div>
+            <a class="sub-layer-link" href="/user/orders">
+                <div class="sub-layer">
+                    <div class="icon-container">
+                        <i class="fas fa-boxes icon"></i>
+                    </div>
+                    <div class="paragraph">
+                        <p>Orders</p>
+                    </div>
+                    <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
+                </div>
+            </a>
 
 
-        <div class="sub-layer">
-            <div class="icon-container">
-                <i class="fas fa-user-circle icon"></i>
-            </div>
-            <div class="paragraph">
-                <p>Account Details</p>
-            </div>
-            <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
-        </div>
+            <a class="sub-layer-link" href="/user/details">
+                <div class="sub-layer">
+                    <div class="icon-container">
+                        <i class="fas fa-user-circle icon"></i>
+                    </div>
+                    <div class="paragraph">
+                        <p>Account Details</p>
+                    </div>
+                    <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
+                </div>
+            </a>
 
-        <div class="sub-layer">
-            <div class="icon-container">
-                <i class="fas fa-lock icon"></i>
-            </div>
-            <div class="paragraph">
-                <p>Change password</p>
-            </div>
-            <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
+            <a class="sub-layer-link" href="/user/change-password">
+                <div class="sub-layer">
+                    <div class="icon-container">
+                        <i class="fas fa-lock icon"></i>
+                    </div>
+                    <div class="paragraph">
+                        <p>Change password</p>
+                    </div>
+                    <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
 
-        </div>
+                </div>
+            </a>
+
         </div>
     </div>
 
