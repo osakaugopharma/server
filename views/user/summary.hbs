@@ -21,14 +21,14 @@
         }
 
         .container {
-            width: 95%;
+            width: 98%;
             margin: 0 auto;
         }
 
         .details-container {
             margin-top: 6em;
             box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-            padding: 2em;
+            padding: 1em 2em 3em 2em;
             text-align: left;
         }
 
@@ -57,11 +57,39 @@
             grid-template-columns: repeat(3, 1fr);
             box-shadow: rgba(97, 92, 78, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
             justify-content: center;
+
             margin-bottom: 1em;
         }
 
         .items-bought-paragraph {
-            align-self: center;
+            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+        }
+
+        .item-name-container {
+            text-align: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .item-name-container p {
+            font-weight: 500;
+
+        }
+
+        .border-right {
+            border-right: 1px solid #ccc;
+        }
+
+        .header {
+            margin-top: 2rem;
+            font-size: var(--sub-heading-font-size);
+        }
+
+        .margin {
+            margin-top: 2em;
         }
     </style>
 </head>
@@ -69,38 +97,52 @@
 <body>
     <div class="container">
         <div class="details-container">
-            <h2>Shopping summary</h2>
+            <h2 class="header">Shopping summary.</h2>
             <hr>
-            <p>Email Address: {{email}}</p>
-            <p>Delivery address: {{address}}</p>
-            <p>Phone number: {{phone}}</p>
-            <h2>Items bought</h2>
+            <br>
+            <p><b>Email Address</b>: {{email}}.</p>
+            <p><b>Delivery address</b>: {{address}}.</p>
+            <p><b>Phone number</b>: 0{{phone}}.</p>
+            <h2 class="header">Items bought.</h2>
+            <hr>
+            <br>
             {{#if products}}
             {{#each products}}
             <div class="items-bought-container">
 
-                <div>
+                <div class="item-name-container border-right">
                     <img src="{{this.item.imagepath}}" width="100" height="100" alt="product image">
                     <p>{{this.item.name}}</p>
                 </div>
-                <div class="items-bought-paragraph">
-                    <p>{{this.item.price}}</p>
+                <div class="items-bought-paragraph border-right">
+                    <p>₦{{this.item.price}}</p>
                 </div>
                 <div class="items-bought-paragraph">
-                    <p>{{this.qty}}</p>
+                    <p>{{this.qty}} unit(s)</p>
                 </div>
 
 
             </div>
             {{/each}}
+            <nav aria-label="breadcrumb" class="margin">
+                <ol class="breadcrumb"
+                    style="background-color: #5cdb95; color: #ffffff; display: grid; grid-template-columns: 1fr 1fr;">
+                    <li class="breadcrumb-item active" aria-current="page"
+                        style="color: #ffffff; font-size: 17px; justify-self: start">Total:
+                    </li>
+                    <span style="justify-self: end;">₦{{totalPrice}}</span>
+                </ol>
+            </nav>
+            <form>
+                <script src="https://checkout.flutterwave.com/v3.js"></script>
+                <div class="button-container">
+                    <button type="button" class="wrapper-link button" onClick="makePayment()">Pay now</button>
+                </div>
+            </form>
             {{/if}}
+
         </div>
-         <form>
-        <script src="https://checkout.flutterwave.com/v3.js"></script>
-        <div class="button-container">
-            <button type="button" class="wrapper-link button" onClick="makePayment()">Pay now</button>
-        </div>
-    </form>
+
     </div>
 
 

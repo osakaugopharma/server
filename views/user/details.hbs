@@ -21,18 +21,18 @@
         }
 
         .container {
-            width: 95%;
+            width: 98%;
             margin: 0 auto;
         }
 
         .details-container {
             margin-top: 6em;
             box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-            padding: 2em;
+            padding: 1em 2em 3.5em 2em;
             text-align: left;
         }
 
-        .wrapper-link{
+        .wrapper-link {
             display: block;
             text-align: center;
         }
@@ -45,11 +45,16 @@
             font-size: var(--secondary-font-size);
         }
 
-        .button-container{
+        .button-container {
             display: grid;
             grid-template-columns: 1fr;
             justify-content: center;
             margin-top: 3em;
+        }
+
+        .header {
+            margin-top: 2rem;
+            font-size: var(--sub-heading-font-size);
         }
     </style>
 </head>
@@ -57,11 +62,12 @@
 <body>
     <div class="container">
         <div class="details-container">
-            <h2>User details</h2>
+            <h2 class="header">User details.</h2>
             <hr>
-            <p>Email: {{email}}</p>
-            <p>Delivery address: {{address}}</p>
-            <p>Phone number: {{phone}}</p>
+            <br>
+            <p><b>Email</b>: {{email}}</p>
+            <p><b>Delivery address</b>: {{address}}</p>
+            <p><b>Phone number</b>: 0{{phone}}</p>
             <div class="button-container">
                 <a href="/user/update-details" class="wrapper-link button">Update details</a>
             </div>

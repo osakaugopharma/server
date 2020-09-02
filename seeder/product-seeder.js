@@ -83,7 +83,7 @@ var products = [
         noOfProductInStock: 12
     }),
     new Product({
-        name: 'Fine Test Auto Coding Blood Glucose Machine For Self Testing',
+        name: 'Fine Test Auto Coding Blood Glucose Machine',
         imagepath: '/images/fine-test-auto-coding.jpg',
         price: 2000,
         tag: 'Equipment',
@@ -97,7 +97,7 @@ var products = [
         noOfProductInStock: 12
     }),
     new Product({
-        name: 'First Aid Box',
+        name: 'Emergency First Aid Box',
         imagepath: '/images/first-aid.jpg',
         price: 2000,
         tag: 'Equipment',

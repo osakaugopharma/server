@@ -119,7 +119,7 @@
   }
 
   @media(min-width: 992px) {
-     .product-display-grid {
+    .product-display-grid {
       grid-template-columns: repeat(4, 1fr);
     }
   }
@@ -129,13 +129,13 @@
   <div class="second-custom-container">
     <div class="product-section-container">
       <div class="product-title">
-        <p>Antimalaria</p>
+        <p>Antimalaria.</p>
       </div>
-      
+
       <div class="no-of-products">
         <p>{{ noOfProducts }} products found.</p>
       </div>
-    
+
 
       {{# each products }}
       <div class="product-display-grid">
@@ -147,7 +147,7 @@
             <div class="hover-container">
               <img src="{{ this.imagepath }}">
               <p class="product-name">{{ this.name }}</p>
-              <p class="product-price">N{{ this.price }}</p>
+              <p class="product-price">₦{{ this.price }}</p>
               <button><a href="/add-to-cart/{{this._id}}" style="color: var(--secondary-color);">Add to
                   cart</a></button>
             </div>

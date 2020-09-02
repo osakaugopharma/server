@@ -1,4 +1,5 @@
 var express = require('express');
+var bcrypt = require('bcrypt-nodejs');
 var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
@@ -15,7 +16,7 @@ var csrfProtection = csrf();
 router.use(csrfProtection);
 
 router.get('/profile', isLoggedIn, function (req, res) {
-    res.render('user/profile', { user: req.session.email });
+  res.render('user/profile', { user: req.session.email });
 });
 
 router.get('/orders', (req, res) => {
@@ -25,9 +26,9 @@ router.get('/orders', (req, res) => {
     }
     // var cart;
     // orders.forEach(function (order) {
-      // cart = new Cart(order.cart);
-      // cart = order.cart;
-      // order.items = cart.generateArray();
+    // cart = new Cart(order.cart);
+    // cart = order.cart;
+    // order.items = cart.generateArray();
     // });
     res.render('user/orders', { orders: orders });
   });
@@ -38,17 +39,17 @@ router.get('/details', (req, res) => {
   var phone = '';
   var email = req.session.email;
   User.findOne({ email: email }, function (err, user) {
-    if(err) {
+    if (err) {
       console.log(err);
     }
 
-    if(user) {
+    if (user) {
       var userObject = user.toObject();
       address = userObject.address;
       phone = userObject.phone;
     }
 
-  res.render('user/details', {email: email, address: address, phone: phone});
+    res.render('user/details', { email: email, address: address, phone: phone });
   });
 });
 
@@ -57,17 +58,17 @@ router.get('/update-details', (req, res) => {
   var phone = '';
   var email = req.session.email;
   User.findOne({ email: email }, function (err, user) {
-    if(err) {
+    if (err) {
       console.log(err);
     }
 
-    if(user) {
+    if (user) {
       var userObject = user.toObject();
       address = userObject.address;
       phone = userObject.phone;
     }
 
-   res.render('user/update-details', {address: address, phone: phone, email: email, csrfToken: req.csrfToken()});
+    res.render('user/update-details', { address: address, phone: phone, email: email, csrfToken: req.csrfToken() });
   });
 });
 
@@ -76,15 +77,15 @@ router.post('/update-details', (req, res) => {
   var address = req.body.address;
   var phone = req.body.phone;
   const dbName = 'shop';
-  User.findOneAndUpdate({email: email}, {address: address, phone: phone}, {new: true})
-      .then(doc => console.log(doc))
-      .catch(err => console.log(err));
-      req.session.email = email;
-      res.render('user/details', {email, address, phone});
+  User.findOneAndUpdate({ email: email }, { address: address, phone: phone }, { new: true })
+    .then(doc => console.log(doc))
+    .catch(err => console.log(err));
+  req.session.email = email;
+  res.render('user/details', { email, address, phone });
 
   // const updateDocument = function(db, callback) {
   //   const collection = db.collection('users');
-  
+
   //   collection.updateOne({ email : email }
   //     , { $set: { email : email, address: address, phone: phone } }, function(err, result) {
   //     // assert.equal(err, null);
@@ -102,7 +103,7 @@ router.post('/update-details', (req, res) => {
   //     console.log('successful');
   //   });
   // });
-  
+
   // mongo.connect(url, {
   //   useNewUrlParser: true,
   //   useUnifiedTopology: true
@@ -115,28 +116,55 @@ router.post('/update-details', (req, res) => {
   //   const collection = db.collection('users');
   //   collection.updateOne({ email: email }, { $set: {email: email, address: address, phone: phone} });
   // });
-  
+
   // res.redirect('/user/details');
 });
 
-router.get('/summary', (req, res) => {
+router.get('/summary', isLoggedIn, (req, res) => {
   var address = '';
   var phone = '';
 
   var cart = new Cart(req.session.cart);
-  
+
 
   var email = req.session.email;
   User.findOne({ email: email }, (err, user) => {
-    if(err) console.log(err);
-    if(user){
+    if (err) console.log(err);
+    if (user) {
       var userObject = user.toObject();
       address = userObject.address;
       phone = userObject.phone;
     }
-    res.render('user/summary', {email: email, address: address, phone: phone, products: cart.generateArray(), totalPrice: cart.totalPrice});
+    res.render('user/summary', { email: email, address: address, phone: phone, products: cart.generateArray(), totalPrice: cart.totalPrice });
   });
-  
+
+});
+
+router.get('/change-password', isLoggedIn, (req, res) => {
+  res.render('user/change-password', { csrfToken: req.csrfToken() });
+});
+
+router.post('/change-password', (req, res) => {
+  var email = req.session.email;
+  var currentPassword = req.body.currentpassword;
+  var newPassword = req.body.newpassword;
+  var confirmPassword = req.body.confirmpassword;
+  User.findOne({ email: email })
+    .then(doc => {
+      var userObject = doc.toObject();
+      console.log(userObject);
+      
+      if (bcrypt.compareSync(currentPassword, userObject.password)) {
+        if (newPassword === confirmPassword) {
+          var hashed = bcrypt.hashSync(newPassword, bcrypt.genSaltSync(5), null);
+          User.findOneAndUpdate({ email: email }, { password: hashed }, { new: true }).then(doc => {
+            console.log(doc);
+          }).catch(err => console.log(err));
+        }
+      }
+    })
+    .catch(err => console.log(err));
+    res.redirect('/user/profile');
 });
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
@@ -181,7 +209,7 @@ router.post('/signin', passport.authenticate('local.signin', {
   failureRedirect: '/user/signin',
   failureFlash: true
 }), function (req, res, next) {
-  
+
   if (req.session.oldUrl) {
     var oldUrl = req.session.oldUrl;
     req.session.oldUrl = null;

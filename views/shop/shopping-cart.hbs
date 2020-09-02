@@ -190,6 +190,14 @@
 
     }
 
+    .header {
+      margin-top: 5em;
+      margin-bottom: 1em;
+      font-size: var(--sub-heading-font-size);
+      color: #000;
+      text-align: left;
+    }
+
 
     /* MEDIA QUERIES */
     @media(max-width: 575.98px) {
@@ -295,7 +303,17 @@
 
 <body>
   {{# if products }}
-  <div class="second-custom-container" style="margin-top: 6.5em;">
+  <div class="second-custom-container">
+    <div class="cart-items-header">
+      <h1 class="header">Your cart({{totalQty}})</h1>
+    </div>
+    
+    <hr>
+  </div>
+  
+
+  <div class="second-custom-container" style="margin-top: 3.5em;">
+
     <div class="product-in-cart-headers">
       <div class="product-header">
         <h6>PRODUCT</h6>
@@ -359,6 +377,7 @@
 
 
     <div class="product-in-cart-card-mobile" style="margin-top: 2em;">
+
       <div class="product-and-details">
         <div class="product-image-mobile">
           <img src="{{this.item.imagepath}}" alt="..." width="100" height="100">
