@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+var cors = require('cors');
 var express = require('express');
 const formidableMiddleware = require('express-formidable');
 var path = require('path');
@@ -19,11 +20,12 @@ var indexRouter = require('./routes/index');
 var userRoutes = require('./routes/user');
 var adminRouter = require('./routes/admin.router');
 var app = express();
+app.use(cors());
 
 // mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => console.log('MongoDB Connected...'))
-.catch(err => console.log(err));
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 require('./config/passport');
 
