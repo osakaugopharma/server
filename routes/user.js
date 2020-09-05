@@ -3,20 +3,21 @@ var bcrypt = require('bcrypt-nodejs');
 var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
-// const MongoClient = require('mongodb').MongoClient;
-// const assert = require('assert');
-// const url = 'mongodb://localhost:27017';
 var Order = require('../models/order');
 var User = require('../models/users');
 var Cart = require('../models/cart');
 
-// const { session } = require('passport');
-// var email;
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
 router.get('/profile', isLoggedIn, function (req, res) {
-  res.render('user/profile', { user: req.session.email });
+  var nameOfUser = '';
+  User.findOne({ email: req.session.email }).then(doc => {
+    console.log(doc);
+    var userObject = doc.toObject();
+    nameOfUser = userObject.name;
+    res.render('user/profile', { user: req.session.email, nameOfUser: nameOfUser });
+  }).catch(err => console.log(err));
 });
 
 router.get('/orders', (req, res) => {
@@ -24,12 +25,6 @@ router.get('/orders', (req, res) => {
     if (err) {
       return res.write('Error');
     }
-    // var cart;
-    // orders.forEach(function (order) {
-    // cart = new Cart(order.cart);
-    // cart = order.cart;
-    // order.items = cart.generateArray();
-    // });
     res.render('user/orders', { orders: orders });
   });
 });
@@ -37,38 +32,38 @@ router.get('/orders', (req, res) => {
 router.get('/details', (req, res) => {
   var address = '';
   var phone = '';
+  var name = '';
   var email = req.session.email;
   User.findOne({ email: email }, function (err, user) {
     if (err) {
       console.log(err);
     }
-
     if (user) {
       var userObject = user.toObject();
       address = userObject.address;
       phone = userObject.phone;
+      name = userObject.name;
     }
-
-    res.render('user/details', { email: email, address: address, phone: phone });
+    res.render('user/details', { email: email, address: address, phone: phone, name: name });
   });
 });
 
 router.get('/update-details', (req, res) => {
   var address = '';
   var phone = '';
+  var name = '';
   var email = req.session.email;
   User.findOne({ email: email }, function (err, user) {
     if (err) {
       console.log(err);
     }
-
     if (user) {
       var userObject = user.toObject();
       address = userObject.address;
       phone = userObject.phone;
+      name = userObject.name;
     }
-
-    res.render('user/update-details', { address: address, phone: phone, email: email, csrfToken: req.csrfToken() });
+    res.render('user/update-details', { address: address, phone: phone, email: email, name: name, csrfToken: req.csrfToken() });
   });
 });
 
@@ -82,51 +77,12 @@ router.post('/update-details', (req, res) => {
     .catch(err => console.log(err));
   req.session.email = email;
   res.render('user/details', { email, address, phone });
-
-  // const updateDocument = function(db, callback) {
-  //   const collection = db.collection('users');
-
-  //   collection.updateOne({ email : email }
-  //     , { $set: { email : email, address: address, phone: phone } }, function(err, result) {
-  //     // assert.equal(err, null);
-  //     // assert.equal(1, result.result.n);
-  //     callback(result);
-  //   });
-  // }
-
-  // MongoClient.connect(url, function(err, client) {
-  //   // assert.equal(null, err);
-  //   console.log("Connected successfully to server");
-  //   const db = client.db(dbName);
-  //   updateDocument(db, function() {
-  //     // client.close();
-  //     console.log('successful');
-  //   });
-  // });
-
-  // mongo.connect(url, {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true
-  // }, (err, client) => {
-  //   if (err) {
-  //     console.error(err)
-  //     return;
-  //   }
-  //   const db = client.db('shop');
-  //   const collection = db.collection('users');
-  //   collection.updateOne({ email: email }, { $set: {email: email, address: address, phone: phone} });
-  // });
-
-  // res.redirect('/user/details');
 });
 
 router.get('/summary', isLoggedIn, (req, res) => {
   var address = '';
   var phone = '';
-
   var cart = new Cart(req.session.cart);
-
-
   var email = req.session.email;
   User.findOne({ email: email }, (err, user) => {
     if (err) console.log(err);
@@ -137,7 +93,6 @@ router.get('/summary', isLoggedIn, (req, res) => {
     }
     res.render('user/summary', { email: email, address: address, phone: phone, products: cart.generateArray(), totalPrice: cart.totalPrice });
   });
-
 });
 
 router.get('/change-password', isLoggedIn, (req, res) => {
@@ -152,8 +107,6 @@ router.post('/change-password', (req, res) => {
   User.findOne({ email: email })
     .then(doc => {
       var userObject = doc.toObject();
-      console.log(userObject);
-      
       if (bcrypt.compareSync(currentPassword, userObject.password)) {
         if (newPassword === confirmPassword) {
           var hashed = bcrypt.hashSync(newPassword, bcrypt.genSaltSync(5), null);
@@ -164,7 +117,7 @@ router.post('/change-password', (req, res) => {
       }
     })
     .catch(err => console.log(err));
-    res.redirect('/user/profile');
+  res.redirect('/user/profile');
 });
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
@@ -187,7 +140,6 @@ router.post('/signup',
       var oldUrl = req.session.oldUrl;
       req.session.oldUrl = null;
       res.redirect(oldUrl);
-
     } else {
       var email = req.body.email;
       req.session.email = email;

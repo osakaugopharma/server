@@ -20,8 +20,11 @@ var userRoutes = require('./routes/user');
 var adminRouter = require('./routes/admin.router');
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('MongoDB Connected...'))
+.catch(err => console.log(err));
+
 require('./config/passport');
 
 // view engine setup
@@ -32,7 +35,7 @@ app.use(logger('dev'));
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 app.use('/admin', formidableMiddleware());
-app.use(/^\/(?!admin).*/, express.urlencoded({ extended: false}));
+app.use(/^\/(?!admin).*/, express.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
 app.use(session({

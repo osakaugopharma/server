@@ -7,13 +7,14 @@ var Order = require('../models/order');
 var User = require('../models/users');
 var orderAddress;
 var orderPhone;
-// const mongo = require('mongodb').MongoClient;
-// const url = 'mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority';
-// const url = 'mongodb://localhost:27017';
 var request = require('request');
 
 router.get('/', function (req, res) {
   Product.find(function (err, docs) {
+    if (err) {
+      console.log(err);
+    }
+
     var productChunks = [];
     var chunkSize = 5;
     productChunks.push(docs.slice(0, chunkSize));
@@ -198,8 +199,6 @@ router.get('/success', function (req, res) {
     orderStringTempLiteral = '';
   });
 
-
-
   var options = {
     'method': 'GET',
     'url': `https://api.flutterwave.com/v3/transactions/${req.query.transaction_id}/verify`,
@@ -210,6 +209,7 @@ router.get('/success', function (req, res) {
   };
 
   request(options, (error, response) => {
+    var email = req.session.email;
     if (error) throw new Error(error);
     var response_object = JSON.parse(response.body);
 
@@ -218,22 +218,6 @@ router.get('/success', function (req, res) {
       orderStore.forEach(string => {
         container.push(string[0]);
       });
-
-      // for (let i = 0; i < container.length; i++) {
-      //   var noAfterPurchase;
-      //   Product.findOne({ 'name': container[i] }, function (err, product) {
-      //     if (err) {
-      //       console.log(err);
-      //     }
-      //     if (product) {
-      //       var no_in_stock = product.noOfProductInStock;
-      //       noAfterPurchase = no_in_stock - 1;
-      //     }
-      //   });
-      // const filter = { name: container[i] };
-      // const update = { noOfProductInStock: noAfterPurchase }
-      // let doc = Product.findOneAndUpdate({ 'name': container[i] }, { 'noOfProductInStock': noAfterPurchase }, { new: true });
-      // console.log(doc.noOfProductInStock);
       for (let i = 0; i < container.length; i++) {
         Product.findOne({ name: container[i] })
           .then(doc => {
@@ -256,26 +240,12 @@ router.get('/success', function (req, res) {
           });
       }
 
-
-
-
-      // Product.findOne({ 'name': container[i] }, function (err, product) {
-      //   if (err) {
-      //       console.log(err);
-      //   }
-      //   if (product) {
-      //       product.noOfProductInStock -= 1;
-      //       // console.log(product);
-      //   }
-      // });
-      // }
-
       var order = new Order({
         user: req.user,
         cart: output,
         totalprice: cart.totalPrice,
         totalquantity: cart.totalQty,
-        email: req.session.email,
+        email: email,
         paymentId: req.query.tx_ref,
         orderDate: new Date(),
         address: orderAddress,
@@ -291,8 +261,6 @@ router.get('/success', function (req, res) {
   req.session.cart = null;
   res.render('shop/success');
 });
-
-
 
 router.get('/failure', function (req, res) {
   res.render('shop/failure');
@@ -314,11 +282,8 @@ router.post('/checkout', (req, res) => {
       } else {
         var address = req.body.address;
         var phone = req.body.phone;
-
-
         orderAddress = address;
         orderPhone = phone;
-
         User.findOne({ email: email })
           .then(doc => {
             if (!doc.address && !doc.phone) {
@@ -341,27 +306,6 @@ router.post('/checkout', (req, res) => {
     .catch(err => {
       console.log(err);
     });
-
-  // console.log(orderAddress, orderPhone);
-
-  // req.session.address = address;
-  // req.session.phone = phone;
-
-
-
-  // mongo.connect(url, {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true
-  // }, (err, client) => {
-  //   if (err) {
-  //     console.error(err)
-  //     return;
-  //   }
-  //   const db = client.db('shop');
-  //   const collection = db.collection('users');
-  //   collection.updateOne({ email: email }, { $set: { address: address, phone: phone } });
-  // });
-
 });
 
 router.get('/shopping-cart', function (req, res) {
@@ -375,9 +319,6 @@ router.get('/shopping-cart', function (req, res) {
 router.get('/checkout', isLoggedIn, function (req, res) {
   var userExists;
   var email = req.session.email;
-
-
-
   if (!req.session.cart) {
     return res.redirect('/shopping-cart');
   }
@@ -386,20 +327,14 @@ router.get('/checkout', isLoggedIn, function (req, res) {
     if (err) {
       console.log(err);
     }
-
     if (user) {
       var userObject = user.toObject();
-
       if (userObject.address) {
         userExists = true;
       }
-      // else{
-      //   userExists = false;
-      // }
       res.render('shop/checkout', { total: cart.totalPrice, exists: userExists });
     }
   });
-
 });
 
 router.post('/contact-us', (req, res) => {
@@ -413,7 +348,6 @@ router.post('/contact-us', (req, res) => {
     <h3>Message</h3>
     <p>${req.body.message}</p>
   `;
-
   async function main() {
     let transporter = nodemailer.createTransport({
       host: "mail.osakaugopharma.com.ng",
@@ -427,8 +361,6 @@ router.post('/contact-us', (req, res) => {
         rejectUnauthorized: false
       }
     });
-
-
     let info = await transporter.sendMail({
       from: '"Nodemailer Contact" <oup@osakaugopharma.com.ng>',
       to: "osakaugopharma@gmail.com",
@@ -436,14 +368,11 @@ router.post('/contact-us', (req, res) => {
       text: "Hello world?",
       html: output
     });
-
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     res.render('shop/contact', { msg: 'Email has been sent' });
   }
-
   main().catch(console.error);
-
 });
 
 module.exports = router;

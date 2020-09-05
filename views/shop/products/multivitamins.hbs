@@ -68,7 +68,6 @@
     box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
   }
 
-
   .hover-container button {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -91,14 +90,18 @@
     font-weight: 500;
   }
 
-
-
+  .out-of-order-opacity {
+    -webkit-filter: opacity(25%);
+    -moz-filter: opacity(25%);
+    -o-filter: opacity(25%);
+    -ms-filter: opacity(25%);
+    filter: opacity(25%);
+  }
 
   @media(max-width: 575.98px) {
     .product-display-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-
 
     .hover-container button a {
       display: block;
@@ -137,11 +140,10 @@
       <div class="no-of-products">
         <p>{{noOfProducts}} products found.</p>
       </div>
-
       {{# each products }}
       <div class="product-display-grid">
-
         {{# each this }}
+        {{#if noOfProductInStock}}
         <div>
           <a href="{{this.productPageLink}}" style="text-decoration: none; color: #000;">
             <div class="hover-container">
@@ -151,21 +153,25 @@
                 <p class="product-price">₦{{ this.price }}</p>
               </div>
               <div>
-
                 <button><a href="/add-to-cart/{{this._id}}" style="color: var(--secondary-color);">Add to
                     cart</a></button>
               </div>
-
-
             </div>
           </a>
-
         </div>
+        {{else}}
+        <div class="out-of-order-opacity">
+          <div class="hover-container">
+            <div><img src="{{ this.imagepath }}"></div>
+            <p class="product-name">{{ this.name }}</p>
+            <p class="product-price">₦{{ this.price }}</p>
+            <p style="font-weight: 600; font-size: 15px;">OUT OF ORDER</p>
+          </div>
+        </div>
+        {{/if}}
         {{/each}}
-
       </div>
       {{/each}}
-
     </div>
   </div>
 </body>

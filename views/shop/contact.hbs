@@ -92,9 +92,7 @@
     outline: none;
     width: 29em;
     font-size: 14px;
-    background-color: #f4f6f8;
-    border: 0;
-    box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+    border: 2px solid rgb(238, 236, 236);
   }
 
   .form-section div button.submit {
@@ -103,6 +101,11 @@
     padding: var(--button-padding);
     border-radius: var(--button-border-radius);
     font-size: var(--secondary-font-size);
+  }
+
+  .link,
+  .link:hover {
+    color: #000;
   }
 
   @media(max-width: 575.98px) {
@@ -206,7 +209,7 @@
         Talk to us
       </div>
       <div class="email">
-        example@email.com
+        <a class="link" href="mailto:osakaugopharma@gmail.com?subject=Email from Our Site">osakaugopharma@gmail.com</a>
       </div>
       <div class="social-and-phone-container">
         <div class="social-container">
@@ -215,7 +218,7 @@
           <div><i class="fab fa-instagram" style="font-size: var(--secondary-font-size);"></i></div>
           <div><i class="fab fa-whatsapp" style="font-size: var(--secondary-font-size);"></i></div>
         </div>
-        <div class="phone-container">0000-0000-0000</div>
+        <div class="phone-container"><a class="link" href="tel:0000-0000-0000">0000-0000-0000</a></div>
       </div>
     </div>
     <div class="form-section">
@@ -237,27 +240,20 @@
           <br>
           <input type="text" name="name">
         </div>
-
         <div>
           <label>Email</label>
           <br>
           <input type="email" name="email">
-
         </div>
-
         <div>
           <label>Message</label>
           <br>
           <textarea rows="4" name="message"></textarea>
         </div>
-
         <div class="submit-button-container">
           <button class="submit" type="submit">Submit</button>
         </div>
       </form>
-
-
     </div>
-
   </div>
 </div>

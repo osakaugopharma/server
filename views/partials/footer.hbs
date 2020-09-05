@@ -50,10 +50,11 @@
       color: var(--text-color-two);
     }
 
-    .link{
-      text-decoration: none;
+    .link,
+    .link:hover {
       color: #000;
     }
+
     .social-icons-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -100,7 +101,7 @@
         grid-gap: 2em;
       }
 
-       div.footer-text-content {
+      div.footer-text-content {
         text-align: center;
       }
 
@@ -109,8 +110,8 @@
       }
     }
 
-  @media(min-width: 992px) {
-    .footer-container {
+    @media(min-width: 992px) {
+      .footer-container {
         grid-template-columns: repeat(3, 1fr);
         text-align: justify;
         grid-gap: 2em;
@@ -123,7 +124,7 @@
       .social-icons-container {
         justify-items: center;
       }
-  }
+    }
   </style>
 </head>
 
@@ -133,7 +134,8 @@
       <div>
         <div class="footer-text-content">
           <h3>Get in touch</h3>
-          <p><a class="link" href="mailto:osakaugopharma@gmail.com?subject=Email from Our Site">example@email.com</a></p>
+          <p><a class="link"
+              href="mailto:osakaugopharma@gmail.com?subject=Email from Our Site">osakaugopharma@gmail.com</a></p>
           <p><a class="link" href="tel:0000-0000-0000">0000-0000-0000</a></p>
         </div>
       </div>

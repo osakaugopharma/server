@@ -7,73 +7,53 @@
     <title>Document</title>
 
     <style>
-        /* The Overlay (background) */
         .overlay {
-            /* Height & width depends on how you want to reveal the overlay (see JS below) */
-            /* font-size: 2px !important; */
             height: 0;
             width: 100%;
             position: fixed;
-            /* Stay in place */
             z-index: 2;
-            /* Sit on top */
             left: 0;
             top: 0;
             background-color: rgb(255, 255, 255);
-            /* Black w/opacity */
             overflow-x: hidden;
-            /* Disable horizontal scroll */
             transition: 0.5s;
-            /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
         }
 
-        /* Position the content inside the overlay */
         .overlay-content {
             position: relative;
             width: 70%;
-            /* 100% width */
             margin-top: 30px;
-            /* 30px top margin to avoid conflict with the close button on smaller screens */
         }
 
-        /* The navigation links inside the overlay */
+
         .overlay a {
             padding: 1rem 2rem;
             text-decoration: none;
             font-size: 18px;
             color: #000;
             display: block;
-            /* Display block instead of inline */
             transition: 0.3s;
-            /* Transition effects on hover (color) */
         }
 
         .dropdown-content a {
             font-size: 14px;
         }
 
-        /* When you mouse over the navigation links, change their color */
         .overlay a:hover,
         .overlay a:focus {
             color: #000000;
         }
 
-        /* Position the close button (top right corner) */
+
         .overlay .closebtn {
-            /* position: absolute;
-  top: 20px;
-  right: 45px; */
             font-size: 36px;
             color: #000;
-            /* width: 100px;
-  margin: 0; */
         }
 
         .overlay li {
             list-style-type: none;
         }
 
-        /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
         @media screen and (max-height: 450px) {
             .overlay a {
                 font-size: 10px;
@@ -93,8 +73,6 @@
         .show {
             display: block;
         }
-
-       
     </style>
 </head>
 
@@ -109,9 +87,6 @@
             </div>
         </div>
         <hr />
-        <!-- Button to close the overlay navigation -->
-
-        <!-- Overlay content -->
         <div class="overlay-content">
 
             <a href="/" class="text-left">Home</a>
@@ -128,19 +103,15 @@
                 <i class="fas fa-caret-down" id="l-dropdown-icon" style="color: #000"></i>
             </a>
             <div class="dropdown-content text-left" id="login">
-             <!--   <a href="/user/signup">Create account</a>
-                <a href="/user/signin">Sign in</a> -->
-              {{# if login }}
+                {{# if login }}
                 <a href="/user/profile">User account</a>
                 <a href="/user/logout">Logout</a>
-              {{ else }}
+                {{ else }}
                 <a href="/user/signup">Create account</a>
                 <a href="/user/signin">Sign in</a>
-              {{/if}}
+                {{/if}}
             </div>
             <div class="dropdown"></div>
-
-
         </div>
     </div>
 
@@ -148,7 +119,7 @@
         <div class="row" style="height
             : 10%;">
             <div class="col-2">
-                <a href="javascript:void(0)" class="closebtn" id="product-menu-close" >&times;</a>
+                <a href="javascript:void(0)" class="closebtn" id="product-menu-close">&times;</a>
             </div>
             <div class="col-8" style="margin-bottom: -1em !important; ">
                 <img src="/images/OU6.png" alt="logo" width="120" height="40" class="mt-4 mr-2" />
@@ -169,42 +140,40 @@
         </div>
     </div>
 
-<script>
-   function closeNav(event) {
-        document.getElementById("myNav").style.height = "0%";
-        document.getElementById("header").style.visibility = "visible";
-    }
-    var closeBtn = document.getElementById('closeBtn');
-    closeBtn.addEventListener('click', closeNav, false);
+    <script>
+        function closeNav(event) {
+            document.getElementById("myNav").style.height = "0%";
+            document.getElementById("header").style.visibility = "visible";
+        }
+        var closeBtn = document.getElementById('closeBtn');
+        closeBtn.addEventListener('click', closeNav, false);
 
-    function openProductMenu(event) {
-       
-      document.getElementById("productNav").style.height = "100%";
-    }
-    var productsLink = document.getElementById('products-link');
-    productsLink.addEventListener('click', openProductMenu, false);
+        function openProductMenu(event) {
 
-    function productMenuExit(event) {
-      document.getElementById("productNav").style.height = "0%";
-    }
-    var closeProductMenu = document.getElementById('product-menu-close');
-    closeProductMenu.addEventListener('click', productMenuExit, false);
+            document.getElementById("productNav").style.height = "100%";
+        }
+        var productsLink = document.getElementById('products-link');
+        productsLink.addEventListener('click', openProductMenu, false);
 
-    function openDropdown(event) {
- 
-      if (event.target.id === "products-link" || event.target.id === "p-dropdown-icon") {
-        document.getElementById("products").classList.toggle("show");
-      }
+        function productMenuExit(event) {
+            document.getElementById("productNav").style.height = "0%";
+        }
+        var closeProductMenu = document.getElementById('product-menu-close');
+        closeProductMenu.addEventListener('click', productMenuExit, false);
 
-      if (event.target.id === "login-link" || event.target.id === "l-dropdown-icon") {
-        document.getElementById("login").classList.toggle("show");
-      }
-    }
-    var loginLink = document.getElementById('login-link');
-    loginLink.addEventListener('click', openDropdown, false);
+        function openDropdown(event) {
 
+            if (event.target.id === "products-link" || event.target.id === "p-dropdown-icon") {
+                document.getElementById("products").classList.toggle("show");
+            }
 
-</script>
+            if (event.target.id === "login-link" || event.target.id === "l-dropdown-icon") {
+                document.getElementById("login").classList.toggle("show");
+            }
+        }
+        var loginLink = document.getElementById('login-link');
+        loginLink.addEventListener('click', openDropdown, false);
+    </script>
 </body>
 
 </html>

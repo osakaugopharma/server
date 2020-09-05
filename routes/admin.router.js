@@ -1,30 +1,28 @@
-const AdminBro = require('admin-bro')
-const AdminBroExpress = require('admin-bro-expressjs')
-const AdminBroMongoose = require('admin-bro-mongoose')
-const User = require('../models/users')
-const Product = require('../models/product')
-const Order = require('../models/order')
-const express = require('express')
-const router = express.Router()
-
-
+const AdminBro = require('admin-bro');
+const AdminBroExpress = require('admin-bro-expressjs');
+const AdminBroMongoose = require('admin-bro-mongoose');
+const User = require('../models/users');
+const Product = require('../models/product');
+const Order = require('../models/order');
+const express = require('express');
+const router = express.Router();
 const mongoose = require('mongoose');
-// const { resource } = require('../app')
-AdminBro.registerAdapter(AdminBroMongoose)
 
+AdminBro.registerAdapter(AdminBroMongoose);
 const AdminBroOptions = {
   databases: [mongoose],
   rootPath: '/admin',
   resources: [
-    { resource: User},
+    { resource: User },
     { resource: Product },
-    { resource: Order, options: {
-      filterProperties: ['orderDate'], 
-      properties: {
-      cart: { type: 'string' }
-      // orderDate: { type: 'date' }
-    }
-  }},
+    {
+      resource: Order, options: {
+        filterProperties: ['orderDate'],
+        properties: {
+          cart: { type: 'string' }
+        }
+      }
+    },
   ],
   branding: {
     logo: '/images/logo.png',
@@ -41,8 +39,7 @@ const AdminBroOptions = {
   },
 }
 
-const adminBro = new AdminBro(AdminBroOptions)
-
+const adminBro = new AdminBro(AdminBroOptions);
 
 const ADMIN = {
   email: 'oup@admin.com',
@@ -52,17 +49,15 @@ const ADMIN = {
 AdminBroExpress.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
     if (ADMIN.password === password && ADMIN.email === email) {
-      return ADMIN
+      return ADMIN;
     }
-    return null
+    return null;
   },
   cookieName: 'adminbro',
   cookiePassword: 'somePassword',
 }, router, {
   resave: false,
   saveUninitialized: false,
-})
+});
 
-// const router = AdminBroExpress.buildRouter(adminBro)
-
-module.exports = router
+module.exports = router;

@@ -3,10 +3,17 @@
 
 <head>
   <title>{{title}}</title>
-  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/all.css">
-  <link rel="stylesheet" href="/assets/animate.css">
-  <script src="/assets/all.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"
+    integrity="sha512-KulI0psuJQK8UMpOeiMLDXJtGOZEBm8RZNTyBBHIWqoXoPMFcw+L5AEo0YMpsW8BfiuWrdD1rH6GWGgQBF59Lg=="
+    crossorigin="anonymous" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/js/all.min.js"
+    integrity="sha512-IJcmeopmq+pfSnTIIqxay7uUBlIYP+f9wnqhfCMnfS5VOb2X9WDToczDCsbgXthcZZTNGbJyF+TvKSYGWeBpdQ=="
+    crossorigin="anonymous"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
@@ -14,6 +21,10 @@
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
+    }
+
+    a:active {
+      text-decoration: none;
     }
 
     body {
@@ -30,12 +41,14 @@
 <body>
   {{> header }}
   {{> overlay-nav }}
-  <script src="/javascripts/jquery-3.5.0.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
   {{{body}}}
   {{> footer }}
 </body>
 
-<script src="/javascripts/bootstrap.min.js"></script>
-<script src="/javascripts/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 
 </html>

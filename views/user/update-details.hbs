@@ -70,9 +70,9 @@
             outline: none;
             width: 100%;
             font-size: 14px;
-            background-color: #f4f6f8;
-            border: 0;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+            
+            border: 2px solid rgb(238, 236, 236);
+            
         }
 
         .header {
@@ -89,6 +89,13 @@
             <hr>
             <br>
             <form action="/user/update-details" method="POST">
+                 <div class="label-container">
+                    <label for="email"><b>Name</b></label>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="name" name="name" value="{{name}}">
+                </div>
+
                 <div class="label-container">
                     <label for="email"><b>Email Address</b></label>
                 </div>

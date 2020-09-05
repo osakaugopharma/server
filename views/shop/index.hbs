@@ -12,7 +12,7 @@
       --sub-heading-font-size: 24px;
       --secondary-font-size: 18px;
       --primary-font-size: 16px;
-      --primary-color: #5cdb95;
+      --primary-color: #4fae76;
       --secondary-color: #ffffff;
       --text-color-one: #000000;
       --text-color-two: rgba(31, 8, 8, 0.6));
@@ -55,8 +55,6 @@
     }
 
     .hero-section-content-grid {
-      /* display: grid;
-      grid-template-columns: 2fr 1fr;*/
       text-align: left;
       margin-top: 4.5em;
       padding-top: 5em;
@@ -69,15 +67,6 @@
       border-radius: var(--button-border-radius);
       font-size: var(--secondary-font-size);
     }
-
-    /*
-    .hero-section-illustration {
-      background-image: url('/images/hero-section-illustration.svg');
-      background-size: 300px 200px;
-      background-repeat: no-repeat;
-      background-position: top center;
-    }
-  */
 
     .product-description h2 {
       font-size: var(--header-font-size);
@@ -97,7 +86,7 @@
     .product-description-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 4em;
+      column-gap: 5px;
       margin-top: 4em;
       color: #000;
     }
@@ -105,12 +94,13 @@
     .product-description-block {
       box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
       border-radius: 6px;
-      padding: 3em 2em;
+      padding: 2em 2em 1em 2em;
     }
 
     .product-description-text h3 {
-      font-size: var(--sub-heading-font-size);
-      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.1px;
+      font-weight: 500;
       margin-bottom: 1em;
       margin-top: 1.5em;
     }
@@ -118,13 +108,14 @@
     .product-description-text p {
       line-height: 2em;
       color: var(--text-color-two);
+      font-size: 15px;
     }
 
     .product-category-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-column-gap: 1em;
-      grid-row-gap: 3em;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 1em;
+      row-gap: 3em;
       grid-auto-rows: minmax(50px, auto);
       margin-top: 6.5em;
       margin-bottom: 6.5em;
@@ -138,6 +129,11 @@
       background-color: #fff;
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
+      cursor: pointer;
+    }
+
+    .product-category-element:active {
+      background-color: #aae6c5;
     }
 
     .product-icon-description,
@@ -173,7 +169,7 @@
       margin-top: 12px;
     }
 
-    .product-icon-description a {
+    .product-icon-description p {
       color: #000;
     }
 
@@ -183,13 +179,11 @@
       background-color: var(--primary-color);
       text-align: left;
       padding: 0.01em 1.5em;
-
       border-radius: 6px 6px 0 0;
     }
 
     .featured-product-category-header .view-more-button {
       text-align: right;
-
     }
 
     .featured-product-category-header .view-more-button p {
@@ -208,7 +202,6 @@
       grid-gap: 1em;
     }
 
-
     .featured-product-category {
       box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
       border-radius: 6px;
@@ -220,10 +213,12 @@
       font-size: 14px;
     }
 
-    .name-and-pricing{
-      width:50%;
-      margin: 0 auto;
-      text-align: left;
+    .out-of-order-opacity {
+      -webkit-filter: opacity(25%);
+      -moz-filter: opacity(25%);
+      -o-filter: opacity(25%);
+      -ms-filter: opacity(25%);
+      filter: opacity(25%);
     }
 
     p.price {
@@ -260,6 +255,7 @@
 
       .product-description-grid {
         grid-template-columns: 1fr;
+        row-gap: 1em;
       }
 
       .product-category-grid {
@@ -356,7 +352,7 @@
       .product-description-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: 4em;
+        column-gap: 25px;
         margin-top: 4em;
         color: #000;
       }
@@ -415,31 +411,31 @@
     <div class="product-description-grid">
       <div class="product-description-block">
         <div class="product-description-image">
-          <i class="fas fa-dollar-sign" style="font-size: var(--biggest-font-size);"></i>
+          <i class="fas fa-dollar-sign" style="font-size: var(--biggest-font-size); color: var(--primary-color);"></i>
         </div>
         <div class="product-description-text">
-          <h3>Efficient prices</h3>
+          <h3>Efficient Prices</h3>
           <p>We offer our products at the most efficient and affordable prices in the market.</p>
         </div>
       </div>
 
       <div class="product-description-block">
         <div class="product-description-image">
-          <i class="fas fa-credit-card" style="font-size: var(--biggest-font-size);"></i>
+          <i class="fas fa-credit-card" style="font-size: var(--biggest-font-size); color: var(--primary-color);"></i>
         </div>
         <div class="product-description-text">
-          <h3>Payment made easy</h3>
+          <h3>Payment made Easy</h3>
           <p>We make use of secure payment processing systems to enable transactions on our platform.</p>
         </div>
       </div>
 
       <div class="product-description-block">
         <div class="product-description-image">
-          <i class="fas fa-eye" style="font-size: var(--biggest-font-size);"></i>
+          <i class="fas fa-database" style="font-size: var(--biggest-font-size); color: var(--primary-color);"></i>
         </div>
         <div class="product-description-text">
-          <h3>Payment made easy</h3>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam rerum totam autem ipsam nesciunt? Cum.
+          <h3>Easy to Use</h3>
+          <p>We have implemented familiar e-commerce systems to make your user experience a breeze.
           </p>
         </div>
       </div>
@@ -447,9 +443,7 @@
     </div>
   </div>
 
-
   <div class="custom-container">
-
     <div class="product-description">
       <h2 style="color: #000;">Product categories</h2>
     </div>
@@ -457,52 +451,51 @@
 
   <div class="second-custom-container">
     <div class="product-category-grid">
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/antimalaria";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-syringe"></i>
           </div>
         </div>
         <div class="product-icon-description">
-          <p><a href="/antimalaria">Antimalaria</a></p>
+          <p>Antimalaria</p>
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/multivitamins";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-pills"></i>
           </div>
         </div>
         <div class="product-icon-description">
-          <p><a href="/multivitamins">Multivitamins</a></p>
+          <p>Multivitamins</p>
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/equipments";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-stethoscope"></i>
           </div>
         </div>
         <div class="product-icon-description">
-          <p><a href="/equipments">Medical equipment</a></p>
+          <p>Medical equipment</p>
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/contraceptives";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-venus-mars"></i>
           </div>
-
         </div>
         <div class="product-icon-description">
-          <p><a href="/contraceptives">Contraceptives</a></p>
+          <p>Contraceptives</p>
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/antibiotics";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-diagnoses"></i>
@@ -510,23 +503,22 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="/antibiotics">Antibiotics</a></p>
+          <p>Antibiotics</p>
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/eyedrugs";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-eye"></i>
           </div>
-
         </div>
         <div class="product-icon-description">
-          <p><a href="/eyedrugs">Vision drugs</a></p>
+          <p>Vision drugs</p>
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/ulcerandgastro";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-tablets"></i>
@@ -534,45 +526,33 @@
 
         </div>
         <div class="product-icon-description">
-          <p><a href="/ulcerandgastro">Ulcer and gastro drugs</a></p>
+          <p>Ulcer and gastro drugs</p>
         </div>
       </div>
 
-      <div class="product-category-element">
+      <div class="product-category-element" onclick='location.href = "/analgesics";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-bolt"></i>
           </div>
-
         </div>
         <div class="product-icon-description">
-          <p><a href="/analgesics">Analgesics</a></p>
+          <p>Analgesics</p>
         </div>
       </div>
 
-      <div class="product-category-element antihypertensives">
+      <div class="product-category-element antihypertensives" onclick='location.href = "/antihypertensives";'>
         <div class="icon-container">
           <div>
             <i class="fas fa-heartbeat"></i>
           </div>
-
         </div>
         <div class="product-icon-description" id="scroll-section">
-          <p><a href="/antihypertensives">Antihypertensives</a></p>
+          <p>Antihypertensives</p>
         </div>
       </div>
-
-
     </div>
   </div>
-  <!--
-  <div class="custom-container">
-    <div class="product-description">
-      <h2 class="featured-product-heading" style="margin-bottom: 3.5em;">Featured products</h2>
-    </div>
-  </div>
-  -->
-
 
   <div class="custom-container" style="margin-top: -4em;">
     <div class="featured-product-category">
@@ -583,22 +563,27 @@
         <div class="view-more-button">
           <p><a href="/antimalaria" style="color: var(--secondary-color);"><u>View more</u></a></p>
         </div>
-
       </div>
 
       {{# each products }}
       <div class="featured-products">
         {{# each this }}
+        {{#if this.noOfProductInStock}}
         <a href="/product-details/{{this._id}}" style="text-decoration: none; color: #000;">
           <div>
-            <img src="{{ this.imagepath }}" class="drug-backdrop">
-            <div class="name-and-pricing">
-              <p class="category-paragraph">{{ this.name }}</p>
-              <p class="price">₦{{ this.price }}</p>
-            </div>
-
+            <img src="{{ this.imagepath }}">
+            <p class="category-paragraph">{{ this.name }}</p>
+            <p class="price">₦{{ this.price }}</p>
           </div>
         </a>
+        {{else}}
+        <div class="out-of-order-opacity">
+          <img src="{{ this.imagepath }}">
+          <p class="category-paragraph">{{ this.name }}</p>
+          <p class="price">₦{{ this.price }}</p>
+          <p class="price">OUT OF STOCK</p>
+        </div>
+        {{/if}}
         {{/each}}
       </div>
       {{/each}}
@@ -614,29 +599,31 @@
         <div class="view-more-button">
           <p><a href="/multivitamins" style="color: var(--secondary-color);"><u>View more</u></a></p>
         </div>
-
       </div>
-
       {{# each multivitaminsProducts }}
       <div class="featured-products">
         {{# each this }}
+        {{#if this.noOfProductInStock}}
         <a href="/product-details/{{this._id}}" style="text-decoration: none; color: #000;">
           <div>
-            <img src="{{ this.imagepath }}" class="drug-backdrop">
-
+            <img src="{{ this.imagepath }}">
             <p class="category-paragraph">{{ this.name }}</p>
             <p class="price">₦{{ this.price }}</p>
           </div>
         </a>
+        {{else}}
+        <div class="out-of-order-opacity">
+          <img src="{{ this.imagepath }}">
+          <p class="category-paragraph">{{ this.name }}</p>
+          <p class="price">₦{{ this.price }}</p>
+          <p class="price">OUT OF STOCK</p>
+        </div>
+        {{/if}}
         {{/each}}
       </div>
       {{/each}}
     </div>
   </div>
-
-
-
-
 
   <script>
     $('#view-products').on('click', function () {
@@ -646,7 +633,6 @@
       }, 1500);
     });
   </script>
-
 </body>
 
 </html>

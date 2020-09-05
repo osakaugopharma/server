@@ -81,15 +81,12 @@
         }
 
         .form-section div input {
-            border: 1px solid #ccc;
             border-radius: 6px;
             padding: 0.7em 0.5em;
             outline: none;
             width: 29em;
             font-size: 14px;
-            background-color: #f4f6f8;
-            border: 0;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+            border: 2px solid rgb(238, 236, 236);
         }
 
         .form-section div button {
@@ -169,10 +166,10 @@
                 display: none;
             }
 
-             p.signup-paragraph-secondary-text {
-        
+            p.signup-paragraph-secondary-text {
+
                 color: var(--text-color-two);
-    
+
             }
 
         }
@@ -185,15 +182,15 @@
             }
 
             .third-custom-container {
-            width: 85%;
-        }
+                width: 85%;
+            }
 
             div.info-section {
                 display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 100px 50px 200px;
-            padding-top: 2em;
-            padding-left: 2em;
+                grid-template-columns: 1fr;
+                grid-template-rows: 100px 50px 200px;
+                padding-top: 2em;
+                padding-left: 2em;
             }
 
             .signup-header-mobile {
@@ -239,20 +236,20 @@
                     <div>
                         <label>Full Name</label>
                         <br>
-                        <input type="text" />
+                        <input type="text" placeholder="John Doe" name="name" required />
                     </div>
 
                     <div>
                         <label>Email Address</label>
                         <br>
-                        <input type="email" placeholder="example@gmail.com" id="email" name="email" />
+                        <input type="email" placeholder="example@gmail.com" id="email" name="email" required />
 
                     </div>
 
                     <div>
                         <label>Password</label>
                         <br>
-                        <input type="password" placeholder="6+ characters" id="password" name="password" />
+                        <input type="password" placeholder="6+ characters" id="password" name="password" required />
                         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
 
                         <div class="submit-button-container">
