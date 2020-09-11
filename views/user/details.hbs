@@ -12,7 +12,7 @@
             --sub-heading-font-size: 24px;
             --secondary-font-size: 18px;
             --primary-font-size: 16px;
-            --primary-color: #5cdb95;
+            --primary-color: #4fae76;
             --secondary-color: #ffffff;
             --text-color-one: #000000;
             --text-color-two: rgba(31, 8, 8, 0.6));
@@ -61,7 +61,16 @@
 
 <body>
     <div class="container">
+
         <div class="details-container">
+            {{#if success_msg }}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <span>{{ success_msg }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}}
             <h2 class="header">User details.</h2>
             <hr>
             <br>

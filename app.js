@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+// var favicon = require('serve-favicon');
 const formidableMiddleware = require('express-formidable');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -19,9 +20,13 @@ var userRoutes = require('./routes/user');
 var adminRouter = require('./routes/admin.router');
 var app = express();
 
-mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('MongoDB Connected...'))
+.catch(err => console.log(err));
+
+// mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log('MongoDB Connected...'))
+//   .catch(err => console.log(err));
 
 require('./config/passport');
 
@@ -53,9 +58,14 @@ app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
 });
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  next();
+});
 app.use('/user', userRoutes);
 app.use('/admin', adminRouter);
 app.use('/', indexRouter);
+// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // catch 404 and forward to error handler

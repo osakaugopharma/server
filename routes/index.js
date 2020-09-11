@@ -19,14 +19,20 @@ router.get('/', function (req, res) {
     var chunkSize = 5;
     productChunks.push(docs.slice(0, chunkSize));
 
-    var multiproduct = docs.filter(multivitamin => multivitamin.tag == 'Multivitamin');
+    var multiproduct = docs.filter(
+      (multivitamin) => multivitamin.tag == 'Multivitamin'
+    );
     var multivitaminArr = [];
     var multiChunkSize = 5;
     for (var i = 0; i < multiproduct.length; i += multiChunkSize) {
       multivitaminArr.push(multiproduct.slice(i, i + multiChunkSize));
     }
 
-    res.render('shop/index', { title: 'Osaka Ugo Pharmaceuticals Limited', products: productChunks, multivitaminsProducts: multivitaminArr });
+    res.render('shop/index', {
+      title: 'Osaka Ugo Pharmaceuticals Limited',
+      products: productChunks,
+      multivitaminsProducts: multivitaminArr,
+    });
   });
 });
 
@@ -39,7 +45,7 @@ router.get('/add-to-cart/:id', function (req, res) {
     }
     cart.add(product, product.id);
     req.session.cart = cart;
-    res.redirect('/');
+    res.redirect('/shopping-cart');
   });
 });
 
@@ -77,43 +83,56 @@ router.get('/remove/:id', function (req, res) {
 
 router.get('/antimalaria', function (req, res) {
   Product.find(function (err, docs) {
-    var product = docs.filter(antimalaria => antimalaria.tag == 'Antimalaria');
+    var product = docs.filter(
+      (antimalaria) => antimalaria.tag == 'Antimalaria'
+    );
     var antiMalariaArr = [];
     var chunkSize = 4;
     for (var i = 0; i < product.length; i += chunkSize) {
       antiMalariaArr.push(product.slice(i, i + chunkSize));
     }
-    res.render('shop/products/antimalaria', { products: antiMalariaArr, noOfProducts: product.length });
+    res.render('shop/products/antimalaria', {
+      products: antiMalariaArr,
+      noOfProducts: product.length,
+    });
   });
 });
 
 router.get('/multivitamins', function (req, res) {
   Product.find(function (err, docs) {
-    var product = docs.filter(multivitamin => multivitamin.tag == 'Multivitamin');
+    var product = docs.filter(
+      (multivitamin) => multivitamin.tag == 'Multivitamin'
+    );
     var multivitaminArr = [];
     var chunkSize = 4;
     for (var i = 0; i < product.length; i += chunkSize) {
       multivitaminArr.push(product.slice(i, i + chunkSize));
     }
-    res.render('shop/products/multivitamins', { products: multivitaminArr, noOfProducts: product.length });
+    res.render('shop/products/multivitamins', {
+      products: multivitaminArr,
+      noOfProducts: product.length,
+    });
   });
 });
 
 router.get('/equipments', function (req, res) {
   Product.find(function (err, docs) {
-    var product = docs.filter(equipment => equipment.tag == 'Equipment');
+    var product = docs.filter((equipment) => equipment.tag == 'Equipment');
     var equipmentArr = [];
     var chunkSize = 4;
     for (var i = 0; i < product.length; i += chunkSize) {
       equipmentArr.push(product.slice(i, i + chunkSize));
     }
-    res.render('shop/products/equipments', { products: equipmentArr, noOfProducts: product.length });
+    res.render('shop/products/equipments', {
+      products: equipmentArr,
+      noOfProducts: product.length,
+    });
   });
 });
 
 router.get('/analgesics', function (req, res) {
   Product.find(function (err, docs) {
-    var product = docs.filter(analgesic => analgesic.tag == 'Analgesic');
+    var product = docs.filter((analgesic) => analgesic.tag == 'Analgesic');
     var analgesicArr = [];
     var chunkSize = 3;
     for (var i = 0; i < product.length; i += chunkSize) {
@@ -193,19 +212,19 @@ router.get('/success', function (req, res) {
   var output = '';
   var orderStringTempLiteral = '';
 
-  orderStore.forEach(orderString => {
+  orderStore.forEach((orderString) => {
     orderStringTempLiteral = `Product name: ${orderString[0]}, Price: ${orderString[1]}, Quantity: ${orderString[2]} *** `;
     output += orderStringTempLiteral;
     orderStringTempLiteral = '';
   });
 
   var options = {
-    'method': 'GET',
-    'url': `https://api.flutterwave.com/v3/transactions/${req.query.transaction_id}/verify`,
-    'headers': {
+    method: 'GET',
+    url: `https://api.flutterwave.com/v3/transactions/${req.query.transaction_id}/verify`,
+    headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer FLWSECK_TEST-a0c7f66918bc15d9e7eb2a65146cbd79-X'
-    }
+      Authorization: 'Bearer FLWSECK_TEST-a0c7f66918bc15d9e7eb2a65146cbd79-X',
+    },
   };
 
   request(options, (error, response) => {
@@ -213,35 +232,52 @@ router.get('/success', function (req, res) {
     if (error) throw new Error(error);
     var response_object = JSON.parse(response.body);
 
-    if (response_object.status === 'success' && response_object.data.currency === 'NGN' && response_object.data.amount >= amount) {
+    if (
+      response_object.status === 'success' &&
+      response_object.data.currency === 'NGN' &&
+      response_object.data.amount >= amount
+    ) {
       var container = [];
-      orderStore.forEach(string => {
+      orderStore.forEach((string) => {
         container.push(string[0]);
       });
       for (let i = 0; i < container.length; i++) {
         Product.findOne({ name: container[i] })
-          .then(doc => {
+          .then((doc) => {
             var productObject = doc.toObject();
             var productStockNumber = productObject.noOfProductInStock;
             var qtyBought;
-            orderStore.forEach(orderString => {
+            orderStore.forEach((orderString) => {
               qtyBought = orderString[2];
             });
-            Product.findOneAndUpdate({ name: container[i] }, { noOfProductInStock: productStockNumber - qtyBought }, { new: true })
-              .then(doc => {
-                console.log(doc);
+            Product.findOneAndUpdate(
+              { name: container[i] },
+              { noOfProductInStock: productStockNumber - qtyBought },
+              { new: true }
+            )
+              .then((doc) => {
+                console.log('Success');
               })
-              .catch(err => {
+              .catch((err) => {
                 console.log(err);
               });
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       }
 
+      var orderName;
+      User.findOne({email: email})
+          .then((doc) => {
+            var userObject = doc.toObject();
+            orderName = userObject.name;
+            console.log(orderName);
+          })
+          .catch((err) => console.log(err));
+
       var order = new Order({
-        user: req.user,
+        name: orderName,
         cart: output,
         totalprice: cart.totalPrice,
         totalquantity: cart.totalQty,
@@ -249,7 +285,7 @@ router.get('/success', function (req, res) {
         paymentId: req.query.tx_ref,
         orderDate: new Date(),
         address: orderAddress,
-        phone: orderPhone
+        phone: orderPhone,
       });
       order.save(function (err, result) {
         if (err) {
@@ -271,7 +307,7 @@ router.post('/checkout', (req, res) => {
   var existingAddress;
   var existingPhone;
   User.findOne({ email: email })
-    .then(doc => {
+    .then((doc) => {
       var userObject = doc.toObject();
       if (userObject.address && userObject.phone) {
         existingAddress = userObject.address;
@@ -285,25 +321,29 @@ router.post('/checkout', (req, res) => {
         orderAddress = address;
         orderPhone = phone;
         User.findOne({ email: email })
-          .then(doc => {
+          .then((doc) => {
             if (!doc.address && !doc.phone) {
-              User.findOneAndUpdate({ email: email }, { address: address, phone: phone }, { new: true })
-                .then(doc => {
-                  console.log(doc)
+              User.findOneAndUpdate(
+                { email: email },
+                { address: address, phone: phone },
+                { new: true }
+              )
+                .then((doc) => {
+                  console.log(doc);
                 })
-                .catch(err => {
+                .catch((err) => {
                   console.log(err);
                 });
             }
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
 
         res.redirect('/user/summary');
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 });
@@ -313,7 +353,11 @@ router.get('/shopping-cart', function (req, res) {
     return res.render('shop/shopping-cart', { products: null });
   }
   var cart = new Cart(req.session.cart);
-  res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice, totalQty: cart.totalQty });
+  res.render('shop/shopping-cart', {
+    products: cart.generateArray(),
+    totalPrice: cart.totalPrice,
+    totalQty: cart.totalQty,
+  });
 });
 
 router.get('/checkout', isLoggedIn, function (req, res) {
@@ -332,7 +376,10 @@ router.get('/checkout', isLoggedIn, function (req, res) {
       if (userObject.address) {
         userExists = true;
       }
-      res.render('shop/checkout', { total: cart.totalPrice, exists: userExists });
+      res.render('shop/checkout', {
+        total: cart.totalPrice,
+        exists: userExists,
+      });
     }
   });
 });
@@ -350,7 +397,7 @@ router.post('/contact-us', (req, res) => {
   `;
   async function main() {
     let transporter = nodemailer.createTransport({
-      host: "mail.osakaugopharma.com.ng",
+      host: 'mail.osakaugopharma.com.ng',
       port: 465,
       secure: true,
       auth: {
@@ -358,18 +405,18 @@ router.post('/contact-us', (req, res) => {
         pass: '{C,$r7L1Jo[n',
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     });
     let info = await transporter.sendMail({
       from: '"Nodemailer Contact" <oup@osakaugopharma.com.ng>',
-      to: "osakaugopharma@gmail.com",
-      subject: "Node Contact Request",
-      text: "Hello world?",
-      html: output
+      to: 'osakaugopharma@gmail.com',
+      subject: 'Node Contact Request',
+      text: 'Hello world?',
+      html: output,
     });
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    console.log('Message sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     res.render('shop/contact', { msg: 'Email has been sent' });
   }
   main().catch(console.error);
