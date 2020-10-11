@@ -1,90 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    :root {
+        --biggest-font-size: 64px;
+        --header-font-size: 32px;
+        --sub-heading-font-size: 24px;
+        --secondary-font-size: 18px;
+        --primary-font-size: 16px;
+        --primary-color: #4fae76;
+        --secondary-color: #ffffff;
+        --text-color-one: #000000;
+        --text-color-two: rgba(31, 8, 8, 0.6));
+        --button-border-radius: 6px;
+        --button-padding: 0.5rem 1.5rem;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        :root {
-            --biggest-font-size: 64px;
-            --header-font-size: 32px;
-            --sub-heading-font-size: 24px;
-            --secondary-font-size: 18px;
-            --primary-font-size: 16px;
-            --primary-color: #4fae76;
-            --secondary-color: #ffffff;
-            --text-color-one: #000000;
-            --text-color-two: rgba(31, 8, 8, 0.6));
-            --button-border-radius: 6px;
-            --button-padding: 0.5rem 1.5rem;
-        }
+    .container {
+        width: 98%;
+        margin: 0 auto;
+    }
 
-        .container {
-            width: 98%;
-            margin: 0 auto;
-        }
+    .details-container {
+        margin-top: 6em;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+        padding: 1em 2em 3.5em 2em;
+        text-align: left;
+    }
 
-        .details-container {
-            margin-top: 6em;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-            padding: 1em 2em 3.5em 2em;
-            text-align: left;
-        }
+    .wrapper-link {
+        display: block;
+        text-align: center;
+    }
 
-        .wrapper-link {
-            display: block;
-            text-align: center;
-        }
+    .button {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: var(--button-padding);
+        border-radius: var(--button-border-radius);
+        font-size: var(--secondary-font-size);
+    }
 
-        .button {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: var(--button-padding);
-            border-radius: var(--button-border-radius);
-            font-size: var(--secondary-font-size);
-        }
+    .button:hover {
+        text-decoration: none;
+        color: #fff;
+    }
 
-        .button-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            justify-content: center;
-            margin-top: 3em;
-        }
+    .button-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        margin-top: 3em;
+    }
 
-        .header {
-            margin-top: 2rem;
-            font-size: var(--sub-heading-font-size);
-        }
-    </style>
-</head>
+    .header {
+        margin-top: 2rem;
+        font-size: var(--sub-heading-font-size);
+    }
+</style>
 
-<body>
-    <div class="container">
+<div class="container">
 
-        <div class="details-container">
-            {{#if success_msg }}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <span>{{ success_msg }}</span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {{/if}}
-            <h2 class="header">User details.</h2>
-            <hr>
-            <br>
-            <p><b>Name</b>: {{name}}</p>
-            <p><b>Email</b>: {{email}}</p>
-            <p><b>Delivery address</b>: {{address}}</p>
-            <p><b>Phone number</b>: {{phone}}</p>
-            <div class="button-container">
-                <a href="/user/update-details" class="wrapper-link button">Update details</a>
-            </div>
-
-
+    <div class="details-container">
+        {{#if success_msg }}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <span>{{ success_msg }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </div>
-</body>
+        {{/if}}
+        <h2 class="header">User details.</h2>
+        <hr>
+        <br>
+        <p><b>Name</b>: {{name}}</p>
+        <p><b>Email</b>: {{email}}</p>
+        <p><b>Delivery address</b>: {{address}}</p>
+        <p><b>Phone number</b>: {{phone}}</p>
+        <div class="button-container">
+            <a href="/user/update-details" class="wrapper-link button">Update details</a>
+        </div>
 
-</html>
+
+    </div>
+</div>

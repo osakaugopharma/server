@@ -8,7 +8,7 @@
     --primary-color: #4fae76;
     --secondary-color: #ffffff;
     --text-color-one: #000000;
-    --text-color-two: rgba(31, 8, 8, 0.6));
+    --text-color-two: rgba(31, 8, 8, 0.6);
     --button-border-radius: 6px;
     --button-padding: 0.5rem 1.5rem;
   }
@@ -69,8 +69,13 @@
     margin-top: 3em;
   }
 
-  .hover-container button:hover {
-    background-color: #61eea1fb;
+
+  .hover-container a {
+    color: var(--secondary-color);
+  }
+
+  .hover-container button a:hover {
+    text-decoration: none;
   }
 
   .hover-container p.product-name {
@@ -123,75 +128,41 @@
   }
 </style>
 
-<body>
-  <div class="second-custom-container">
-    <div class="product-section-container">
-      <div class="product-title">
-        <p>Antimalaria.</p>
-      </div>
-      <div class="no-of-products">
-        <p>{{ noOfProducts }} products found.</p>
-      </div>
-      {{# each products }}
-      <div class="product-display-grid">
-        {{# each this }}
-        {{#if noOfProductInStock}}
-        <div>
-          <a href="/product-details/{{this._id}}" style="text-decoration: none; color: #000;">
-            <div class="hover-container">
-              <img src="{{ this.imagepath }}">
-              <p class="product-name">{{ this.name }}</p>
-              <p class="product-price">₦{{ this.price }}</p>
-              <button><a href="/add-to-cart/{{this._id}}" style="color: var(--secondary-color);">Add to
-                  cart</a></button>
-            </div>
-          </a>
-        </div>
-        {{else}}
-        <div class="out-of-order-opacity">
+<div class="second-custom-container">
+  <div class="product-section-container">
+    <div class="product-title">
+      <p>Antimalaria.</p>
+    </div>
+    <div class="no-of-products">
+      <p>{{ noOfProducts }} products found.</p>
+    </div>
+    {{# each products }}
+    <div class="product-display-grid">
+      {{# each this }}
+      {{#if noOfProductInStock}}
+      <div>
+        <a href="/product-details/{{this._id}}" style="text-decoration: none; color: #000;">
           <div class="hover-container">
             <img src="{{ this.imagepath }}">
             <p class="product-name">{{ this.name }}</p>
             <p class="product-price">₦{{ this.price }}</p>
-            <p style="font-weight: 600; font-size: 15px;">OUT OF ORDER</p>
+            <button><a href="/add-to-cart/{{this._id}}">Add to
+                cart</a></button>
           </div>
-        </div>
-        {{/if}}
-        {{/each}}
+        </a>
       </div>
-      {{/each}}
-    </div>
-  </div>
-</body>
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div class="container-fluid p-0" style="margin-bottom: 7em;">
-  <div class="container" style="margin-top: 5em;">
-    {{# each products }}
-    <div class="row justify-content-center margin">
-      {{# each this }}
-      <div class="col-6 col-sm-6 col-lg-4 product-container">
-        <img src="{{ this.imagepath }}" class="drug-backdrop">
-        <div class="button-container">
-          <a href="/add-to-cart/{{this._id}}" class="cart-button">Add to cart</a>
+      {{else}}
+      <div class="out-of-order-opacity">
+        <div class="hover-container">
+          <img src="{{ this.imagepath }}">
+          <p class="product-name">{{ this.name }}</p>
+          <p class="product-price">₦{{ this.price }}</p>
+          <p style="font-weight: 600; font-size: 15px;">OUT OF ORDER</p>
         </div>
-
-        <p class="category-paragraph">{{ this.name }}</p>
-        <p class="price">N{{ this.price }}</p>
       </div>
+      {{/if}}
       {{/each}}
     </div>
     {{/each}}
   </div>
 </div>
--->

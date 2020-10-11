@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{description}}">
+  <meta name="keywords" content="{{keywords}}">
+
   <title>{{title}}</title>
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"
     integrity="sha512-KulI0psuJQK8UMpOeiMLDXJtGOZEBm8RZNTyBBHIWqoXoPMFcw+L5AEo0YMpsW8BfiuWrdD1rH6GWGgQBF59Lg=="
-    crossorigin="anonymous" />
+    crossorigin="anonymous">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/js/all.min.js"
     integrity="sha512-IJcmeopmq+pfSnTIIqxay7uUBlIYP+f9wnqhfCMnfS5VOb2X9WDToczDCsbgXthcZZTNGbJyF+TvKSYGWeBpdQ=="
     crossorigin="anonymous"></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
@@ -36,7 +41,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-align: center;
-      color: #2c3e50;
       letter-spacing: 0.01rem;
       font-size: 1em;
     }
@@ -56,4 +60,14 @@
   integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
+<script>
+  $('#view-products').on('click', function () {
+    const productSection = $('#scroll-section').position().top;
+    $('html, body').animate({
+      scrollTop: productSection
+    }, 1500);
+  });
+</script>
+<script src="/js/overlay-nav.js"></script>
+<script src="/js/header.js"></script>
 </html>

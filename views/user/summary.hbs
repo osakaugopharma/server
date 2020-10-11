@@ -1,175 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    :root {
+        --biggest-font-size: 64px;
+        --header-font-size: 32px;
+        --sub-heading-font-size: 24px;
+        --secondary-font-size: 18px;
+        --primary-font-size: 16px;
+        --primary-color: #4fae76;
+        --secondary-color: #ffffff;
+        --text-color-one: #000000;
+        --text-color-two: rgba(31, 8, 8, 0.6));
+        --button-border-radius: 6px;
+        --button-padding: 0.5rem 1.5rem;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        :root {
-            --biggest-font-size: 64px;
-            --header-font-size: 32px;
-            --sub-heading-font-size: 24px;
-            --secondary-font-size: 18px;
-            --primary-font-size: 16px;
-            --primary-color: #4fae76;
-            --secondary-color: #ffffff;
-            --text-color-one: #000000;
-            --text-color-two: rgba(31, 8, 8, 0.6));
-            --button-border-radius: 6px;
-            --button-padding: 0.5rem 1.5rem;
-        }
+    .container {
+        width: 98%;
+        margin: 0 auto;
+    }
 
-        .container {
-            width: 98%;
-            margin: 0 auto;
-        }
+    .delivery-address-input {
+        border-radius: 6px;
+        padding: 0.7em 0.5em;
+        outline: none;
+        width: 100%;
+        font-size: 14px;
+        background-color: #fff;
+        border: 2px solid rgb(238, 236, 236);
+        margin-top: 1em;
+    }
 
-        .details-container {
-            margin-top: 6em;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-            padding: 1em 2em 3em 2em;
-            text-align: left;
-        }
+    .input-container {
+        width: 100%;
+        margin: auto auto 4em auto;
+    }
 
-        .wrapper-link {
-            display: block;
-            text-align: center;
-        }
+    .label-container {
+        width: 100%;
+        margin: 2em auto 0 auto;
+        text-align: left;
+    }
 
-        .button {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: var(--button-padding);
-            border-radius: var(--button-border-radius);
-            font-size: var(--secondary-font-size);
-        }
+    .details-container {
+        margin-top: 6em;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+        padding: 1em 2em 3em 2em;
+        text-align: left;
+    }
 
-        .button-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            align-content: center;
-            margin-top: 3em;
-        }
+    .wrapper-link {
+        display: block;
+        text-align: center;
+    }
 
-        .items-bought-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            box-shadow: rgba(97, 92, 78, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-            justify-content: center;
+    .button {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: var(--button-padding);
+        border-radius: var(--button-border-radius);
+        font-size: var(--secondary-font-size);
+    }
 
-            margin-bottom: 1em;
-        }
+    .button-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-content: center;
+        margin-top: 3em;
+    }
 
-        .items-bought-paragraph {
-            text-align: center;
-            display: grid;
-            grid-template-columns: 1fr;
-            align-items: center;
-        }
+    .items-bought-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        box-shadow: rgba(97, 92, 78, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+        justify-content: center;
 
-        .item-name-container {
-            text-align: center;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
+        margin-bottom: 1em;
+    }
 
-        .item-name-container p {
-            font-weight: 500;
+    .items-bought-paragraph {
+        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
 
-        }
+    .item-name-container {
+        text-align: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 
-        .border-right {
-            border-right: 1px solid #ccc;
-        }
+    .item-name-container p {
+        font-weight: 500;
 
-        .header {
-            margin-top: 2rem;
-            font-size: var(--sub-heading-font-size);
-        }
+    }
 
-        .margin {
-            margin-top: 2em;
-        }
-    </style>
-</head>
+    .border-right {
+        border-right: 1px solid #ccc;
+    }
 
-<body>
-    <div class="container">
-        <div class="details-container">
-            <h2 class="header">Shopping summary.</h2>
-            <hr>
-            <br>
-            <p><b>Email Address</b>: {{email}}.</p>
-            <p><b>Delivery address</b>: {{address}}.</p>
-            <p><b>Phone number</b>: 0{{phone}}.</p>
-            <h2 class="header">Items bought.</h2>
-            <hr>
-            <br>
-            {{#if products}}
-            {{#each products}}
-            <div class="items-bought-container">
+    .header {
+        margin-top: 2rem;
+        font-size: var(--sub-heading-font-size);
+    }
 
-                <div class="item-name-container border-right">
-                    <img src="{{this.item.imagepath}}" width="100" height="100" alt="product image">
-                    <p>{{this.item.name}}</p>
-                </div>
-                <div class="items-bought-paragraph border-right">
-                    <p>₦{{this.item.price}}</p>
-                </div>
-                <div class="items-bought-paragraph">
-                    <p>{{this.qty}} unit(s)</p>
-                </div>
+    .margin {
+        margin-top: 2em;
+    }
+</style>
 
+<div class="container">
+    <div class="details-container">
+        <h2 class="header">Shopping summary.</h2>
+        <hr>
+        <br>
+        <p><b>Email Address</b>: {{email}}.</p>
+        <p><b>Delivery address</b>: {{address}}.</p>
+        <p><b>Phone number</b>: 0{{phone}}.</p>
+        <h2 class="header">Items bought.</h2>
+        <hr>
+        <br>
+        {{#if products}}
+        {{#each products}}
+        <div class="items-bought-container">
 
+            <div class="item-name-container border-right">
+                <img src="{{this.item.imagepath}}" width="100" height="100" alt="product image">
+                <p>{{this.item.name}}</p>
             </div>
-            {{/each}}
-            <nav aria-label="breadcrumb" class="margin">
-                <ol class="breadcrumb"
-                    style="background-color: #4fae76; color: #ffffff; display: grid; grid-template-columns: 1fr 1fr;">
-                    <li class="breadcrumb-item active" aria-current="page"
-                        style="color: #ffffff; font-size: 17px; justify-self: start">Total:
-                    </li>
-                    <span style="justify-self: end;">₦{{totalPrice}}</span>
-                </ol>
-            </nav>
-            <form>
-                <script src="https://checkout.flutterwave.com/v3.js"></script>
-                <div class="button-container">
-                    <button type="button" class="wrapper-link button" onClick="makePayment()">Pay now</button>
-                </div>
-            </form>
-            {{/if}}
+            <div class="items-bought-paragraph border-right">
+                <p>₦{{this.item.price}}</p>
+            </div>
+            <div class="items-bought-paragraph">
+                <p>{{this.qty}} unit(s)</p>
+            </div>
+
 
         </div>
+        {{/each}}
+
+        <div class="alert alert-info mt-5">
+            <h6><u>Info:</u></h6>
+            <span style="font-size: 14px;">We currently support delivery to <strong>Anambra</strong>, <strong>Enugu</strong> and <strong>Imo</strong> state. More delivery locations coming soon.</span>
+        </div>
+
+        <div class="label-container">
+            <label for="region">Region</label>
+        </div>
+
+        <div class="input-container">
+            <select name="region" id="region" class="delivery-address-input" onchange="updateTotalPrice()" required>
+                <option value="" selected>Please select a delivery region</option>
+                <option value="1500">Enugu: Delivery fee: 1500</option>
+                <option value="1800">Anambra: Delivery fee: 1800</option>
+                <option value="1700">Imo: Delivery fee: 1700</option>
+            </select>
+            {{!-- <input id="region" type="radio" class="delivery-address-input" name="region" required> --}}
+        </div>
+        <nav aria-label="breadcrumb" class="margin">
+            <ol class="breadcrumb"
+                style="background-color: #4fae76; color: #ffffff; display: grid; grid-template-columns: 1fr 1fr;">
+                <li class="breadcrumb-item active" aria-current="page"
+                    style="color: #ffffff; font-size: 17px; justify-self: start">Total:
+                </li>
+                <span style="justify-self: end;" id="total"></span>
+            </ol>
+        </nav>
+
+        <form>
+            <script src="https://checkout.flutterwave.com/v3.js"></script>
+            <div class="button-container">
+                <button type="button" class="wrapper-link button" onClick="makePayment()">Pay now</button>
+            </div>
+        </form>
+        {{/if}}
 
     </div>
 
+</div>
 
-    <script>
-        var uid = Math.random().toString(36).substr(2, 9);
-        function makePayment() {
-            FlutterwaveCheckout({
-                public_key: 'FLWPUBK_TEST-b558592d89819939a19def517273deec-X',
-                tx_ref: `oup-${uid}`,
-                amount: {{ totalPrice }},
-        currency: "NGN",
+
+<script>
+    var fAmount;
+    function updateTotalPrice() {
+        var cartTotal = {
+            amount: {{ totalPrice }}
+        }
+        var deliveryFee = document.getElementById("region").value;
+        fAmount = parseInt(cartTotal.amount, 10) + parseInt(deliveryFee, 10);
+        document.getElementById('total').textContent = `₦${fAmount}`; 
+    }
+
+    var uid = Math.random().toString(36).substr(2, 9);
+    function makePayment() {
+        FlutterwaveCheckout({
+            public_key: 'FLWPUBK_TEST-b558592d89819939a19def517273deec-X',
+            tx_ref: `oup-${uid}`,
+            amount: fAmount,
+            currency: "NGN",
             payment_options: "card,mobilemoney,ussd",
-                redirect_url: "/success",
-                    customer: {
-            email: "{{ email }}",
-                phone_number: "08102909304",
-      },
-        callback: function (data) {
-            console.log(data);
-        },
-        customizations: {
-            title: "Payment for item",
+            redirect_url: "/success",
+            customer: {
+                email: "{{ email }}",
+                phone_number: "{{ phone }}",
+            },
+            callback: function (data) {
+                console.log(data);
+            },
+            customizations: {
+                title: "Payment for item",
                 description: "Payment for items in cart",
-      },
-    });
-  }
-    </script>
-</body>
-
-</html>
+            },
+        });
+    }
+</script>

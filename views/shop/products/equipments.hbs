@@ -74,8 +74,13 @@
     margin-top: 1em;
   }
 
-  .hover-container button:hover {
-    background-color: #61eea1fb;
+
+  .hover-container a {
+    color: var(--secondary-color);
+  }
+
+  .hover-container button a:hover {
+    text-decoration: none;
   }
 
   .hover-container p.product-name {
@@ -147,7 +152,7 @@
               <img src="{{ this.imagepath }}">
               <p class="product-name">{{ this.name }}</p>
               <p class="product-price">N{{ this.price }}</p>
-              <button><a href="/add-to-cart/{{this._id}}" style="color: var(--secondary-color);">Add to
+              <button><a href="/add-to-cart/{{this._id}}">Add to
                   cart</a></button>
             </div>
           </a>

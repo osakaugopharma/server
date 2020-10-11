@@ -1,38 +1,179 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    :root {
+        --biggest-font-size: 64px;
+        --header-font-size: 32px;
+        --sub-heading-font-size: 24px;
+        --secondary-font-size: 18px;
+        --primary-font-size: 16px;
+        --primary-color: #4fae76;
+        --secondary-color: #ffffff;
+        --text-color-one: #000000;
+        --text-color-two: rgba(0, 0, 0, 0.6);
+        --button-border-radius: 6px;
+        --button-padding: 0.5rem 1.5rem;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        :root {
-            --biggest-font-size: 64px;
-            --header-font-size: 32px;
-            --sub-heading-font-size: 24px;
-            --secondary-font-size: 18px;
-            --primary-font-size: 16px;
-            --primary-color: #4fae76;
-            --secondary-color: #ffffff;
-            --text-color-one: #000000;
-            --text-color-two: rgba(0, 0, 0, 0.6);
-            --button-border-radius: 6px;
-            --button-padding: 0.5rem 1.5rem;
+    .third-custom-container {
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    .signup-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 6.5em;
+        grid-column-gap: 6em;
+    }
+
+    .info-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px 50px 200px;
+        padding-top: 2em;
+        padding-left: 2em;
+    }
+
+    .signup-header {
+        font-size: var(--header-font-size);
+        font-weight: 500;
+        text-align: left;
+        color: var(--text-color-one);
+    }
+
+    .signup-header-mobile {
+        font-size: var(--header-font-size);
+        font-weight: 500;
+        text-align: left;
+        color: var(--text-color-one);
+    }
+
+    div.signup-info-paragraph-mobile {
+        text-align: left;
+        font-size: var(--primary-font-size);
+        color: var(--text-color-two);
+    }
+
+    div.signup-info-paragraph {
+        text-align: left;
+        font-size: var(--primary-font-size);
+        color: var(--text-color-two);
+    }
+
+    .form-section p {
+        color: var(--text-color-one);
+        font-size: var(--primary-font-size);
+        margin-top: 3em;
+        text-align: left;
+    }
+
+    .form-section div {
+        text-align: left;
+        margin-top: 2em;
+    }
+
+    .form-section div input {
+        border-radius: 6px;
+        padding: 0.7em 0.5em;
+        outline: none;
+        width: 29em;
+        font-size: 14px;
+        border: 2px solid rgb(238, 236, 236);
+    }
+
+    .form-section div button {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: var(--button-padding);
+        border-radius: var(--button-border-radius);
+        font-size: var(--secondary-font-size);
+        outline: none;
+    }
+
+    .already-a-member p {
+        margin-top: 0.2em;
+        font-weight: 400 !important;
+        font-size: 14px;
+    }
+
+    @media (max-width: 575.98px) {
+        .signup-container {
+            grid-template-columns: 1fr;
+            margin-top: 4em;
         }
 
-        .third-custom-container {
-            width: 75%;
-            margin: 0 auto;
+        div.info-section {
+            display: none;
         }
 
+        .form-section div input {
+            width: 100%;
+        }
+
+        div.signup-info-paragraph-mobile p {
+            display: none;
+        }
+
+        div.submit-button-container {
+            margin-top: 3em;
+            text-align: center;
+        }
+
+        .already-a-member p {
+            text-align: center;
+        }
+
+        p.signup-paragraph-secondary-text {
+            text-align: left;
+            color: var(--text-color-two);
+            margin-top: -0.5rem;
+            margin-bottom: 3rem;
+            font-size: var(--primary-font-size);
+        }
+    }
+
+    @media (min-width: 576px) {
+        .signup-container {
+            grid-template-columns: 1fr;
+            margin-top: 4em;
+        }
+
+        div.info-section {
+            display: none;
+        }
+
+        .form-section div input {
+            width: 100%;
+        }
+
+        .signup-header-mobile {
+            display: block;
+        }
+
+        .form-section p {
+            margin-top: 2em;
+        }
+
+        div.signup-info-paragraph-mobile {
+            display: none;
+        }
+
+        p.signup-paragraph-secondary-text {
+            color: var(--text-color-two);
+        }
+    }
+
+    @media (min-width: 992px) {
         .signup-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            margin-top: 6.5em;
-            grid-column-gap: 6em;
+            margin-top: 6em;
         }
 
-        .info-section {
+        .third-custom-container {
+            width: 85%;
+        }
+
+        div.info-section {
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 100px 50px 200px;
@@ -40,241 +181,83 @@
             padding-left: 2em;
         }
 
-        .signup-header {
-            font-size: var(--header-font-size);
-            font-weight: 500;
-            text-align: left;
-            color: var(--text-color-one);
-        }
-
         .signup-header-mobile {
-            font-size: var(--header-font-size);
-            font-weight: 500;
-            text-align: left;
-            color: var(--text-color-one);
+            display: none;
         }
 
         div.signup-info-paragraph-mobile {
-            text-align: left;
-            font-size: var(--primary-font-size);
-            color: var(--text-color-two);
-
+            display: none;
         }
+    }
+</style>
 
-        div.signup-info-paragraph {
-            text-align: left;
-            font-size: var(--primary-font-size);
-            color: var(--text-color-two);
-        }
-
-
-        .form-section p {
-            color: var(--text-color-one);
-            font-size: var(--primary-font-size);
-            margin-top: 3em;
-            text-align: left;
-        }
-
-        .form-section div {
-            text-align: left;
-            margin-top: 2em;
-        }
-
-        .form-section div input {
-            border-radius: 6px;
-            padding: 0.7em 0.5em;
-            outline: none;
-            width: 29em;
-            font-size: 14px;
-            border: 2px solid rgb(238, 236, 236);
-        }
-
-        .form-section div button {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: var(--button-padding);
-            border-radius: var(--button-border-radius);
-            font-size: var(--secondary-font-size);
-        }
-
-        .already-a-member p {
-            margin-top: 0.2em;
-            font-weight: 400 !important;
-            font-size: 14px;
-        }
-
-        @media(max-width: 575.98px) {
-            .signup-container {
-                grid-template-columns: 1fr;
-                margin-top: 4em;
-            }
-
-            div.info-section {
-                display: none;
-            }
-
-            .form-section div input {
-                width: 100%;
-            }
-
-            div.signup-info-paragraph-mobile p {
-                display: none;
-            }
-
-            div.submit-button-container {
-                margin-top: 3em;
-                text-align: center;
-            }
-
-            .already-a-member p {
-                text-align: center;
-            }
-
-            p.signup-paragraph-secondary-text {
-                text-align: left;
-                color: var(--text-color-two);
-                margin-top: -0.5rem;
-                margin-bottom: 3rem;
-                font-size: var(--primary-font-size);
-            }
-        }
-
-        @media(min-width: 576px) {
-            .signup-container {
-                grid-template-columns: 1fr;
-                margin-top: 4em;
-            }
-
-            div.info-section {
-                display: none;
-            }
-
-            .form-section div input {
-                width: 100%;
-            }
-
-
-            .signup-header-mobile {
-                display: block;
-            }
-
-            .form-section p {
-                margin-top: 2em;
-            }
-
-            div.signup-info-paragraph-mobile {
-                display: none;
-            }
-
-            p.signup-paragraph-secondary-text {
-
-                color: var(--text-color-two);
-
-            }
-
-        }
-
-        @media(min-width: 992px) {
-            .signup-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                margin-top: 6em;
-            }
-
-            .third-custom-container {
-                width: 85%;
-            }
-
-            div.info-section {
-                display: grid;
-                grid-template-columns: 1fr;
-                grid-template-rows: 100px 50px 200px;
-                padding-top: 2em;
-                padding-left: 2em;
-            }
-
-            .signup-header-mobile {
-                display: none;
-            }
-
-            div.signup-info-paragraph-mobile {
-                display: none;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="third-custom-container">
-        <div class="signup-container">
-            <div class="info-section">
-                <div class="signup-header">
-                    Create an account.
-                </div>
-                <div class="signup-info-paragraph">
-                    <p>Get the best of our products and services by creating a user account on our platform.</p>
-                </div>
-
+<div class="third-custom-container">
+    <div class="signup-container">
+        <div class="info-section">
+            <div class="signup-header">
+                Create an account.
             </div>
-            <div class="form-section">
-
-                <div class="signup-header-mobile">
-                    Create an account.
-                </div>
-                <div class="signup-info-paragraph-mobile">
-                    <p>Get the best of our products and services by creating a user account on our platform.</p>
-                </div>
-                {{#if hasErrors}}
-                {{#each messages }}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <span>{{this}}</span>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"
-                        style="background-color: #fff3cd;">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                {{/each}}
-                {{/if}}
-
-                <p class="signup-paragraph-secondary-text">Sign up to inorder to purchase from us.</p>
-                <form action="/user/signup" method="post">
-                    <div>
-                        <label>Full Name</label>
-                        <br>
-                        <input type="text" placeholder="John Doe" name="name" value="{{ name }}" required />
-                    </div>
-
-                    <div>
-                        <label>Email Address</label>
-                        <br>
-                        <input type="email" placeholder="example@gmail.com" id="email" name="email" value="{{ email }}"
-                            required />
-
-                    </div>
-
-                    <div>
-                        <label>Password</label>
-                        <br>
-                        <input type="password" placeholder="6+ characters" id="password" name="password"
-                            value="{{ password }}" required />
-                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
-
-                        <div class="submit-button-container">
-                            <button type="submit">Submit</button>
-                        </div>
-
-                        <div class="already-a-member">
-                            <p>Already registered? <a href="/user/signin"><span
-                                        style="color: var(--primary-color); font-weight: 500">Sign in</span></a></p>
-                        </div>
-
-
-                </form>
-
+            <div class="signup-info-paragraph">
+                <p>Get the best of our products and services by creating a user account on our platform.</p>
             </div>
 
         </div>
-    </div>
-</body>
+        <div class="form-section">
 
-</html>
+            <div class="signup-header-mobile">
+                Create an account.
+            </div>
+            <div class="signup-info-paragraph-mobile">
+                <p>Get the best of our products and services by creating a user account on our platform.</p>
+            </div>
+            {{#if hasErrors}}
+            {{#each messages }}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <span>{{this}}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                    style="background-color: #fff3cd;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/each}}
+            {{/if}}
+
+            <p class="signup-paragraph-secondary-text">Sign up to inorder to purchase from us.</p>
+            <form action="/user/signup" method="post">
+                <div>
+                    <label>Full Name</label>
+                    <br>
+                    <input type="text" placeholder="John Doe" name="name" value="{{ name }}" required />
+                </div>
+
+                <div>
+                    <label>Email Address</label>
+                    <br>
+                    <input type="email" placeholder="example@gmail.com" id="email" name="email" value="{{ email }}"
+                        required />
+
+                </div>
+
+                <div>
+                    <label>Password</label>
+                    <br>
+                    <input type="password" placeholder="6+ characters" id="password" name="password"
+                        value="{{ password }}" required />
+                    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+                    <div class="submit-button-container">
+                        <button type="submit">Submit</button>
+                    </div>
+
+                    <div class="already-a-member">
+                        <p>Already registered? <a href="/user/signin"><span
+                                    style="color: var(--primary-color); font-weight: 500">Sign in</span></a></p>
+                    </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+</div>

@@ -1,396 +1,383 @@
-<!DOCTYPE html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  
-
-  <style>
-    :root {
-      --biggest-font-size: 64px;
-      --header-font-size: 32px;
-      --sub-heading-font-size: 24px;
-      --secondary-font-size: 18px;
-      --primary-font-size: 16px;
-      --primary-color: #4fae76;
-      --secondary-color: #ffffff;
-      --text-color-one: #000000;
-      --text-color-two: rgba(31, 8, 8, 0.6));
-      --button-border-radius: 6px;
-      --button-padding: 0.5rem 1.5rem;
-    }
-
-    .custom-container {
-      width: 90%;
-      margin: 0 auto;
-    }
-
-    .second-custom-container {
-      width: 85%;
-      margin: 0 auto;
-    }
-
-    .hero-section {
-      margin-top: 0;
-      height: 50em;
-
-      background: url('/images/pills.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    .hero-section h1 {
-      font-size: var(--biggest-font-size);
-      font-weight: bold;
-      color: var(--secondary-color);
-      margin-bottom: 0.34em;
-    }
-
-    .hero-section p {
-      font-size: var(--secondary-font-size);
-      color: var(--secondary-color);
-      margin-bottom: 2.55em;
-      width: 30em;
-      line-height: 1.8;
-    }
-
-    .hero-section-content-grid {
-      text-align: left;
-      margin-top: 4.5em;
-      padding-top: 5em;
-    }
-
-    .hero-section button {
-      background-color: var(--primary-color);
-      color: var(--secondary-color);
-      padding: var(--button-padding);
-      border-radius: var(--button-border-radius);
-      font-size: var(--secondary-font-size);
-    }
-
-    .product-description h2 {
-      font-size: var(--header-font-size);
-      margin-bottom: 0.3em;
-      margin-top: 4em !important;
-    }
-
-    .product-description p {
-      font-size: var(--secondary-font-size);
-      color: var(--text-color-two);
-    }
-
-    .product-description-image {
-      margin-bottom: 1em;
-    }
-
-    .product-description-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      column-gap: 5px;
-      margin-top: 4em;
-      color: #000;
-    }
-
-    .product-description-block {
-      box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-      border-radius: 6px;
-      padding: 2em 2em 1em 2em;
-    }
-
-    .product-description-text h3 {
-      font-size: 20px;
-      letter-spacing: -0.1px;
-      font-weight: 500;
-      margin-bottom: 1em;
-      margin-top: 1.5em;
-    }
-
-    .product-description-text p {
-      line-height: 2em;
-      color: var(--text-color-two);
-      font-size: 15px;
-    }
-
-    .product-category-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      column-gap: 1em;
-      row-gap: 3em;
-      grid-auto-rows: minmax(50px, auto);
-      margin-top: 6.5em;
-      margin-bottom: 6.5em;
-    }
-
-    .product-category-element {
-      display: grid;
-      grid-template-columns: 1fr 3fr;
-      box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-      border-radius: 6px;
-      background-color: #fff;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      cursor: pointer;
-    }
-
-    .product-category-element:active {
-      background-color: #aae6c5;
-    }
-
-    .product-icon-description,
-    .icon-container {
-      align-self: center;
-
-    }
-
-    .icon-container {
-      font-size: var(--sub-heading-font-size);
-
-    }
-
-    .icon-container svg {
-      margin-top: 10px;
-
-    }
-
-    .icon-container path {
-      color: #fff !important;
-    }
-
-    .icon-container div {
-      background-color: var(--primary-color);
-      width: 46px;
-      height: 46px;
-      border-radius: 23px;
-      margin: 0 auto;
-    }
-
-    .product-icon-description {
-      text-align: left;
-      margin-top: 12px;
-    }
-
-    .product-icon-description p {
-      color: #000;
-    }
-
-    .featured-product-category-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background-color: var(--primary-color);
-      text-align: left;
-      padding: 0.01em 1.5em;
-      border-radius: 6px 6px 0 0;
-    }
-
-    .featured-product-category-header .view-more-button {
-      text-align: right;
-    }
-
-    .featured-product-category-header .view-more-button p {
-      font-size: var(--primary-font-size);
-    }
-
-    .featured-product-category-header p {
-      margin-top: 15px;
-      color: #fff;
-      font-size: var(--secondary-font-size);
-    }
-
-    .featured-products {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-gap: 1em;
-    }
-
-    .featured-product-category {
-      box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-      border-radius: 6px;
-      margin-bottom: 2em;
-    }
-
-    .category-paragraph {
-      margin-bottom: 0;
-      font-size: 14px;
-    }
-
-    .out-of-order-opacity {
-      -webkit-filter: opacity(25%);
-      -moz-filter: opacity(25%);
-      -o-filter: opacity(25%);
-      -ms-filter: opacity(25%);
-      filter: opacity(25%);
-    }
-
-    p.price {
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-
-
-    /* MEDIA QUERIES */
-    @media(max-width: 575.98px) {
-      .hero-section {
-        height: 35em;
-      }
-
-      .hero-section-content-grid h1 {
-        font-size: 2.5em;
-        width: 10em;
-        margin-right: 0 !important;
-      }
-
-      .hero-section-content-grid p {
-        width: 20em;
-        margin-top: 1.5rem;
-      }
-
-      .product-description h2 {
-        margin-top: 2.8em !important;
-      }
-
-      .product-description p {
-        margin-top: 1rem;
-      }
-
-      .product-description-grid {
-        grid-template-columns: 1fr;
-        row-gap: 1em;
-      }
-
-      .product-category-grid {
-        grid-template-columns: 1fr;
-        grid-gap: 1.5em;
-        margin-top: 3.5em;
-      }
-
-      .featured-product-category-header p {
-        font-size: var(--primary-font-size);
-      }
-
-      .featured-products {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .featured-product-category-header {
-        grid-template-columns: 3fr 2fr;
-      }
-
-      .price {
-        font-size: 14px;
-        font-weight: 500;
-      }
-
-      .category-paragraph,
-      .price {
-        font-size: 14px;
-      }
-
-      .view-more-button p a {
-        font-size: 14px;
-        font-weight: bold;
-      }
-    }
-
-    @media(min-width: 576px) {
-      .hero-section-content-grid p {
-        width: 23em;
-        margin-top: 1.5rem;
-      }
-
-      .hero-section-content-grid h1 {
-        font-size: 2.5em;
-        width: 10em;
-      }
-
-      .hero-section {
-        height: 35em;
-      }
-
-      .product-description {
-        width: 80%;
-        margin: auto;
-      }
-
-      .product-description-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-category-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .featured-products {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media(min-width: 768px) {
-      .product-category-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(min-width: 992px) {
-      .hero-section h1 {
-        font-size: var(--biggest-font-size);
-        font-weight: bold;
-        color: var(--secondary-color);
-        margin-bottom: 0.34em;
-      }
-
-      .hero-section p {
-        font-size: var(--secondary-font-size);
-        color: var(--secondary-color);
-        margin-bottom: 2.55em;
-        width: 30em;
-        line-height: 1.8;
-      }
-
-      .product-description-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        column-gap: 25px;
-        margin-top: 4em;
-        color: #000;
-      }
-
-      .product-category-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 1em;
-        grid-row-gap: 3em;
-        grid-auto-rows: minmax(50px, auto);
-        margin-top: 6.5em;
-        margin-bottom: 6.5em;
-      }
-
-      .featured-product-category-header p {
-        margin-top: 15px;
-        color: #fff;
-        font-size: var(--secondary-font-size);
-      }
-
-      .featured-products {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 1em;
-      }
-    }
-  </style>
-
-
-</head>
-
-<body>
-  <div class="hero-section">
+<style>
+  :root {
+  --biggest-font-size: 64px;
+  --header-font-size: 32px;
+  --sub-heading-font-size: 24px;
+  --secondary-font-size: 18px;
+  --primary-font-size: 16px;
+  --primary-color: #4fae76;
+  --secondary-color: #ffffff;
+  --text-color-one: #000000;
+  --text-color-two: rgba(31, 8, 8, 0.6);
+  --button-border-radius: 6px;
+  --button-padding: 0.5rem 1.5rem;
+}
+
+.custom-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.second-custom-container {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.hero-section {
+  margin-top: 0;
+  height: 50em;
+
+  background: url('/images/pills.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-section h1 {
+  font-size: var(--biggest-font-size);
+  font-weight: bold;
+  color: var(--secondary-color);
+  margin-bottom: 0.34em;
+}
+
+.hero-section p {
+  font-size: var(--secondary-font-size);
+  color: var(--secondary-color);
+  margin-bottom: 2.55em;
+  width: 30em;
+  line-height: 1.8;
+}
+
+.hero-section-content-grid {
+  text-align: left;
+  margin-top: 4.5em;
+  padding-top: 5em;
+}
+
+.hero-section button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-border-radius);
+  font-size: var(--secondary-font-size);
+  outline: none;
+}
+
+.product-description h2 {
+  font-size: var(--header-font-size);
+  margin-bottom: 0.3em;
+  margin-top: 4em !important;
+}
+
+.product-description p {
+  font-size: var(--secondary-font-size);
+  color: var(--text-color-two);
+}
+
+.product-description-image {
+  margin-bottom: 1em;
+}
+
+.product-description-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5px;
+  margin-top: 4em;
+  color: #000;
+}
+
+.product-description-block {
+  box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px,
+    rgba(84, 70, 35, 0.15) 0px 1px 3px;
+  border-radius: 6px;
+  padding: 2em 2em 1em 2em;
+}
+
+.product-description-text h3 {
+  font-size: 20px;
+  letter-spacing: -0.1px;
+  font-weight: 500;
+  margin-bottom: 1em;
+  margin-top: 1.5em;
+}
+
+.product-description-text p {
+  line-height: 2em;
+  color: var(--text-color-two);
+  font-size: 15px;
+}
+
+.product-category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1em;
+  row-gap: 3em;
+  grid-auto-rows: minmax(50px, auto);
+  margin-top: 6.5em;
+  margin-bottom: 6.5em;
+}
+
+.product-category-element {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px,
+    rgba(84, 70, 35, 0.15) 0px 1px 3px;
+  border-radius: 6px;
+  background-color: #fff;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.product-category-element:active {
+  background-color: #aae6c5;
+}
+
+.product-icon-description,
+.icon-container {
+  align-self: center;
+}
+
+.icon-container {
+  font-size: var(--sub-heading-font-size);
+}
+
+.icon-container svg {
+  margin-top: 10px;
+}
+
+.icon-container path {
+  color: #fff !important;
+}
+
+.icon-container div {
+  background-color: var(--primary-color);
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  margin: 0 auto;
+}
+
+.product-icon-description {
+  text-align: left;
+  margin-top: 12px;
+}
+
+.product-icon-description p {
+  color: #000;
+}
+
+.featured-product-category-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--primary-color);
+  text-align: left;
+  padding: 0.01em 1.5em;
+  border-radius: 6px 6px 0 0;
+}
+
+.featured-product-category-header .view-more-button {
+  text-align: right;
+}
+
+.featured-product-category-header .view-more-button p {
+  font-size: var(--primary-font-size);
+}
+
+.featured-product-category-header p {
+  margin-top: 15px;
+  color: #fff;
+  font-size: var(--secondary-font-size);
+}
+
+.featured-products {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1em;
+}
+
+.featured-product-category {
+  box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px,
+    rgba(84, 70, 35, 0.15) 0px 1px 3px;
+  border-radius: 6px;
+  margin-bottom: 2em;
+}
+
+.category-paragraph {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.out-of-order-opacity {
+  -webkit-filter: opacity(25%);
+  -moz-filter: opacity(25%);
+  -o-filter: opacity(25%);
+  -ms-filter: opacity(25%);
+  filter: opacity(25%);
+}
+
+p.price {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 575.98px) {
+  .hero-section {
+    height: 35em;
+  }
+
+  .hero-section-content-grid h1 {
+    font-size: 2.5em;
+    width: 10em;
+    margin-right: 0 !important;
+  }
+
+  .hero-section-content-grid p {
+    width: 20em;
+    margin-top: 1.5rem;
+  }
+
+  .product-description h2 {
+    margin-top: 2.8em !important;
+  }
+
+  .product-description p {
+    margin-top: 1rem;
+  }
+
+  .product-description-grid {
+    grid-template-columns: 1fr;
+    row-gap: 1em;
+  }
+
+  .product-category-grid {
+    grid-template-columns: 1fr;
+    grid-gap: 1.5em;
+    margin-top: 3.5em;
+  }
+
+  .featured-product-category-header p {
+    font-size: var(--primary-font-size);
+  }
+
+  .featured-products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featured-product-category-header {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .price {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .category-paragraph,
+  .price {
+    font-size: 14px;
+  }
+
+  .view-more-button p a {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 576px) {
+  .hero-section-content-grid p {
+    width: 23em;
+    margin-top: 1.5rem;
+  }
+
+  .hero-section-content-grid h1 {
+    font-size: 2.5em;
+    width: 10em;
+  }
+
+  .hero-section {
+    height: 35em;
+  }
+
+  .product-description {
+    width: 80%;
+    margin: auto;
+  }
+
+  .product-description-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-category-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .featured-products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .product-category-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-section h1 {
+    font-size: var(--biggest-font-size);
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 0.34em;
+  }
+
+  .hero-section p {
+    font-size: var(--secondary-font-size);
+    color: var(--secondary-color);
+    margin-bottom: 2.55em;
+    width: 30em;
+    line-height: 1.8;
+  }
+
+  .product-description-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 25px;
+    margin-top: 4em;
+    color: #000;
+  }
+
+  .product-category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1em;
+    grid-row-gap: 3em;
+    grid-auto-rows: minmax(50px, auto);
+    margin-top: 6.5em;
+    margin-bottom: 6.5em;
+  }
+
+  .featured-product-category-header p {
+    margin-top: 15px;
+    color: #fff;
+    font-size: var(--secondary-font-size);
+  }
+
+  .featured-products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1em;
+  }
+}
+</style>
+
+<div class="hero-section">
     <div class="custom-container">
       <div class="hero-section-content-grid">
         <div>
-          <h1>Pharmaceuticals made easy and accessible.</h1>
+          <h1>Biopharmaceuticals made easy and accessible.</h1>
           <p>Get quality products and services tailored just for you at affordable prices. We use the latest
             technologies
             to provide top-notch experiences to our customers.</p>
@@ -626,14 +613,5 @@
     </div>
   </div>
 
-  <script>
-    $('#view-products').on('click', function () {
-      const productSection = $('#scroll-section').position().top;
-      $('html, body').animate({
-        scrollTop: productSection
-      }, 1500);
-    });
-  </script>
-</body>
 
-</html>
+

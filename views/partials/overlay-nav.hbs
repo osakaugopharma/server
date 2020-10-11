@@ -1,179 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    .overlay {
+        height: 0;
+        width: 100%;
+        position: fixed;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        background-color: rgb(255, 255, 255);
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    .overlay-content {
+        position: relative;
+        width: 70%;
+        margin-top: 30px;
+    }
 
-    <style>
-        .overlay {
-            height: 0;
-            width: 100%;
-            position: fixed;
-            z-index: 2;
-            left: 0;
-            top: 0;
-            background-color: rgb(255, 255, 255);
-            overflow-x: hidden;
-            transition: 0.5s;
-        }
+    .overlay a {
+        padding: 1rem 2rem;
+        text-decoration: none;
+        font-size: 18px;
+        color: #000;
+        display: block;
+        transition: 0.3s;
+    }
 
-        .overlay-content {
-            position: relative;
-            width: 70%;
-            margin-top: 30px;
-        }
+    .dropdown-content a {
+        font-size: 14px;
+    }
 
+    .overlay a:hover,
+    .overlay a:focus {
+        color: #000000;
+    }
 
+    .overlay .closebtn {
+        font-size: 36px;
+        color: #000;
+    }
+
+    .overlay li {
+        list-style-type: none;
+    }
+
+    @media screen and (max-height: 450px) {
         .overlay a {
-            padding: 1rem 2rem;
-            text-decoration: none;
-            font-size: 18px;
-            color: #000;
-            display: block;
-            transition: 0.3s;
+            font-size: 10px;
         }
-
-        .dropdown-content a {
-            font-size: 14px;
-        }
-
-        .overlay a:hover,
-        .overlay a:focus {
-            color: #000000;
-        }
-
 
         .overlay .closebtn {
-            font-size: 36px;
-            color: #000;
+            font-size: 40px;
+            top: 15px;
+            right: 35px;
         }
+    }
 
-        .overlay li {
-            list-style-type: none;
-        }
+    .dropdown-content {
+        display: none;
+    }
 
-        @media screen and (max-height: 450px) {
-            .overlay a {
-                font-size: 10px;
-            }
+    .show {
+        display: block;
+    }
+</style>
 
-            .overlay .closebtn {
-                font-size: 40px;
-                top: 15px;
-                right: 35px;
-            }
-        }
-
-        .dropdown-content {
-            display: none;
-        }
-
-        .show {
-            display: block;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="myNav" class="overlay">
-        <div class="row" style="height: 10%;">
-            <div class="col-2">
-                <a href="javascript:void(0)" class="closebtn" id="closeBtn">&times;</a>
-            </div>
-            <div class="col-8">
-                <img src="/images/OU6.png" alt="logo" width="120" height="40" class="mt-4 mr-2" />
-            </div>
+<div id="myNav" class="overlay">
+    <div class="row" style="height: 10%;">
+        <div class="col-2">
+            <a href="javascript:void(0)" class="closebtn" id="closeBtn">&times;</a>
         </div>
-        <hr />
-        <div class="overlay-content">
-
-            <a href="/" class="text-left">Home</a>
-            <a id="products-link" class="dropbtn text-left">
-                Products
-                <i class="fas fa-caret-down" id="p-dropdown-icon" style="color: #000"></i>
-            </a>
-            <a href="/contact" class="text-left">Contact us</a>
-
-            <a href="/about" class="text-left">About</a>
-
-            <a href="#" id="login-link" class="text-left">
-                Login
-                <i class="fas fa-caret-down" id="l-dropdown-icon" style="color: #000"></i>
-            </a>
-            <div class="dropdown-content text-left" id="login">
-                {{# if login }}
-                <a href="/user/profile">User account</a>
-                <a href="/user/logout">Logout</a>
-                {{ else }}
-                <a href="/user/signup">Create account</a>
-                <a href="/user/signin">Sign in</a>
-                {{/if}}
-            </div>
-            <div class="dropdown"></div>
+        <div class="col-8">
+            <img src="/images/logo.png" alt="logo" width="120" height="40" class="mt-4 mr-2" />
         </div>
     </div>
+    <hr />
+    <div class="overlay-content">
+        <a href="/" class="text-left">Home</a>
+        <a id="products-link" class="dropbtn text-left">
+            Products
+            <i class="fas fa-caret-down" id="p-dropdown-icon" style="color: #000"></i>
+        </a>
+        <a href="/contact" class="text-left">Contact us</a>
 
-    <div id="productNav" class="overlay">
-        <div class="row" style="height
+        <a href="/about" class="text-left">About</a>
+
+        <a href="#" id="login-link" class="text-left">
+            Account
+            <i class="fas fa-caret-down" id="l-dropdown-icon" style="color: #000"></i>
+        </a>
+        <div class="dropdown-content text-left" id="login">
+            {{# if login }}
+            <a href="/user/profile">User account</a>
+            <a href="/user/logout">Logout</a>
+            {{ else }}
+            <a href="/user/signup">Create account</a>
+            <a href="/user/signin">Sign in</a>
+            {{/if}}
+        </div>
+        {{!-- <div class="dropdown"></div> --}}
+    </div>
+</div>
+
+<div id="productNav" class="overlay">
+    <div class="row" style="height
             : 10%;">
-            <div class="col-2">
-                <a href="javascript:void(0)" class="closebtn" id="product-menu-close">&times;</a>
-            </div>
-            <div class="col-8" style="margin-bottom: -1em !important; ">
-                <img src="/images/OU6.png" alt="logo" width="120" height="40" class="mt-4 mr-2" />
-            </div>
+        <div class="col-2">
+            <a href="javascript:void(0)" class="closebtn" id="product-menu-close">&times;</a>
         </div>
-        <hr />
-
-        <div class="overlay-content">
-            <a class="text-left" href="/antimalaria">Anti-malaria</a>
-            <a class="text-left" href="/multivitamins">Multivitamins</a>
-            <a class="text-left" href="/equipments">Equipments</a>
-            <a class="text-left" href="/contraceptives">Contraceptives</a>
-            <a class="text-left" href="/antibiotics">Antibiotics</a>
-            <a class="text-left" href="/eyedrugs">Vision drugs</a>
-            <a class="text-left" href="/ulcerandgastro">Ulcer and Gastro drugs</a>
-            <a class="text-left" href="/analgesics">Analgesics</a>
-            <a class="text-left" href="/antihypertensives">Anti-hypertensives</a>
+        <div class="col-8" style="margin-bottom: -1em !important; ">
+            <img src="/images/logo.png" alt="logo" width="120" height="40" class="mt-4 mr-2" />
         </div>
     </div>
+    <hr />
 
-    <script>
-        function closeNav(event) {
-            document.getElementById("myNav").style.height = "0%";
-            document.getElementById("header").style.visibility = "visible";
-        }
-        var closeBtn = document.getElementById('closeBtn');
-        closeBtn.addEventListener('click', closeNav, false);
-
-        function openProductMenu(event) {
-
-            document.getElementById("productNav").style.height = "100%";
-        }
-        var productsLink = document.getElementById('products-link');
-        productsLink.addEventListener('click', openProductMenu, false);
-
-        function productMenuExit(event) {
-            document.getElementById("productNav").style.height = "0%";
-        }
-        var closeProductMenu = document.getElementById('product-menu-close');
-        closeProductMenu.addEventListener('click', productMenuExit, false);
-
-        function openDropdown(event) {
-
-            if (event.target.id === "products-link" || event.target.id === "p-dropdown-icon") {
-                document.getElementById("products").classList.toggle("show");
-            }
-
-            if (event.target.id === "login-link" || event.target.id === "l-dropdown-icon") {
-                document.getElementById("login").classList.toggle("show");
-            }
-        }
-        var loginLink = document.getElementById('login-link');
-        loginLink.addEventListener('click', openDropdown, false);
-    </script>
-</body>
-
-</html>
+    <div class="overlay-content">
+        <a class="text-left" href="/antimalaria">Anti-malaria</a>
+        <a class="text-left" href="/multivitamins">Multivitamins</a>
+        <a class="text-left" href="/equipments">Equipments</a>
+        <a class="text-left" href="/contraceptives">Contraceptives</a>
+        <a class="text-left" href="/antibiotics">Antibiotics</a>
+        <a class="text-left" href="/eyedrugs">Vision drugs</a>
+        <a class="text-left" href="/ulcerandgastro">Ulcer and Gastro drugs</a>
+        <a class="text-left" href="/analgesics">Analgesics</a>
+        <a class="text-left" href="/antihypertensives">Anti-hypertensives</a>
+    </div>
+</div>

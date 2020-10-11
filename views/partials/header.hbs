@@ -1,95 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+  :root {
+  --biggest-font-size: 64px;
+  --header-font-size: 32px;
+  --sub-heading-font-size: 24px;
+  --secondary-font-size: 18px;
+  --primary-font-size: 16px;
+  --primary-color: #4fae76;
+  --secondary-color: #ffffff;
+  --text-color-one: #000000;
+  --button-border-radius: 6px;
+  --button-padding: 0.5rem 1.5rem;
+}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+header {
+  background-color: #fff;
+  margin-top: -8px;
+  z-index: 3;
+  box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.12);
+}
 
-  <style>
-    :root {
-      --biggest-font-size: 64px;
-      --header-font-size: 32px;
-      --sub-heading-font-size: 24px;
-      --secondary-font-size: 18px;
-      --primary-font-size: 16px;
-      --primary-color: #4fae76;
-      --secondary-color: #ffffff;
-      --text-color-one: #000000;
-      --button-border-radius: 6px;
-      --button-padding: 0.5rem 1.5rem;
-    }
+nav {
+  font-family: Roboto;
+  font-size: 16px;
+}
 
-    header {
-      background-color: #fff;
-      margin-top: -8px;
-      z-index: 3;
-      box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.12);
-    }
+.ham {
+  background: rgb(68, 66, 66);
+  width: 20px;
+  height: 3px;
+  margin-bottom: 0.2rem;
+}
 
-    nav {
-      font-family: Roboto;
-      font-size: 16px;
-    }
+@media (min-width: 992px) {
+  div.toggler {
+    display: none !important;
+  }
+}
 
-    .ham {
-      background: rgb(68, 66, 66);
-      width: 20px;
-      height: 3px;
-      margin-bottom: 0.2rem;
-    }
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
 
-    @media(min-width: 992px) {
-      div.toggler {
-        display: none !important;
-      }
-    }
+li a {
+  letter-spacing: -0.05em;
+  font-size: var(--primary-font-size);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.002rem;
+  color: rgb(55, 53, 47);
+  /* -webkit-font-smoothing: antialiased; */
+}
 
-    button {
-      border: none;
-      outline: none;
-      background: none;
-    }
+.make-fixed {
+  position: fixed;
+  top: 0;
+}
 
-    li a {
-      letter-spacing: -0.05em;
-      font-size: var(--primary-font-size);
-      font-weight: 500;
-      line-height: 1;
-      letter-spacing: 0.002rem;
-      color: rgb(55, 53, 47);
-      ;
-      /* -webkit-font-smoothing: antialiased; */
-    }
+.dropdown-menu a {
+  padding-bottom: 1rem;
+}
 
-    .make-fixed {
-      position: fixed;
-      top: 0;
-    }
+.dropdown-menu a:active {
+  background-color: rgb(236, 233, 233);
+}
 
-    .dropdown-menu a {
-      padding-bottom: 1rem;
-    }
+</style>
 
-    .dropdown-menu a:active {
-      background-color: rgb(236, 233, 233);
-    }
-  </style>
-</head>
-
-<body>
-
-  <header id="header" class="container-fluid make-fixed">
+<header id="header" class="container-fluid make-fixed">
     <nav class="navbar navbar-expand-lg navbar-light pl-0 pr-0">
       <a class="navbar-brand" href="/">
         <img src="/images/logo.png" alt="logo" width="150" height="50" class="mt-2" />
       </a>
-      <div class="toggler" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+      <div class="toggler" style="display: grid; grid-template-columns: repeat(3, 1fr);">
         <div>
           <a class="nav-link" href="/shopping-cart/" style="padding: 0 !important; width: 3em;">
             <i class="fas fa-shopping-cart" style="color: #4fae76 !important; font-size: 18px;"></i>
             <span class="badge"
               style="background-color: rgb(202, 197, 197); color: #fff; border-radius: 15px;">{{session.cart.totalQty}}</span>
+          </a>
+        </div>
+         <div>
+          <a class="nav-link" href="/search/" style="padding: 0 !important; width: 3em;">
+            <i class="fas fa-search" style="color: #4fae76 !important; font-size: 18px;"></i>
           </a>
         </div>
         <div>
@@ -128,7 +122,7 @@
           </li>
           <li class="nav-item dropdown mr-4">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="color: #000">Login</a>
+              aria-haspopup="true" aria-expanded="false" style="color: #000">Account</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               {{# if login }}
               <a href="/user/profile" class="dropdown-item" style="color: #000">User account</a>
@@ -141,7 +135,7 @@
             </div>
           </li>
           <li class="nav-item mr-3">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/search/">
               <i class="fas fa-search" style="color: #4fae76 !important"></i>
             </a>
             </form>
@@ -158,13 +152,3 @@
     </nav>
   </header>
 
-  <script>
-    function openNav() {
-      document.getElementById("myNav").style.height = "100%";
-      document.getElementById("header").style.visibility = "hidden";
-    }
-    document.getElementById('hamburger-menu').addEventListener('click', openNav, false);
-  </script>
-</body>
-
-</html>

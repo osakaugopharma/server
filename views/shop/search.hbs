@@ -1,0 +1,202 @@
+<style>
+    :root {
+        --biggest-font-size: 64px;
+        --header-font-size: 32px;
+        --sub-heading-font-size: 24px;
+        --secondary-font-size: 18px;
+        --primary-font-size: 16px;
+        --primary-color: #4fae76;
+        --secondary-color: #ffffff;
+        --text-color-one: #000000;
+        --text-color-two: rgba(31, 8, 8, 0.6);
+        --button-border-radius: 6px;
+        --button-padding: 0.5rem 1.5rem;
+    }
+
+    .container {
+        width: 98%;
+        margin: auto;
+    }
+
+    .error-msg {
+        font-size: 22px;
+        color: rgb(189, 184, 184);
+        padding-top: 10rem;
+        width: 80%;
+        margin: auto;
+        line-height: 2.5rem;
+    }
+
+    .search-form {
+        margin-top: 6rem;
+        margin-bottom: 20rem;
+    }
+
+    .search-form form input:nth-of-type(1) {
+        border-radius: 6px;
+        padding: 0.7em 0.5em;
+        outline: none;
+        width: 70%;
+        font-size: 14px;
+        border: 2px solid rgb(238, 236, 236);
+    }
+
+    .search-form form input:nth-of-type(2) {
+        border-radius: 6px;
+        padding: 0.7em 0.5em;
+        width: 20%;
+        font-size: 14px;
+        background-color: #4fae76;
+        color: #fff;
+        outline: none;
+        border: none;
+    }
+
+    .second-custom-container {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    .product-display-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product-section-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 4em 4em;
+        margin-top: 6.5em;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+        border-radius: 6px;
+        margin-bottom: 2em;
+    }
+
+    .no-of-products p {
+        margin-top: 1.3em;
+        text-align: left;
+        margin-left: 2em;
+    }
+
+    .product-title p {
+        font-size: var(--sub-heading-font-size);
+        font-weight: 500;
+        text-align: left;
+        margin-left: 1.4em;
+        margin-top: 0.6em;
+    }
+
+    .product-title,
+    .no-of-products {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .hover-container {
+        width: 95%;
+        margin: 2em auto;
+        height: 20em;
+        border-radius: 6px;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+    }
+
+    .hover-container button {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: 0.3rem 1.8rem;
+        border-radius: var(--button-border-radius);
+        font-size: var(--primary-font-size);
+        margin-top: 3em;
+    }
+
+
+    .hover-container a {
+        color: var(--secondary-color);
+    }
+
+    .hover-container button a:hover {
+        text-decoration: none;
+    }
+
+    .hover-container p.product-name {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .hover-container p.product-price {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .out-of-order-opacity {
+        -webkit-filter: opacity(25%);
+        -moz-filter: opacity(25%);
+        -o-filter: opacity(25%);
+        -ms-filter: opacity(25%);
+        filter: opacity(25%);
+    }
+
+    @media(max-width: 575.98px) {
+        .product-display-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .hover-container button a {
+            display: block;
+            width: 5em;
+        }
+
+        .hover-container button {
+            width: 8em;
+        }
+
+        .second-custom-container {
+            width: 95%;
+        }
+    }
+
+    @media(min-width: 576px) {
+        .product-display-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media(min-width: 992px) {
+        .product-display-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+</style>
+
+<section class="search-form">
+    <form action="/search" method="post">
+        <input type="text" name="searchquery" placeholder="Search for products and categories">
+        <input type="submit" value="Search">
+    </form>
+    {{#if msg}}
+         <p class="error-msg">{{ msg }}</p>
+    {{/if}}
+
+    {{#if searchResults }}
+    {{#each searchResults}}
+    <div class="container">
+        <div class="product-display-grid">
+
+        {{#each this}}
+        <div>
+            <a href="/product-details/{{this._id}}" style="text-decoration: none; color: #000;">
+                <div class="hover-container">
+                    <img src="{{ this.imagepath }}" alt="{{ this.imagealt }}">
+                    <p class="product-name">{{ this.name }}</p>
+                    <p class="product-price">₦{{ this.price }}</p>
+                    <button><a href="/add-to-cart/{{this._id}}">Add to
+                            cart</a></button>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+
+    </div>
+    </div>
+    {{/each}}
+    {{/if}}
+</section>

@@ -1,197 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    :root {
+        --biggest-font-size: 64px;
+        --header-font-size: 32px;
+        --sub-heading-font-size: 24px;
+        --secondary-font-size: 18px;
+        --primary-font-size: 16px;
+        --primary-color: #4fae76;
+        --secondary-color: #ffffff;
+        --text-color-one: #000000;
+        --text-color-two: rgba(0, 0, 0, 0.6);
+        --button-border-radius: 6px;
+        --button-padding: 0.5rem 1.5rem;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+    .wrapper {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .layer {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px;
+        text-align: left;
+        background-color: #4fae76;
+        color: #fff;
+        margin-bottom: 2.5em;
+
+    }
+
+    .sub-layer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 1em;
+        color: #000;
+    }
+
+    .sub-layer {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px;
+        text-align: left;
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        align-items: center;
+        justify-items: left;
+        padding: 0.5em;
+    }
+
+    .icon-container {
+        justify-self: center;
+    }
+
+    .paragraph p {
+        margin-top: 12px;
+    }
+
+    .icon {
+        font-size: 24px;
+    }
+
+    .sub-layer-link {
+        display: block;
+        color: #000;
+    }
+
+    .sub-layer-link:active {
+        background-color: #aae6c5;
+        color: #fff;
+    }
+
+    .sub-layer-link:hover {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .angle-right-icon {
+        justify-self: center;
+        font-size: 18px;
+    }
+
+    .layer p {
+        padding: 2em;
+    }
+
+    .margin {
+        margin-top: 6em;
+    }
+
+    @media(min-width: 992px) {
         .wrapper {
-            width: 95%;
-            margin: 0 auto;
-        }
-
-        .layer {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px;
-            text-align: left;
-            background-color: #4fae76;
-            color: #fff;
-            margin-bottom: 2.5em;
-
-        }
-
-        .sub-layer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            row-gap: 1em;
-            color: #000;
-        }
-
-        .sub-layer {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px;
-            text-align: left;
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-            align-items: center;
-            justify-items: left;
-            padding: 0.5em;
-        }
-
-        .icon-container {
-            justify-self: center;
-        }
-
-        .paragraph p {
-            margin-top: 12px;
-        }
-
-        .icon {
-            font-size: 24px;
-        }
-
-        .sub-layer-link {
-            display: block;
-            color: #000;
-        }
-
-        .sub-layer-link:active {
-            background-color: #aae6c5;
-            color: #fff;
-        }
-
-        .angle-right-icon {
-            justify-self: center;
-            font-size: 18px;
+            width: 80%;
         }
 
         .layer p {
             padding: 2em;
         }
+    }
+</style>
 
-        .margin {
-            margin-top: 6em;
-        }
-
-        @media(min-width: 992px) {
-            .wrapper {
-                width: 80%;
-            }
-
-            .layer p {
-                padding: 2em;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="wrapper margin">
-        <div class="layer">
-            <p><b>Welcome, </b>{{ nameOfUser }}.<br> <small>{{user}}</small></p>
-        </div>
-
-        <div class="sub-layer-grid">
-            <a class="sub-layer-link" href="/user/orders">
-                <div class="sub-layer">
-                    <div class="icon-container">
-                        <i class="fas fa-boxes icon"></i>
-                    </div>
-                    <div class="paragraph">
-                        <p>Orders</p>
-                    </div>
-                    <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
-                </div>
-            </a>
-
-
-            <a class="sub-layer-link" href="/user/details">
-                <div class="sub-layer">
-                    <div class="icon-container">
-                        <i class="fas fa-user-circle icon"></i>
-                    </div>
-                    <div class="paragraph">
-                        <p>Account details</p>
-                    </div>
-                    <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
-                </div>
-            </a>
-
-            <a class="sub-layer-link" href="/user/change-password">
-                <div class="sub-layer">
-                    <div class="icon-container">
-                        <i class="fas fa-lock icon"></i>
-                    </div>
-                    <div class="paragraph">
-                        <p>Change password</p>
-                    </div>
-                    <div class="angle-right-icon"><i class="fas fa-angle-right"></i> </div>
-
-                </div>
-            </a>
-
-        </div>
+<div class="wrapper margin">
+    <div class="layer">
+        <p><b>Welcome, </b>{{ nameOfUser }}.<br> <small>{{user}}</small></p>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{!-- <div class="container wrapper">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                {{# if orders}}
-                <h1>User Profile</h1>
-                <h3>My Orders</h3>
-
-                {{# each orders}}
-                <div class="card">
-                    <div class="card-body">
-                        {{ this.cart }}
-                    </div>
+    <div class="sub-layer-grid">
+        <a class="sub-layer-link" href="/user/orders">
+            <div class="sub-layer">
+                <div class="icon-container">
+                    <i class="fas fa-boxes icon" style="color: #4fae76;"></i>
                 </div>
-                {{/each}}
-
-                {{ else }}
-                <h1>User Profile</h1>
-                <hr>
-                <h2>You have no orders yet</h2>
-                <div style="margin-top: 4em !important;">
-                    <a href="/" style="background-color: #5cdb95; color: #fff;  border-radius: 3px;
-      padding: 0.5rem 1rem; border: none;" class="remove">Go to shop</a>
+                <div class="paragraph">
+                    <p>Orders</p>
                 </div>
+                <div class="angle-right-icon"><i class="fas fa-angle-right" style="color: var(--primary-color);"></i>
+                </div>
+            </div>
+        </a>
 
-                {{/if}}
+        <a class="sub-layer-link" href="/user/details">
+            <div class="sub-layer">
+                <div class="icon-container">
+                    <i class="fas fa-user-circle icon" style="color: var(--primary-color);"></i>
+                </div>
+                <div class="paragraph">
+                    <p>Account details</p>
+                </div>
+                <div class="angle-right-icon"><i class="fas fa-angle-right" style="color: var(--primary-color);"></i>
+                </div>
+            </div>
+        </a>
+
+        <a class="sub-layer-link" href="/user/change-password">
+            <div class="sub-layer">
+                <div class="icon-container">
+                    <i class="fas fa-lock icon" style="color: var(--primary-color);"></i>
+                </div>
+                <div class="paragraph">
+                    <p>Change password</p>
+                </div>
+                <div class="angle-right-icon"><i class="fas fa-angle-right" style="color: var(--primary-color);"></i>
+                </div>
 
             </div>
-        </div>
-    </div> --}}
-</body>
+        </a>
 
-</html>
+    </div>
+</div>

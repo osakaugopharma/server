@@ -18,12 +18,17 @@ router.get('/profile', isLoggedIn, function (req, res) {
   var nameOfUser = '';
   User.findOne({ email: req.session.email })
     .then((doc) => {
-      console.log(doc);
+      // console.log(doc);
       var userObject = doc.toObject();
       nameOfUser = userObject.name;
       res.render('user/profile', {
         user: req.session.email,
         nameOfUser: nameOfUser,
+        title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+        description:
+          'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+        keywords:
+          'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
       });
     })
     .catch((err) => console.log(err));
@@ -34,7 +39,14 @@ router.get('/orders', (req, res) => {
     if (err) {
       return res.write('Error');
     }
-    res.render('user/orders', { orders: orders });
+    res.render('user/orders', {
+      orders: orders,
+      title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+      description:
+        'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+      keywords:
+        'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
+    });
   });
 });
 
@@ -58,6 +70,11 @@ router.get('/details', (req, res) => {
       address: address,
       phone: phone,
       name: name,
+      title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+      description:
+        'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+      keywords:
+        'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
     });
   });
 });
@@ -83,26 +100,50 @@ router.get('/update-details', (req, res) => {
       email: email,
       name: name,
       csrfToken: req.csrfToken(),
+      title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+      description:
+        'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+      keywords:
+        'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
     });
   });
 });
 
 router.post('/update-details', (req, res) => {
-  var name = req.body.name;
-  var email = req.body.email;
-  var address = req.body.address;
-  var phone = req.body.phone;
-  User.findOneAndUpdate(
-    { email: email },
-    { name: name, address: address, phone: phone },
-    { new: true }
-  )
-    .then((doc) => console.log('Success'))
-    .catch((err) => console.log(err));
-  req.session.email = email;
-  req.flash('success_msg', 'Details updated successfully');
-  // { name, email, address, phone }
-  res.redirect('/user/details');
+  req.checkBody('name', 'Invalid username').isAlpha().trim().escape();
+  req.checkBody('email', 'Invalid email').isEmail().normalizeEmail();
+  req
+    .checkBody('address', 'Invalid delivery address')
+    .isString()
+    .trim()
+    .escape();
+  req.checkBody('phone', 'Invalid phone').isMobilePhone().trim().escape();
+
+  var errors = req.validationErrors();
+  if (errors) {
+    var messages = [];
+    errors.forEach((error) => {
+      messages.push(error.msg);
+    });
+    req.flash('error_msg', messages);
+    res.redirect('/user/update-details');
+  } else {
+    var name = req.body.name;
+    var email = req.body.email;
+    var address = req.body.address;
+    var phone = req.body.phone;
+
+    User.findOneAndUpdate(
+      { email: email },
+      { name: name, address: address, phone: phone },
+      { new: true }
+    )
+      .then((doc) => console.log('Success'))
+      .catch((err) => console.log(err));
+    req.session.email = email;
+    req.flash('success_msg', 'Details updated successfully');
+    res.redirect('/user/details');
+  }
 });
 
 router.get('/summary', isLoggedIn, (req, res) => {
@@ -123,12 +164,24 @@ router.get('/summary', isLoggedIn, (req, res) => {
       phone: phone,
       products: cart.generateArray(),
       totalPrice: cart.totalPrice,
+      title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+      description:
+        'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+      keywords:
+        'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
     });
   });
 });
 
 router.get('/change-password', isLoggedIn, (req, res) => {
-  res.render('user/change-password', { csrfToken: req.csrfToken() });
+  res.render('user/change-password', {
+    csrfToken: req.csrfToken(),
+    title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+    description:
+      'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+    keywords:
+      'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
+  });
 });
 
 router.post('/change-password', (req, res) => {
@@ -136,6 +189,15 @@ router.post('/change-password', (req, res) => {
   var currentPassword = req.body.currentpassword;
   var newPassword = req.body.newpassword;
   var confirmPassword = req.body.confirmpassword;
+  req.checkBody('currentpassword', 'Invalid password').isLength({ min: 4 });
+  req.checkBody('newpassword', 'Invalid password').isLength({ min: 4 });
+  req.checkBody('confirmpassword', 'Invalid password').isLength({ min: 4 });
+  var errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('error_msg', 'Password must be up to 4 characters');
+  }
+
   User.findOne({ email: email })
     .then((doc) => {
       var userObject = doc.toObject();
@@ -153,14 +215,21 @@ router.post('/change-password', (req, res) => {
           )
             .then((doc) => {
               console.log('Success');
+
+              req.flash('success_msg', 'Password updated successfully');
+              res.redirect('/user/change-password');
             })
             .catch((err) => console.log(err));
+        } else {
+          req.flash(
+            'error_msg',
+            'New password and confirmed password do not match.'
+          );
+          res.redirect('/user/change-password');
         }
       }
     })
     .catch((err) => console.log(err));
-  req.flash('success_msg', 'Password updated successfully');
-  res.redirect('/user/change-password');
 });
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
@@ -196,31 +265,6 @@ router.post('/signup', function (req, res, next) {
   })(req, res, next);
 });
 
-// router.post(
-//   '/signup',
-//   passport.authenticate('local.signup', {
-//     failureRedirect: '/user/signup',
-//     failureFlash: true,
-//   }),
-//   function (req, res, next) {
-// let name = req.body.name;
-// let email = req.body.email;
-// let password = req.body.password;
-// console.log(name, email, password);
-// res.render('user/signup', { name, email, password });
-
-//     if (req.session.oldUrl) {
-//       var oldUrl = req.session.oldUrl;
-//       req.session.oldUrl = null;
-//       res.redirect(oldUrl);
-//     } else {
-//       var signUpEmail = req.body.email;
-//       req.session.email = signUpEmail;
-//       res.redirect('/user/profile');
-//     }
-//   }
-// );
-
 router.get('/signup', function (req, res) {
   var messages = req.flash('error');
   var name = formDefaultName;
@@ -233,6 +277,11 @@ router.get('/signup', function (req, res) {
     name,
     email,
     password,
+    title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+    description:
+      'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+    keywords:
+      'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
   });
   formDefaultName = '';
   formDefaultEmail = '';
@@ -251,6 +300,11 @@ router.get('/signin', function (req, res) {
     name,
     email,
     password,
+    title: 'Osaka Ugo Biopharmaceuticals: The No.1 Online Pharmacy in Nigeria',
+    description:
+      'Osaka Ugo Biopharmaceuticals Limited - The No.1 online pharmacy in Nigeria. Get affordable prices for medication, medical equipment, etc',
+    keywords:
+      'Drugs, online pharmacy, pharmacy, biopharmaceuticals, online medication, Nigeria, pharmacists, pharmaceutical stores',
   });
   formDefaultName = '';
   formDefaultEmail = '';
@@ -277,25 +331,6 @@ router.post('/signin', function (req, res, next) {
     });
   })(req, res, next);
 });
-
-// router.post(
-//   '/signin',
-//   passport.authenticate('local.signin', {
-//     failureRedirect: '/user/signin',
-//     failureFlash: true,
-//   }),
-//   function (req, res, next) {
-//     if (req.session.oldUrl) {
-//       var oldUrl = req.session.oldUrl;
-//       req.session.oldUrl = null;
-//       res.redirect(oldUrl);
-//     } else {
-//       var email = req.body.email;
-//       req.session.email = email;
-//       res.redirect('/user/profile');
-//     }
-//   }
-// );
 
 module.exports = router;
 

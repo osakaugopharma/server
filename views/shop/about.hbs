@@ -1,76 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+  :root {
+    --biggest-font-size: 64px;
+    --header-font-size: 32px;
+    --sub-heading-font-size: 24px;
+    --secondary-font-size: 18px;
+    --primary-font-size: 16px;
+    --primary-color: #5cdb95;
+    --secondary-color: #ffffff;
+    --text-color-one: #000000;
+    --text-color-two: rgba(31, 8, 8, 0.6));
+    --button-border-radius: 6px;
+    --button-padding: 0.5rem 1.5rem;
+  }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    :root {
-      --biggest-font-size: 64px;
-      --header-font-size: 32px;
-      --sub-heading-font-size: 24px;
-      --secondary-font-size: 18px;
-      --primary-font-size: 16px;
-      --primary-color: #5cdb95;
-      --secondary-color: #ffffff;
-      --text-color-one: #000000;
-      --text-color-two: rgba(31, 8, 8, 0.6));
-      --button-border-radius: 6px;
-      --button-padding: 0.5rem 1.5rem;
-    }
+  .container {
+    width: 60%;
+    margin: 0 auto;
+  }
 
+  .about-content {
+    margin-top: 8rem;
+    text-align: left;
+  }
+
+  .about-content h2 {
+    font-size: var(--header-font-size);
+    margin-bottom: 2rem;
+  }
+
+  .about-content p {
+    line-height: 3rem;
+  }
+
+  @media(max-width: 575px) {
     .container {
-      width: 60%;
-      margin: 0 auto;
+      width: 85%;
     }
+  }
 
-    .about-content {
-      margin-top: 8rem;
-      text-align: left;
+  @media(min-width: 576px) {
+    .container {
+      width: 80%;
     }
+  }
+</style>
 
-    .about-content h2 {
-      font-size: var(--header-font-size);
-      margin-bottom: 2rem;
-    }
-
-    .about-content p {
-      line-height: 3rem;
-    }
-
-    @media(max-width: 575px) {
-      .container {
-        width: 85%;
-      }
-    }
-
-    @media(min-width: 576px) {
-      .container {
-        width: 80%;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <div class="about-content">
-      <h2>About Osaka Ugo Pharmaceuticals.</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam neque ullam beatae totam aperiam dolore ut
-        dicta hic voluptatibus, commodi excepturi, saepe fugiat consequuntur omnis repudiandae maiores. Esse cumque
-        rerum ut deserunt sapiente assumenda officiis quod ad minus error eligendi vitae corporis excepturi, suscipit
-        quaerat ducimus accusamus nulla perspiciatis qui?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis neque ipsa quam nulla molestiae doloremque,
-        veniam voluptate accusantium ratione, cupiditate, nobis labore voluptatibus error ut eligendi! Reiciendis
-        eligendi velit earum minima, obcaecati impedit accusantium vel nisi quisquam mollitia illum, facere delectus
-        dolore voluptates nesciunt sequi est placeat quibusdam minus a!
-      </p>
-    </div>
+<div class="container">
+  <div class="about-content">
+    <h2>About Osaka Ugo Pharmaceuticals.</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam neque ullam beatae totam aperiam dolore ut
+      dicta hic voluptatibus, commodi excepturi, saepe fugiat consequuntur omnis repudiandae maiores. Esse cumque
+      rerum ut deserunt sapiente assumenda officiis quod ad minus error eligendi vitae corporis excepturi, suscipit
+      quaerat ducimus accusamus nulla perspiciatis qui?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis neque ipsa quam nulla molestiae doloremque,
+      veniam voluptate accusantium ratione, cupiditate, nobis labore voluptatibus error ut eligendi! Reiciendis
+      eligendi velit earum minima, obcaecati impedit accusantium vel nisi quisquam mollitia illum, facere delectus
+      dolore voluptates nesciunt sequi est placeat quibusdam minus a!
+    </p>
   </div>
-</body>
-
-</html>
+</div>

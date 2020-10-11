@@ -1,134 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    :root {
+        --biggest-font-size: 64px;
+        --header-font-size: 32px;
+        --sub-heading-font-size: 24px;
+        --secondary-font-size: 18px;
+        --primary-font-size: 16px;
+        --primary-color: #4fae76;
+        --secondary-color: #ffffff;
+        --text-color-one: #000000;
+        --text-color-two: rgba(31, 8, 8, 0.6));
+        --button-border-radius: 6px;
+        --button-padding: 0.5rem 1.5rem;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        :root {
-            --biggest-font-size: 64px;
-            --header-font-size: 32px;
-            --sub-heading-font-size: 24px;
-            --secondary-font-size: 18px;
-            --primary-font-size: 16px;
-            --primary-color: #4fae76;
-            --secondary-color: #ffffff;
-            --text-color-one: #000000;
-            --text-color-two: rgba(31, 8, 8, 0.6));
-            --button-border-radius: 6px;
-            --button-padding: 0.5rem 1.5rem;
-        }
+    .container {
+        width: 98%;
+        margin: 0 auto;
+    }
 
-        .container {
-            width: 98%;
-            margin: 0 auto;
-        }
+    .details-container {
+        margin-top: 6em;
+        box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
+        padding: 1em 2em 3.5em 2em;
+        text-align: left;
+    }
 
-        .details-container {
-            margin-top: 6em;
-            box-shadow: rgba(84, 70, 35, 0.15) 0px 2px 8px, rgba(84, 70, 35, 0.15) 0px 1px 3px;
-            padding: 1em 2em 3.5em 2em;
-            text-align: left;
-        }
+    .button {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: var(--button-padding);
+        border-radius: var(--button-border-radius);
+        font-size: var(--secondary-font-size);
+    }
 
-        .button {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: var(--button-padding);
-            border-radius: var(--button-border-radius);
-            font-size: var(--secondary-font-size);
-        }
+    .button-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        margin-top: 3em;
+    }
 
-        .button-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            justify-content: center;
-            margin-top: 3em;
-        }
+    .label-container {
+        width: 95%;
+        margin: auto;
+        text-align: left;
+    }
 
-        .label-container {
-            width: 95%;
-            margin: auto;
-            text-align: left;
-        }
+    .input-container {
+        width: 95%;
+        margin: 0 auto 1.5em auto;
+    }
 
-        .input-container {
-            width: 95%;
-            margin: 0 auto 1.5em auto;
-        }
+    .label-container,
+    .input-container {
+        width: 100%;
+    }
 
-        .label-container,
-        .input-container {
-            width: 100%;
-        }
+    input {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 0.7em 0.5em;
+        outline: none;
+        width: 100%;
+        font-size: 14px;
 
-        input {
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            padding: 0.7em 0.5em;
-            outline: none;
-            width: 100%;
-            font-size: 14px;
+        border: 2px solid rgb(238, 236, 236);
 
-            border: 2px solid rgb(238, 236, 236);
+    }
 
-        }
-
-        .header {
-            margin-top: 2rem;
-            font-size: var(--sub-heading-font-size);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="details-container">
-            <h2 class="header">Update details.</h2>
-            <hr>
-            <br>
-            <form action="/user/update-details" method="POST">
-                <div class="label-container">
-                    <label for="email"><b>Name</b></label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="name" name="name" value="{{name}}">
-                </div>
-
-                <div class="label-container">
-                    <label for="email"><b>Email Address</b></label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="email" name="email" value="{{email}}">
-                </div>
-
-                <div class="label-container">
-                    <label for="address"><b>Delivery Address</b></label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="address" name="address" value="{{address}}">
-                </div>
-
-                <div class="label-container">
-                    <label for="phone"><b>Phone number</b></label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="phone" name="phone" value="0{{phone}}">
-                </div>
-
-                <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
-
-                <div class="button-container">
-                    <button class="button" type="submit">Update details</button>
-                </div>
-
-            </form>
+    .header {
+        margin-top: 2rem;
+        font-size: var(--sub-heading-font-size);
+    }
+</style>
 
 
 
+<div class="container">
+    <div class="details-container">
+        {{#if error_msg }}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span>{{ error_msg }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </div>
-</body>
+        {{/if}}
+        <h2 class="header">Update details.</h2>
+        <hr>
+        <br>
+        <form action="/user/update-details" method="POST">
+            <div class="label-container">
+                <label for="email"><b>Name</b></label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="name" name="name" value="{{name}}" required>
+            </div>
 
-</html>
+            <div class="label-container">
+                <label for="email"><b>Email Address</b></label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="email" name="email" value="{{email}}" required>
+            </div>
+
+            <div class="label-container">
+                <label for="address"><b>Delivery Address</b></label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="address" name="address" value="{{address}}" required>
+            </div>
+
+            <div class="label-container">
+                <label for="phone"><b>Phone number</b></label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="phone" name="phone" value="0{{phone}}" required>
+            </div>
+
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+            <div class="button-container">
+                <button class="button" type="submit">Update details</button>
+            </div>
+
+        </form>
+    </div>
+</div>
