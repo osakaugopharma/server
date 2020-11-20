@@ -1,6 +1,6 @@
 const AdminBro = require('admin-bro');
-const AdminBroExpress = require('admin-bro-expressjs');
-const AdminBroMongoose = require('admin-bro-mongoose');
+const AdminBroExpress = require('@admin-bro/express');
+const AdminBroMongoose = require('@admin-bro/mongoose');
 const User = require('../models/users');
 const Product = require('../models/product');
 const Order = require('../models/order');
@@ -14,7 +14,7 @@ const AdminBroOptions = {
   rootPath: '/admin',
   resources: [
     { resource: User },
-    { resource: Product },
+    { resource: Product},
     {
       resource: Order, options: {
         filterProperties: ['orderDate'],

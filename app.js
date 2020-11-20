@@ -1,6 +1,5 @@
 var createError = require('http-errors');
 var express = require('express');
-// var favicon = require('serve-favicon');
 const formidableMiddleware = require('express-formidable');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -81,7 +80,6 @@ app.use((req, res, next) => {
 app.use('/user', userRoutes);
 app.use('/admin', adminRouter);
 app.use('/', indexRouter);
-// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

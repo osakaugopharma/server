@@ -6,10 +6,11 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@admin-bro/express": "^3.0.1",
+    "@admin-bro/mongoose": "^1.0.2",
+    "@admin-bro/upload": "^1.1.0",
     "@handlebars/allow-prototype-access": "^1.0.3",
-    "admin-bro": "^2.9.0",
-    "admin-bro-expressjs": "^2.1.1",
-    "admin-bro-mongoose": "^0.5.2",
+    "admin-bro": "^3.2.5",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -31,7 +32,6 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "request": "^2.88.2",
-    "serve-favicon": "^2.5.0",
     "uuid": "^8.1.0"
   }
 }
