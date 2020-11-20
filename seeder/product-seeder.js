@@ -1,6 +1,6 @@
 var Product = require('../models/product');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
 // mongoose.connect(
 //   'mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority',
 //   { useNewUrlParser: true, useUnifiedTopology: true }
