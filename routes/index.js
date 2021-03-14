@@ -1,24 +1,21 @@
-var express = require('express');
-var nodemailer = require('nodemailer');
-var router = express.Router();
-var Cart = require('../models/cart');
-var Product = require('../models/product');
-var Order = require('../models/order');
-var User = require('../models/users');
-var orderAddress;
-var orderPhone;
-var request = require('request');
+const express = require('express');
+const nodemailer = require('nodemailer');
+const router = express.Router();
+const Cart = require('../models/cart');
+const Product = require('../models/product');
+const Order = require('../models/order');
+const User = require('../models/users');
+let orderAddress;
+let orderPhone;
+const request = require('request');
 let products;
+
 Product.find()
   .then((docs) => (products = docs))
   .catch((err) => console.log(err));
 
 router.get('/', function (req, res) {
   Product.find(function (err, docs) {
-    if (err) {
-      console.log(err);
-    }
-
     var productChunks = [];
     var chunkSize = 5;
     productChunks.push(docs.slice(0, chunkSize));

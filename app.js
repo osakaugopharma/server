@@ -1,15 +1,16 @@
+const express = require('express');
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 const uploadFeature = require('@admin-bro/upload')
-const express = require('express');
+
 const User = require('./models/users')
 const Product = require('./models/product')
 const Order = require('./models/order')
 
 const createError = require('http-errors');
 // const formidableMiddleware = require('express-formidable');
-const path = require('path');
+// const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const handlebars = require('handlebars');
@@ -37,6 +38,11 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err));
 
+  
+// mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log('MongoDB Connected...'))
+//   .catch(err => console.log(err));
+
 
 AdminBro.registerAdapter(AdminBroMongoose)
 app.use('/uploads', express.static('uploads'))
@@ -49,9 +55,9 @@ const AdminBroOptions = {
     },
     {
       resource: Product,
-      options: {
-        properties: { uploadFile: { isVisible: false } }
-      },
+      // options: {
+      //   properties: { uploadFile: { isVisible: false } }
+      // },
       features: [
         uploadFeature({
           provider: { local: { bucket: 'uploads' } },
@@ -76,12 +82,6 @@ const adminBro = new AdminBro(AdminBroOptions)
 const router = AdminBroExpress.buildRouter(adminBro)
 app.use(adminBro.options.rootPath, router)
 app.listen(8080, () => console.log('AdminBro is running...'))
-
-
-
-// mongoose.connect('mongodb+srv://oup_client:e02pq1vJD4gKBVMH@cluster0.jtray.mongodb.net/shop?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => console.log('MongoDB Connected...'))
-//   .catch(err => console.log(err));
 
 require('./config/passport');
 
@@ -115,9 +115,9 @@ app.use(
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.join(__dirname, 'uploads')));
-// app.use(express.static('public'));
+app.use(express.static('public'))
+app.use('uploads', express.static('uploads'))
+
 
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated();

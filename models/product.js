@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 // var Schema = mongoose.Schema;
 
 const UploadedFile = new mongoose.Schema({
-    path: {type: String, required: true},
-    type: {type: String, required: true},
-    size: {type: Number, required: true},
-    folder: {type:String, required: true},
-    filename: {type:String, required: true}
+    path: String,
+    type: String,
+    size: Number,
+    folder: String,
+    filename: String
 })
 
 const Product = new mongoose.model('Product', {
